@@ -1,7 +1,7 @@
 /* Service Worker — برای باز شدن برنامه بدون اینترنت بعد از اولین بار.
    صفحه‌ی اصلی همیشه اول از اینترنت گرفته می‌شود (تا نسخه‌ی جدید فوری دیده شود) و فقط وقتی اینترنت نیست از حافظه خوانده می‌شود.
    این فایل فقط حافظه‌هایی را پاک می‌کند که اسمشان با atelier- شروع می‌شود و به برنامه‌های دیگر روی همین دامنه دست نمی‌زند. */
-const CACHE = 'atelier-v2';
+const CACHE = 'atelier-v4';
 const SHELL = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 const CDN_HOSTS = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 

@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="author" content="مهندس فرشاد">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
@@ -300,13 +301,30 @@
   .a4-style-minimal .a4-cell,.a4-style-minimal .a4-terms-box,.a4-style-minimal .a4-summary-card,.a4-style-minimal .a4-payment-card{background:#fff;}
   .a4-style-minimal .a4-terms-box,.a4-style-minimal .a4-summary-card,.a4-style-minimal .a4-payment-card{border:1px solid #E0E0E0;}
   .a4-style-minimal .a4-group-row td{background:#fff;border-bottom:1px solid #E0E0E0;}
+
+  /* ---- صفحه قفل ---- */
+  #lockScreen{position:fixed;top:0;right:0;bottom:0;left:0;z-index:99999;display:none;align-items:center;justify-content:center;background:var(--c-bg);padding:20px;overflow:auto;}
+  #lockScreen.show{display:flex;}
+  .lock-box{width:100%;max-width:360px;text-align:center;margin:auto;}
+  .lock-logo{width:76px;height:76px;border-radius:20px;margin:0 auto 14px;display:block;box-shadow:0 6px 20px rgba(0,0,0,.12);}
+  .lock-title{font-size:19px;font-weight:800;color:var(--c-ink);margin-bottom:6px;}
+  .lock-sub{font-size:12px;color:var(--c-steel);margin-bottom:16px;line-height:1.9;}
+  .lock-wrap{position:relative;margin-bottom:10px;}
+  .lock-wrap input{width:100%;text-align:center;padding-left:44px;padding-right:44px;}
+  .lock-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer;padding:6px;}
+  .lock-err{color:#C0392B;font-size:12px;min-height:20px;margin-bottom:8px;font-weight:700;}
+  .lock-credit{margin-top:26px;font-size:11px;color:var(--c-steel);line-height:2;}
+  .lock-link{background:none;border:none;color:var(--c-steel);font-size:12px;text-decoration:underline;cursor:pointer;margin-top:12px;font-family:inherit;}
+  .lock-reset{margin-top:12px;padding:12px;border:1px solid #E0B4AE;border-radius:12px;background:#FFF6F5;text-align:right;font-size:12px;line-height:1.9;color:#7A2E26;}
 </style>
 </head>
+<!-- © حق نشر این برنامه محفوظ است — طراحی و توسعه: مهندس فرشاد -->
 <body>
+<div id="lockScreen" aria-live="polite"></div>
 <img id="studioLogoSrc" style="display:none" src="data:image/png;base64,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">
 <div class="wrap" id="app"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
+<script type="text/plain" id="appMain">
 const STORE_KEYS = { materials:'studio_materials', products:'studio_products', productCategories:'studio_productCategories', records:'studio_records', invoices:'studio_invoices', invoiceSeq:'studio_invoiceSeq', customers:'studio_customers', transactions:'studio_transactions', overheadPerUnit:'studio_overheadPerUnit', overheadPercent:'studio_overheadPercent', suppliers:'studio_suppliers', purchases:'studio_purchases', reminders:'studio_reminders', expenses:'studio_expenses', expenseCategories:'studio_expenseCategories', bankInfo:'studio_bankInfo', downloadDirName:'studio_downloadDirName', cheques:'studio_cheques', brandInfo:'studio_brandInfo', bookings:'studio_bookings', theme:'studio_theme', equipment:'studio_equipment', bookingResources:'studio_bookingResources' };
 const UNITS = ['عدد','جلد','برگ','بسته','متر','متر مربع'];
 const LABOR_PRESETS = ['ساعت عکاسی','ساعت فیلم‌برداری','ادیت و رتوش','تدوین','طراحی آلبوم','دستیار / عوامل'];
@@ -354,12 +372,13 @@ const TAB_LABELS = (()=>{
   return m;
 })();
 
+// ذخیره‌سازی از طریق «گاوصندوق» رمزگذاری‌شده (لایه‌ی قفل) انجام می‌شود، نه مستقیم روی localStorage
 function loadJSON(key, fallback){
-  try{ const raw = localStorage.getItem(key); return raw? JSON.parse(raw): fallback; }
+  try{ const raw = window.__vault.get(key); return raw? JSON.parse(raw): fallback; }
   catch(e){ return fallback; }
 }
 function saveJSON(key, value){
-  try{ localStorage.setItem(key, JSON.stringify(value)); }
+  try{ window.__vault.set(key, JSON.stringify(value)); }
   catch(e){ alert('ذخیره روی این مرورگر ناموفق بود'); }
 }
 function todayStr(){ return new Date().toISOString().slice(0,10); }
@@ -1468,6 +1487,74 @@ function bindThemeEvents(){
 }
 applyAppTheme();
 
+
+/* ===== حق نشر و امنیت (رمز ورود) ===== */
+function appCreditHTML(){
+  const c = window.__appCredit ? window.__appCredit() : { year:'', owner:'' };
+  return `<p class="note" style="text-align:center;margin:16px 0 4px;line-height:2">© ${escapeAttr(c.year)} — تمامی حقوق این برنامه محفوظ است<br>طراحی و توسعه: ${escapeAttr(c.owner)}</p>`;
+}
+let securityOpen = false;
+function renderSecuritySettings(){
+  const m = window.__vault.getAutolock();
+  return `
+    <div class="card" style="margin-bottom:10px;padding:0;overflow:hidden">
+      <div class="cat-toggle" id="secToggle" style="display:flex;justify-content:space-between;align-items:center;padding:14px;cursor:pointer">
+        <span style="display:flex;align-items:center;gap:8px;font-weight:700">
+          <span style="display:inline-block;transition:transform .15s ease;transform:rotate(${securityOpen?90:0}deg)">▸</span>
+          🔒 رمز ورود و امنیت
+        </span>
+      </div>
+      ${securityOpen ? `<div style="padding:0 14px 14px">
+        <label class="small" style="display:block;margin-bottom:4px">قفل خودکار وقتی برنامه بیکار یا در پس‌زمینه است</label>
+        <select id="secAutolock" style="margin-bottom:10px">
+          ${[[1,'بعد از ۱ دقیقه'],[5,'بعد از ۵ دقیقه'],[15,'بعد از ۱۵ دقیقه'],[60,'بعد از ۱ ساعت'],[0,'هرگز (فقط دستی)']].map(o=>`<option value="${o[0]}" ${m===o[0]?'selected':''}>${o[1]}</option>`).join('')}
+        </select>
+        <button id="secLockNow" class="btn btn-outline" style="width:100%;margin-bottom:14px">🔒 همین الان قفل کن</button>
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px">ورود با اثر انگشت / چهره</div>
+        ${(()=>{
+          const cfg = window.__bio.config();
+          if(cfg) return `<p class="note" style="margin:0 0 8px;text-align:right;line-height:1.9">${cfg.mode==='prf' ? '✓ فعال است (حالت امن): کلید باز کردن اطلاعات فقط بعد از تأیید اثر انگشت یا چهره‌ی گوشی آزاد می‌شود.' : '✓ فعال است (حالت راحتی): ورود با اثر انگشت یا چهره انجام می‌شود، ولی مرورگر این گوشی امکان قفل رمزنگاری با بایومتریک را ندارد؛ پس قفل صفحه‌ی خود گوشی را حتماً نگه دار.'}</p><button id="secBioOff" class="btn btn-outline" style="width:100%;margin-bottom:14px">غیرفعال کردن</button>`;
+          if(!window.__bio.avail) return `<p class="note" style="margin:0 0 14px;text-align:right;line-height:1.9">این دستگاه یا مرورگر قفل بایومتریک (اثر انگشت/چهره) ندارد یا برای وب‌سایت‌ها فعالش نکرده است. ابتدا در تنظیمات گوشی اثر انگشت یا چهره را ثبت کن و قفل صفحه بگذار.</p>`;
+          return `<input id="secBioPw" type="password" autocomplete="current-password" placeholder="برای فعال‌سازی، رمز ورود را بزن" style="margin-bottom:8px"><button id="secBioOn" class="btn btn-black" style="width:100%;margin-bottom:14px">فعال‌سازی ورود با اثر انگشت / چهره</button>`;
+        })()}
+        <div style="font-weight:700;font-size:13px;margin-bottom:6px">تغییر رمز ورود</div>
+        <input id="secOldPw" type="password" autocomplete="current-password" placeholder="رمز فعلی" style="margin-bottom:8px">
+        <input id="secNewPw" type="password" autocomplete="new-password" placeholder="رمز جدید (حداقل ۶ کاراکتر)" style="margin-bottom:8px">
+        <input id="secNewPw2" type="password" autocomplete="new-password" placeholder="تکرار رمز جدید" style="margin-bottom:8px">
+        <button id="secChangeBtn" class="btn btn-black" style="width:100%">تغییر رمز</button>
+        <p class="note" style="margin:10px 0 0;text-align:right;line-height:1.9">اطلاعات برنامه روی همین دستگاه با رمز تو رمزگذاری می‌شود. رمز جایی ذخیره نمی‌شود و قابل بازیابی نیست؛ اثر انگشت/چهره فقط راهی سریع‌تر برای ورود است و رمز را جایگزین نمی‌کند. فایل بک‌آپ <b>رمزگذاری نشده</b> است؛ آن را جای امن نگه دار.</p>
+      </div>` : ''}
+    </div>`;
+}
+function bindSecurityEvents(){
+  document.getElementById('secToggle')?.addEventListener('click', async ()=>{ try{ window.__bio.avail = await window.__bio.available(); }catch(e){} securityOpen = !securityOpen; render(); });
+  document.getElementById('secAutolock')?.addEventListener('change', e=>{ window.__vault.setAutolock(parseInt(e.target.value)||0); });
+  document.getElementById('secLockNow')?.addEventListener('click', ()=> window.__vault.lock(true));
+  document.getElementById('secBioOff')?.addEventListener('click', async ()=>{ await window.__bio.disable(); render(); });
+  document.getElementById('secBioOn')?.addEventListener('click', async ()=>{
+    const pw = document.getElementById('secBioPw').value;
+    if(!pw){ alert('اول رمز ورود را وارد کن'); return; }
+    const btn = document.getElementById('secBioOn'); btn.disabled = true; btn.textContent = 'منتظر تأیید گوشی...';
+    try {
+      const r = await window.__bio.enroll(pw);
+      if(!r.ok){ alert('رمز درست نیست'); }
+      else { alert(r.mode==='prf' ? 'ورود با اثر انگشت/چهره فعال شد (حالت امن).' : 'ورود با اثر انگشت/چهره فعال شد (حالت راحتی). این گوشی قفل رمزنگاری بایومتریک را پشتیبانی نمی‌کند.'); }
+    } catch(e){ alert('فعال‌سازی انجام نشد (لغو شد یا گوشی اجازه نداد).'); }
+    render();
+  });
+  document.getElementById('secChangeBtn')?.addEventListener('click', async ()=>{
+    const o = document.getElementById('secOldPw').value, n = document.getElementById('secNewPw').value, n2 = document.getElementById('secNewPw2').value;
+    if(!o){ alert('رمز فعلی را وارد کن'); return; }
+    if(n.length < 6){ alert('رمز جدید باید حداقل ۶ کاراکتر باشد'); return; }
+    if(n !== n2){ alert('تکرار رمز جدید یکسان نیست'); return; }
+    const btn = document.getElementById('secChangeBtn'); btn.disabled = true; btn.textContent = 'در حال تغییر...';
+    const ok = await window.__vault.changePassword(o, n);
+    btn.disabled = false; btn.textContent = 'تغییر رمز';
+    if(ok){ ['secOldPw','secNewPw','secNewPw2'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; }); const hadBio = !!window.__bio.config(); if(hadBio) await window.__bio.disable(); alert('رمز ورود تغییر کرد. دفعه‌ی بعد با رمز جدید وارد شو.' + (hadBio ? '\nورود با اثر انگشت/چهره برای رمز جدید غیرفعال شد؛ در همین بخش دوباره فعالش کن.' : '')); render(); }
+    else alert('رمز فعلی درست نیست');
+  });
+}
+
 function renderBrandSettings(){
   const isOpen = brandEditorOpen;
   return `
@@ -1499,7 +1586,7 @@ function renderBrandSettings(){
     </div>
   `;
 }
-function renderBankInfoSettings(){ return renderBrandSettings() + renderThemeSettings() + renderBankInfoCardOnly(); }
+function renderBankInfoSettings(){ return renderBrandSettings() + renderThemeSettings() + renderSecuritySettings() + renderBankInfoCardOnly(); }
 function renderBankInfoCardOnly(){
   const isOpen = bankInfoEditorOpen;
   return `
@@ -1523,6 +1610,7 @@ function renderBankInfoCardOnly(){
 }
 function bindBankInfoEvents(){
   bindThemeEvents();
+  bindSecurityEvents();
   document.getElementById('brandToggle')?.addEventListener('click', ()=>{ brandEditorOpen = !brandEditorOpen; render(); });
   document.getElementById('brandLogoInput')?.addEventListener('change', e=>{
     const f = e.target.files[0]; if(!f) return;
@@ -4697,6 +4785,7 @@ function render(){
       <img id="brandHeaderLogo" alt="logo">
       <span class="brand-text">${brandInfo.name? escapeAttr(brandInfo.name) : 'حساب‌داری آتلیه'}</span>
       <button id="themeQuickBtn" class="btn-icon" title="رنگ و تم" style="margin-inline-start:auto;font-size:18px">🎨</button>
+      <button id="lockQuickBtn" class="btn-icon" title="قفل کردن برنامه" style="font-size:18px">🔒</button>
     </div>
     <div class="mobile-nav-bar" style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
       ${navBackStack.length>0 ? `<button id="navBackBtn" class="btn btn-outline" style="flex-shrink:0">→ بازگشت</button>` : ''}
@@ -4723,6 +4812,7 @@ function render(){
       <input type="file" id="backupFileInput" accept=".json" style="display:none">
     </div>
     <p class="note">«جایگزینی کامل» همه‌چیز روی این دستگاه رو با بک‌آپ عوض می‌کنه — قابل بازگشت نیست.</p>
+    ${appCreditHTML()}
     ${renderBottomSheet()}
     ${renderBottomTabBar()}
   `;
@@ -4774,6 +4864,7 @@ function render(){
   if(tab==='expenses') bindExpensesEvents();
   if(tab==='cheques') bindChequesEvents();
   document.getElementById('themeQuickBtn') && bindThemeQuick();
+  document.getElementById('lockQuickBtn')?.addEventListener('click', ()=> window.__vault.lock(true));
   bindBackupEvents();
 }
 
@@ -4990,11 +5081,318 @@ function bindBackupEvents(){
 }
 
 render();
-if('serviceWorker' in navigator){
-  window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js').catch(()=>{ /* بدون بارگذار خدمتگر هم برنامه به شکل عادی کار می‌کند */ });
+</script>
+<script id="vaultLayer">
+/* لایه‌ی قفل و رمزگذاری — قبل از اجرای برنامه اجرا می‌شود.
+   اطلاعات با AES-GCM و کلیدی که از رمز کاربر با PBKDF2 ساخته می‌شود روی همین دستگاه رمزگذاری می‌شود.
+   رمز هیچ‌جا ذخیره نمی‌شود. */
+(function(){
+  'use strict';
+  const OWNER = 'مهندس فرشاد';          // نام صاحب حق نشر — اینجا قابل تغییر است
+  const META_KEY = 'studio_vault_meta', FAIL_KEY = 'studio_vault_fail', LOCK_KEY = 'studio_autolock', BIO_KEY = 'studio_bio';
+  const SYS_KEYS = [META_KEY, FAIL_KEY, LOCK_KEY, BIO_KEY];
+  const ITER = 250000, PREFIX = 'enc1:', CHECK = 'studio-vault-ok';
+  const te = new TextEncoder(), td = new TextDecoder();
+  const $ = id => document.getElementById(id);
+  const norm = s => String(s||'').replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const year = () => { try { return new Intl.DateTimeFormat('fa-IR', {year:'numeric'}).format(new Date()); } catch(e){ return String(new Date().getFullYear()); } };
+  window.__appCredit = () => ({ year: year(), owner: OWNER });
+
+  function b64e(buf){ const b = new Uint8Array(buf); let s = ''; for(let i=0;i<b.length;i+=0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i+0x8000)); return btoa(s); }
+  function b64d(str){ const s = atob(str); const b = new Uint8Array(s.length); for(let i=0;i<s.length;i++) b[i] = s.charCodeAt(i); return b; }
+  async function deriveKey(pw, salt, iter){
+    const base = await crypto.subtle.importKey('raw', te.encode(norm(pw)), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name:'PBKDF2', salt, iterations: iter, hash:'SHA-256' }, base, { name:'AES-GCM', length:256 }, false, ['encrypt','decrypt']);
+  }
+  async function encStr(key, str){
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name:'AES-GCM', iv }, key, te.encode(str)));
+    const out = new Uint8Array(12 + ct.length); out.set(iv); out.set(ct, 12);
+    return PREFIX + b64e(out);
+  }
+  async function decStr(key, s){
+    const raw = b64d(s.slice(PREFIX.length));
+    return td.decode(await crypto.subtle.decrypt({ name:'AES-GCM', iv: raw.slice(0,12) }, key, raw.slice(12)));
+  }
+
+  const Vault = { cache:{}, key:null, pending:new Set(), busy:Promise.resolve(), unlocked:false, warned:false, locked:false };
+  Vault.get = k => Object.prototype.hasOwnProperty.call(Vault.cache, k) ? Vault.cache[k] : null;
+  Vault.set = (k, v) => { Vault.cache[k] = v; Vault.pending.add(k); Vault.flush(); };
+  async function flushNow(){
+    if(!Vault.key) return;
+    const keys = [...Vault.pending]; Vault.pending.clear();
+    for(const k of keys){
+      try { localStorage.setItem(k, await encStr(Vault.key, Vault.cache[k])); }
+      catch(e){ if(!Vault.warned){ Vault.warned = true; alert('ذخیره روی این مرورگر ناموفق بود (احتمالاً حافظه پر است). یک بک‌آپ بگیر و تصاویر یا داده‌های اضافه را کم کن.'); } }
+    }
+  }
+  Vault.flush = () => { Vault.busy = Vault.busy.then(flushNow).catch(()=>{}); return Vault.busy; };
+
+  const hasMeta = () => !!localStorage.getItem(META_KEY);
+  const dataKeys = () => { const out = []; for(let i=0;i<localStorage.length;i++){ const k = localStorage.key(i); if(k && k.startsWith('studio_') && !SYS_KEYS.includes(k)) out.push(k); } return out; };
+  const hasPlain = () => dataKeys().some(k => !(localStorage.getItem(k)||'').startsWith(PREFIX));
+
+  async function loadAll(key){
+    for(const k of dataKeys()){
+      const raw = localStorage.getItem(k) || '';
+      if(raw.startsWith(PREFIX)){ try { Vault.cache[k] = await decStr(key, raw); } catch(e){ /* مورد خراب: نادیده گرفته می‌شود */ } }
+      else { Vault.cache[k] = raw; Vault.pending.add(k); }
+    }
+  }
+  async function verifyWith(pw){
+    const meta = JSON.parse(localStorage.getItem(META_KEY));
+    const key = await deriveKey(pw, b64d(meta.salt), meta.iter);
+    try { return (await decStr(key, meta.check)) === CHECK ? key : null; } catch(e){ return null; }
+  }
+  Vault.setup = async pw => {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const key = await deriveKey(pw, salt, ITER);
+    const meta = { v:1, salt: b64e(salt), iter: ITER, check: await encStr(key, CHECK) };
+    await loadAll(key);
+    localStorage.setItem(META_KEY, JSON.stringify(meta));
+    Vault.key = key;
+    await Vault.flush();
+    Vault.unlocked = true;
+  };
+  Vault.unlock = async pw => {
+    const key = await verifyWith(pw);
+    if(!key) return false;
+    await loadAll(key);
+    Vault.key = key;
+    await Vault.flush();
+    Vault.unlocked = true;
+    return true;
+  };
+  Vault.verify = async pw => !!(await verifyWith(pw));
+  Vault.unlockWithKey = async key => {
+    const meta = JSON.parse(localStorage.getItem(META_KEY));
+    try { if((await decStr(key, meta.check)) !== CHECK) return false; } catch(e){ return false; }
+    await loadAll(key);
+    Vault.key = key;
+    await Vault.flush();
+    Vault.unlocked = true;
+    return true;
+  };
+  Vault.changePassword = async (oldPw, newPw) => {
+    const oldKey = await verifyWith(oldPw);
+    if(!oldKey) return false;
+    await Vault.flush();
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const newKey = await deriveKey(newPw, salt, ITER);
+    const meta = { v:1, salt: b64e(salt), iter: ITER, check: await encStr(newKey, CHECK) };
+    const out = {};
+    for(const k of Object.keys(Vault.cache)) out[k] = await encStr(newKey, Vault.cache[k]);
+    // نوشتن همه‌چیز پشت سر هم و بدون وقفه تا کلید و داده‌ها هم‌زمان عوض شوند
+    for(const k of Object.keys(out)) localStorage.setItem(k, out[k]);
+    localStorage.setItem(META_KEY, JSON.stringify(meta));
+    Vault.key = newKey;
+    return true;
+  };
+  Vault.getAutolock = () => { const v = localStorage.getItem(LOCK_KEY); return v === null ? 5 : (parseInt(v) || 0); };
+  Vault.setAutolock = m => { localStorage.setItem(LOCK_KEY, String(m)); };
+  Vault.resetAll = async () => {
+    dataKeys().concat(SYS_KEYS.filter(k=>k!==LOCK_KEY)).forEach(k => localStorage.removeItem(k));
+    try { await idbDelete(); } catch(e){}
+    location.reload();
+  };
+  window.__vault = Vault;
+
+
+  /* ---------- ورود با اثر انگشت / چهره (WebAuthn) ----------
+     حالت امن (prf): رمز با کلیدی قفل می‌شود که فقط بعد از تأیید بایومتریک از خود گوشی بیرون می‌آید.
+     حالت راحتی (gate): تأیید بایومتریک انجام می‌شود ولی کلید رمزگشایی روی همین مرورگر نگهداری می‌شود. */
+  const rnd = n => crypto.getRandomValues(new Uint8Array(n));
+  function idbOpen(){ return new Promise((res, rej) => { const r = indexedDB.open('studioBio', 1); r.onupgradeneeded = () => r.result.createObjectStore('k'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
+  async function idbPut(k, v){ const db = await idbOpen(); return new Promise((res, rej) => { const t = db.transaction('k','readwrite'); t.objectStore('k').put(v, k); t.oncomplete = () => { db.close(); res(); }; t.onerror = () => rej(t.error); }); }
+  async function idbGet(k){ const db = await idbOpen(); return new Promise((res, rej) => { const q = db.transaction('k').objectStore('k').get(k); q.onsuccess = () => { db.close(); res(q.result); }; q.onerror = () => rej(q.error); }); }
+  function idbDelete(){ return new Promise(res => { const r = indexedDB.deleteDatabase('studioBio'); r.onsuccess = r.onerror = r.onblocked = () => res(); setTimeout(res, 1500); }); }
+  async function wrapKeyFrom(prfOut){
+    const base = await crypto.subtle.importKey('raw', prfOut, 'HKDF', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name:'HKDF', hash:'SHA-256', salt:new Uint8Array(0), info: te.encode('atelier-vault-wrap') }, base, { name:'AES-GCM', length:256 }, false, ['encrypt','decrypt']);
+  }
+  async function assertion(credId, salt){
+    const pk = { challenge: rnd(32), rpId: location.hostname, allowCredentials: [{ type:'public-key', id: b64d(credId), transports:['internal'] }], userVerification:'required', timeout:60000 };
+    if(salt) pk.extensions = { prf: { eval: { first: salt } } };
+    const a = await navigator.credentials.get({ publicKey: pk });
+    if(!salt) return null;
+    const r = a.getClientExtensionResults().prf;
+    return (r && r.results && r.results.first) ? new Uint8Array(r.results.first) : null;
+  }
+  const Bio = { avail:false };
+  Bio.config = () => { try { return JSON.parse(localStorage.getItem(BIO_KEY)); } catch(e){ return null; } };
+  Bio.available = async () => { try { return !!(window.PublicKeyCredential && navigator.credentials && crypto.subtle && await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()); } catch(e){ return false; } };
+  Bio.disable = async () => { localStorage.removeItem(BIO_KEY); try { await idbDelete(); } catch(e){} };
+  Bio.enroll = async pw => {
+    const key = await verifyWith(pw);
+    if(!key) return { ok:false, reason:'badpw' };
+    const salt = rnd(32);
+    const cred = await navigator.credentials.create({ publicKey: {
+      challenge: rnd(32), rp: { name:'حساب‌داری آتلیه', id: location.hostname },
+      user: { id: rnd(16), name:'atelier-user', displayName:'کاربر آتلیه' },
+      pubKeyCredParams: [{ type:'public-key', alg:-7 }, { type:'public-key', alg:-257 }],
+      authenticatorSelection: { authenticatorAttachment:'platform', userVerification:'required', residentKey:'preferred' },
+      attestation:'none', timeout:60000, extensions: { prf: { eval: { first: salt } } }
+    }});
+    const credId = b64e(cred.rawId);
+    const ext = cred.getClientExtensionResults().prf || {};
+    let prfOut = ext.results && ext.results.first ? new Uint8Array(ext.results.first) : null;
+    if(!prfOut && ext.enabled){ try { prfOut = await assertion(credId, salt); } catch(e){ prfOut = null; } }
+    let cfg;
+    if(prfOut){
+      const wrapped = await encStr(await wrapKeyFrom(prfOut), norm(pw));
+      cfg = { v:1, mode:'prf', credId, salt: b64e(salt), wrapped };
+    } else {
+      await idbPut('vaultKey', key);
+      cfg = { v:1, mode:'gate', credId };
+    }
+    localStorage.setItem(BIO_KEY, JSON.stringify(cfg));
+    return { ok:true, mode: cfg.mode };
+  };
+  // نتیجه: { pw } در حالت امن یا { key } در حالت راحتی؛ خطا یعنی تأیید انجام نشد
+  Bio.auth = async () => {
+    const cfg = Bio.config(); if(!cfg) throw new Error('no-bio');
+    if(cfg.mode === 'prf'){
+      const out = await assertion(cfg.credId, b64d(cfg.salt));
+      if(!out) throw new Error('no-prf');
+      return { pw: await decStr(await wrapKeyFrom(out), cfg.wrapped) };
+    }
+    await assertion(cfg.credId, null);
+    const key = await idbGet('vaultKey');
+    if(!key) throw new Error('no-key');
+    return { key };
+  };
+  window.__bio = Bio;
+  Bio.available().then(v => { Bio.avail = v; });
+
+  /* ---------- محدودیت تلاش اشتباه ---------- */
+  function failState(){ try { return JSON.parse(localStorage.getItem(FAIL_KEY)) || { n:0, until:0 }; } catch(e){ return { n:0, until:0 }; } }
+  const waitSec = () => Math.max(0, Math.ceil((failState().until - Date.now())/1000));
+  function registerFail(){ const f = failState(); f.n++; if(f.n >= 5) f.until = Date.now() + Math.min(600, 30*(f.n-4))*1000; localStorage.setItem(FAIL_KEY, JSON.stringify(f)); }
+  const clearFail = () => localStorage.removeItem(FAIL_KEY);
+
+  /* ---------- صفحه قفل ---------- */
+  function creditHTML(){ return `<div class="lock-credit">© ${esc(year())} — تمامی حقوق این برنامه محفوظ است<br>طراحی و توسعه: ${esc(OWNER)}</div>`; }
+  function wireEyes(root){ root.querySelectorAll('.lock-eye').forEach(b => b.addEventListener('click', () => { const i = $(b.dataset.eye); i.type = i.type === 'password' ? 'text' : 'password'; })); }
+  function showLock(mode, opts){
+    opts = opts || {};
+    const el = $('lockScreen'); el.classList.add('show');
+    const logoEl = document.querySelector('link[rel="apple-touch-icon"]'); const logo = logoEl ? logoEl.href : '';
+    const eye = id => `<button type="button" class="lock-eye" data-eye="${id}" aria-label="نمایش رمز">👁</button>`;
+    if(mode === 'setup'){
+      el.innerHTML = `<div class="lock-box"><img class="lock-logo" src="${logo}" alt="">
+        <div class="lock-title">ایجاد رمز ورود</div>
+        <div class="lock-sub">برای حفاظت از اطلاعات آتلیه یک رمز انتخاب کن. از این به بعد هر بار برنامه را باز کنی همین رمز را می‌زنی.<br>اطلاعات با این رمز رمزگذاری می‌شود و رمز جایی ذخیره نمی‌شود؛ <b>اگر فراموشش کنی اطلاعات قابل بازیابی نیست</b> مگر از فایل بک‌آپ.${hasPlain() ? '<br>اطلاعات فعلی این دستگاه هم با همین رمز محافظت می‌شود.' : ''}</div>
+        <div class="lock-wrap"><input id="lkPw" type="password" autocomplete="new-password" placeholder="رمز ورود (حداقل ۶ کاراکتر)">${eye('lkPw')}</div>
+        <div class="lock-wrap"><input id="lkPw2" type="password" autocomplete="new-password" placeholder="تکرار رمز">${eye('lkPw2')}</div>
+        <div class="lock-err" id="lkErr"></div>
+        <button id="lkGo" class="btn btn-red" style="width:100%">ایجاد رمز و ورود</button>${creditHTML()}</div>`;
+      wireEyes(el);
+      const go = async () => {
+        const p = $('lkPw').value, p2 = $('lkPw2').value, err = $('lkErr');
+        if(p.length < 6){ err.textContent = 'رمز باید حداقل ۶ کاراکتر باشد'; return; }
+        if(p !== p2){ err.textContent = 'تکرار رمز یکسان نیست'; return; }
+        if(!(window.crypto && crypto.subtle)){ err.textContent = 'این مرورگر یا آدرس از رمزگذاری پشتیبانی نمی‌کند (برنامه باید از https باز شود)'; return; }
+        const b = $('lkGo'); b.disabled = true; b.textContent = 'در حال ایجاد...';
+        try { await Vault.setup(p); bootApp(); } catch(e){ err.textContent = 'خطا در ایجاد رمز: ' + e.message; b.disabled = false; b.textContent = 'ایجاد رمز و ورود'; }
+      };
+      $('lkGo').addEventListener('click', go);
+      el.querySelectorAll('input').forEach(i => i.addEventListener('keydown', e => { if(e.key === 'Enter') go(); }));
+      setTimeout(() => $('lkPw') && $('lkPw').focus(), 50);
+      return;
+    }
+    const relock = mode === 'relock';
+    const bioCfg = Bio.config();
+    el.innerHTML = `<div class="lock-box"><img class="lock-logo" src="${logo}" alt="">
+      <div class="lock-title">${relock ? 'برنامه قفل است' : 'ورود به برنامه'}</div>
+      <div class="lock-sub">رمز ورود را بزن تا اطلاعات باز شود.</div>
+      <div class="lock-wrap"><input id="lkPw" type="password" autocomplete="current-password" placeholder="رمز ورود">${eye('lkPw')}</div>
+      <div class="lock-err" id="lkErr"></div>
+      <button id="lkGo" class="btn btn-red" style="width:100%">ورود</button>
+      ${bioCfg ? `<button id="lkBio" class="btn btn-outline" style="width:100%;margin-top:10px">🔓 ورود با اثر انگشت یا چهره</button>` : ''}
+      ${relock ? '' : `<button id="lkForgot" class="lock-link">رمز را فراموش کرده‌ام</button><div id="lkResetBox"></div>`}
+      ${creditHTML()}</div>`;
+    wireEyes(el);
+    const err = $('lkErr');
+    const tick = () => { const w = waitSec(); if(w > 0){ err.textContent = 'تلاش‌های اشتباه زیاد بود. ' + w + ' ثانیه صبر کن.'; setTimeout(tick, 1000); } else if(err.textContent.indexOf('صبر کن') > -1) err.textContent = ''; };
+    tick();
+    const finish = () => {
+      clearFail();
+      if(relock){ Vault.locked = false; lastAct = Date.now(); el.classList.remove('show'); el.innerHTML = ''; }
+      else bootApp();
+    };
+    let bioBusy = false;
+    const bioGo = async auto => {
+      if(bioBusy) return; bioBusy = true;
+      const b = $('lkBio'); if(b){ b.disabled = true; }
+      try {
+        const r = await Bio.auth();
+        let ok = true;
+        if(!relock) ok = r.pw ? await Vault.unlock(r.pw) : await Vault.unlockWithKey(r.key);
+        if(ok){ finish(); return; }
+        await Bio.disable();
+        err.textContent = 'ورود با بایومتریک دیگر معتبر نیست (رمز عوض شده). با رمز وارد شو و دوباره فعالش کن.';
+        if(b) b.remove();
+      } catch(e){
+        if(!auto) err.textContent = 'تأیید اثر انگشت/چهره انجام نشد؛ دوباره امتحان کن یا رمز را بزن.';
+      }
+      bioBusy = false; if($('lkBio')) $('lkBio').disabled = false;
+    };
+    const go = async () => {
+      if(waitSec() > 0){ tick(); return; }
+      const p = $('lkPw').value; if(!p){ err.textContent = 'رمز را وارد کن'; return; }
+      if(!(window.crypto && crypto.subtle)){ err.textContent = 'این مرورگر یا آدرس از رمزگذاری پشتیبانی نمی‌کند (برنامه باید از https باز شود)'; return; }
+      const b = $('lkGo'); b.disabled = true; b.textContent = 'در حال بررسی...';
+      let ok = false;
+      try { ok = relock ? await Vault.verify(p) : await Vault.unlock(p); } catch(e){ ok = false; }
+      b.disabled = false; b.textContent = 'ورود';
+      if(ok){
+        finish();
+      } else {
+        registerFail(); $('lkPw').value = ''; err.textContent = 'رمز درست نیست'; tick(); $('lkPw').focus();
+      }
+    };
+    $('lkGo').addEventListener('click', go);
+    $('lkBio') && $('lkBio').addEventListener('click', () => bioGo(false));
+    if(bioCfg && opts.auto) setTimeout(() => bioGo(true), 350);
+    $('lkPw').addEventListener('keydown', e => { if(e.key === 'Enter') go(); });
+    $('lkForgot') && $('lkForgot').addEventListener('click', () => {
+      $('lkResetBox').innerHTML = `<div class="lock-reset"><b>رمز قابل بازیابی نیست.</b> تنها راه، پاک کردن اطلاعات این برنامه از روی همین دستگاه و شروع دوباره است. اگر فایل بک‌آپ داری، بعد از شروع دوباره می‌توانی آن را بازیابی کنی.<br>برای تأیید کلمه‌ی <b>حذف</b> را بنویس:
+        <input id="lkConfirm" style="margin:8px 0;text-align:center" placeholder="حذف">
+        <button id="lkWipe" class="btn btn-outline" style="width:100%;color:#C0392B">حذف همه اطلاعات برنامه و شروع دوباره</button></div>`;
+      $('lkWipe').addEventListener('click', () => { if($('lkConfirm').value.trim() === 'حذف') Vault.resetAll(); else $('lkConfirm').focus(); });
+    });
+    setTimeout(() => $('lkPw') && $('lkPw').focus(), 50);
+  }
+  Vault.lock = manual => { if(!Vault.unlocked || Vault.locked) return; Vault.locked = true; showLock('relock', { auto: !manual }); };
+
+  /* ---------- قفل خودکار ---------- */
+  let lastAct = Date.now(), hiddenAt = 0;
+  ['pointerdown','keydown','touchstart','scroll'].forEach(ev => document.addEventListener(ev, () => { lastAct = Date.now(); }, { passive:true, capture:true }));
+  setInterval(() => { if(!Vault.unlocked || Vault.locked) return; const m = Vault.getAutolock(); if(m > 0 && Date.now() - lastAct > m*60000) Vault.lock(); }, 15000);
+  document.addEventListener('visibilitychange', () => {
+    if(!Vault.unlocked) return;
+    if(document.hidden){ hiddenAt = Date.now(); Vault.flush(); }
+    else { const m = Vault.getAutolock(); if(m > 0 && hiddenAt && Date.now() - hiddenAt > m*60000) Vault.lock(); hiddenAt = 0; }
   });
-}
+  window.addEventListener('pagehide', () => { if(Vault.unlocked) Vault.flush(); });
+
+  /* ---------- راه‌اندازی برنامه بعد از ورود ---------- */
+  function bootApp(){
+    const el = $('lockScreen'); el.classList.remove('show'); el.innerHTML = '';
+    lastAct = Date.now();
+    const sc = document.createElement('script');
+    sc.textContent = $('appMain').textContent;
+    document.body.appendChild(sc);
+  }
+  showLock(hasMeta() ? 'login' : 'setup', { auto:true });
+
+  /* ---------- بدون اینترنت ---------- */
+  if('serviceWorker' in navigator){
+    const reg = () => navigator.serviceWorker.register('./sw.js').catch(() => {});
+    if(document.readyState === 'complete') reg(); else window.addEventListener('load', reg);
+  }
+})();
 </script>
 </body>
 </html>
