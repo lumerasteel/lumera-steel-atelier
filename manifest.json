@@ -1,5 +1,5 @@
 {
-  "id": "/atelier-hesabdari",
+  "id": "./",
   "name": "آتلیه — حساب‌داری",
   "short_name": "آتلیه",
   "description": "ابزار حسابداری و مدیریت آفیش و فاکتور آتلیه عکاسی و فیلم‌برداری",
@@ -10,7 +10,7 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#FFFFFF",
-  "theme_color": "#E61E32",
+  "theme_color": "#F2F3F5",
   "icons": [
     {
       "src": "icon-192.png",
