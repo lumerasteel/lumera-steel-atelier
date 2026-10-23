@@ -1,34 +1,16 @@
 {
-  "id": "./",
-  "name": "آتلیه — حساب‌داری",
+  "name": "حساب‌داری آتلیه",
   "short_name": "آتلیه",
-  "description": "ابزار حسابداری و مدیریت آفیش و فاکتور آتلیه عکاسی و فیلم‌برداری",
   "lang": "fa",
   "dir": "rtl",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#FFFFFF",
+  "background_color": "#F2F3F5",
   "theme_color": "#F2F3F5",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

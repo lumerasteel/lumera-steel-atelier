@@ -942,6 +942,76 @@ body { min-height:100%; }
   #lockScreen .lock-box { margin-block:0 auto; }
 }
 </style>
+<style id="atelier-ios-fix-v2">
+/* ===== iPhone fixes v2 ===== */
+/* 1) Lock / password-setup screen: never taller than the visible area; always scrollable; keyboard-safe */
+#lockScreen{
+  position:fixed !important; top:0 !important; right:0 !important; bottom:0 !important; left:0 !important;
+  height:auto !important; min-height:0 !important; max-height:none !important;
+  box-sizing:border-box;
+  display:none; align-items:flex-start !important; justify-content:center;
+  overflow-y:auto !important; overflow-x:hidden !important;
+  -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+  padding-top:calc(16px + env(safe-area-inset-top,0px)) !important;
+  padding-bottom:calc(24px + env(safe-area-inset-bottom,0px)) !important;
+}
+#lockScreen.show{display:flex !important;}
+#lockScreen.kb-open{padding-bottom:calc(46vh + env(safe-area-inset-bottom,0px)) !important;}
+#lockScreen .lock-box{margin:auto !important; width:100%; max-width:380px; flex:0 0 auto;}
+#lockScreen .lock-logo{width:min(150px,38vw) !important; max-height:16vh !important; height:auto; margin-bottom:10px !important;}
+#lockScreen .lock-credit{margin-top:16px;}
+#lockScreen .btn{min-height:46px;}
+
+/* 2) iOS Safari zooms the whole page when a focused field has font-size < 16px → layout looks cropped */
+@supports (-webkit-touch-callout:none){
+  input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]),select,textarea{font-size:16px !important;}
+}
+input[type=checkbox],input[type=radio]{width:auto !important; min-width:18px; height:18px; flex:0 0 auto; padding:0; margin:0;}
+
+/* 3) User-accounts / settings forms: fit narrow screens */
+#app .row-flex{flex-wrap:wrap;}
+#app .row-flex > input,#app .row-flex > select{min-width:0;flex:1 1 140px;}
+#app .au-perm{width:18px !important;height:18px !important;}
+#app label:has(> .au-perm){min-width:0;line-height:1.5;word-break:break-word;}
+@media (max-width:420px){
+  #app .card{padding-left:12px;padding-right:12px;}
+  #app div:has(> label > .au-perm){grid-template-columns:1fr !important;}
+}
+
+/* 4) Bottom tab bar: opaque, no backdrop-filter / entry animation (both can make text vanish in WebKit) */
+#app > .bottom-tab-bar{
+  animation:none !important;
+  -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
+  background:#fff !important;
+  display:flex !important; flex-direction:row; align-items:stretch !important; justify-content:space-around;
+  left:0 !important; right:0 !important; bottom:0 !important; margin:0 auto !important;
+  height:auto !important; min-height:calc(64px + env(safe-area-inset-bottom,0px));
+  padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px)) !important;
+  overflow:visible !important; z-index:1000;
+  -webkit-transform:translateZ(0); transform:translateZ(0);
+}
+body.bars-hidden #app > .bottom-tab-bar{transform:translate3d(0,115%,0) !important;}
+#app .bottom-tab-bar .bottom-tab-item{
+  -webkit-appearance:none; appearance:none;
+  display:flex !important; flex-direction:column; align-items:center; justify-content:flex-start;
+  flex:1 1 0; min-width:0 !important; height:auto !important; min-height:52px;
+  padding:5px 1px 3px !important; gap:3px !important; margin:0; border:0; background:transparent;
+  font-family:inherit; color:#434a52 !important; opacity:1 !important; line-height:1.3 !important;
+  -webkit-tap-highlight-color:transparent;
+}
+#app .bottom-tab-bar .bottom-tab-item.active{color:var(--c-accent,#E61E32) !important;}
+#app .bottom-tab-bar .bottom-tab-item span{
+  display:block !important; visibility:visible !important; opacity:1 !important;
+  position:static !important; clip:auto !important;
+  width:auto !important; max-width:100% !important; height:auto !important; min-height:14px;
+  font-size:11px !important; line-height:1.35 !important; font-weight:600;
+  color:inherit !important; -webkit-text-fill-color:currentColor !important;
+  white-space:nowrap !important; overflow:visible !important; text-overflow:clip !important; text-align:center;
+}
+@media (max-width:360px){ #app .bottom-tab-bar .bottom-tab-item span{font-size:10px !important;} }
+/* keep page content clear of the bar */
+#app{padding-bottom:calc(86px + env(safe-area-inset-bottom,0px));}
+</style>
 </head>
 <!-- © حق نشر این برنامه محفوظ است — طراحی و توسعه: فرشاد شهرت 09142030904 -->
 <body>
@@ -1107,9 +1177,11 @@ function toPersianDigits(str){
   return String(str).replace(/[0-9]/g, d=>fa[+d]);
 }
 function toLatinDigits(str){
-  const fa = '۰۱۲۳۴۵۶۷۸۹';
-  return String(str).replace(/[۰-۹]/g, d=>String(fa.indexOf(d)));
+  const fa = '۰۱۲۳۴۵۶۷۸۹', ar = '٠١٢٣٤٥٦٧٨٩';
+  return String(str).replace(/[۰-۹٠-٩]/g, d=>String(fa.indexOf(d)>-1?fa.indexOf(d):ar.indexOf(d)));
 }
+// رفتار قبلی (فقط ارقام فارسی) — برای رمز بک‌آپ، تا بک‌آپ‌های قدیمی همچنان باز شوند
+function _legacyLatinDigits(str){ const fa='۰۱۲۳۴۵۶۷۸۹'; return String(str).replace(/[۰-۹]/g, d=>String(fa.indexOf(d))); }
 function jalaliStr(dateStr){
   if(!dateStr) return '';
   const [gy,gm,gd] = dateStr.split('-').map(Number);
@@ -1155,11 +1227,18 @@ function normalizeDigits(str){
 // نسخه سراسری parseFloat را با نسخه‌ای جایگزین می‌کنیم که قبل از پارس، ارقام فارسی/عربی را به لاتین تبدیل می‌کند.
 // برای ورودی‌های لاتین رفتار کاملاً یکسان با parseFloat اصلی دارد — فقط ورودی فارسی/عربی هم پشتیبانی می‌شود.
 const _nativeParseFloat = parseFloat;
+// پاک‌سازی عدد قبل از پارس: ارقام فارسی/عربی → لاتین، جداکننده‌ی هزارگان (٬ , ،) حذف، ٫ → اعشار
+function numClean(str){
+  let t = String(str==null?'':str).replace(/[۰-۹٠-٩]/g, ch=>{ const i='۰۱۲۳۴۵۶۷۸۹'.indexOf(ch); return String(i>-1?i:'٠١٢٣٤٥٦٧٨٩'.indexOf(ch)); });
+  t = t.replace(/\u066C/g,'');
+  if(/^\s*-?\d{1,3}([,\u060C]\d{3})+([.\u066B]\d+)?\s*$/.test(t)) t = t.replace(/[,\u060C]/g,'');
+  return t.replace(/[\u066B\u060C]/g,'.');
+}
 parseFloat = function(str){
-  if(typeof str === 'string') return _nativeParseFloat(normalizeDigits(str));
+  if(typeof str === 'string') return _nativeParseFloat(numClean(str));
   return _nativeParseFloat(str);
 };
-function parseNum(str){ return parseFloat(normalizeDigits(str)); }
+function parseNum(str){ return parseFloat(numClean(str)); }
 // خواندن مقدار عددی که نباید منفی باشد (مثل تعداد/qty) — مقادیر منفی یا نامعتبر به صفر تبدیل می‌شوند
 // این از قیمت تمام‌شده یا جمع فاکتور منفی شدن به‌خاطر تعداد منفی جلوگیری می‌کند
 function parseQty(val){ const n = parseFloat(val); return (isNaN(n) || n<0) ? 0 : n; }
@@ -2277,7 +2356,7 @@ function renderSecuritySettings(){
           if(cfg) return `<p class="note" style="margin:0 0 8px;text-align:right;line-height:1.9">${cfg.mode==='prf' ? '✓ فعال است (حالت امن): کلید باز کردن اطلاعات فقط بعد از تأیید اثر انگشت یا چهره‌ی گوشی آزاد می‌شود.' : '✓ فعال است (حالت راحتی): ورود با اثر انگشت یا چهره انجام می‌شود، ولی مرورگر این گوشی امکان قفل رمزنگاری با بایومتریک را ندارد؛ پس قفل صفحه‌ی خود گوشی را حتماً نگه دار.'}</p><button id="secBioOff" class="btn btn-outline" style="width:100%;margin-bottom:14px">غیرفعال کردن</button>`;
           if(!window.__bio.avail) {
             const localFile = !window.isSecureContext || !location.hostname || location.protocol === 'file:' || location.protocol === 'content:';
-            return `<p class="note" style="margin:0 0 14px;text-align:right;line-height:1.9">${localFile ? 'این فایل مستقیماً از حافظهٔ گوشی باز شده است. مرورگر در این حالت اجازهٔ استفاده از اثر انگشت/چهره را به برنامه نمی‌دهد. این محدودیت با تغییر کد داخل فایل رفع نمی‌شود؛ برای بایومتریک باید برنامه از یک مبدأ امن HTTPS اجرا شود. فعلاً از رمز اصلی برای ورود استفاده کن.' : 'مرورگر در حال حاضر احراز هویت بایومتریک وب را در دسترس نمی‌گذارد. قفل صفحه و اثر انگشت/چهرهٔ گوشی را بررسی کن؛ اگر همچنان در دسترس نبود، از رمز اصلی استفاده کن.'}</p>`;
+            return `<p class="note" style="margin:0 0 14px;text-align:right;line-height:1.9">${localFile ? 'این فایل مستقیماً از حافظهٔ گوشی باز شده است. مرورگر در این حالت اجازهٔ استفاده از اثر انگشت/چهره را به برنامه نمی‌دهد. این محدودیت با تغییر کد داخل فایل رفع نمی‌شود؛ برای بایومتریک باید برنامه از یک مبدأ امن HTTPS اجرا شود. فعلاً از رمز اصلی برای ورود استفاده کن.' : 'مرورگر در حال حاضر احراز هویت بایومتریک وب را در دسترس نمی‌گذارد. در آیفون: iOS ‏۱۶ به بالا لازم است، Face ID/Touch ID و رمز گوشی باید فعال باشند و برنامه باید در Safari (یا از «افزودن به صفحه‌ی اصلی» در Safari) باز شود؛ Chrome آیفون از این قابلیت پشتیبانی نمی‌کند. فعلاً از رمز اصلی استفاده کن.'}</p>`;
           }
           return `<input id="secBioPw" type="password" autocomplete="current-password" placeholder="برای فعال‌سازی، رمز ورود را بزن" style="margin-bottom:8px"><button id="secBioOn" class="btn btn-black" style="width:100%;margin-bottom:14px">فعال‌سازی ورود با اثر انگشت / چهره</button>`;
         })()}
@@ -2300,18 +2379,30 @@ function bindSecurityEvents(){
   document.getElementById('secLockNow')?.addEventListener('click', ()=> window.__vault.lock(true));
   document.getElementById('secBioOff')?.addEventListener('click', async ()=>{ await window.__bio.disable(); render(); });
   document.getElementById('secBioOn')?.addEventListener('click', async ()=>{
+    const btn = document.getElementById('secBioOn');
+    // مرحله‌ی ۲: لمس تازه → درخواست Face ID/Touch ID دقیقاً داخل همین لمس صدا زده می‌شود (شرط iOS)
+    if(window.__bioPend){
+      const pend = window.__bioPend; window.__bioPend = null;
+      btn.disabled = true; btn.textContent = 'منتظر تأیید گوشی...';
+      try {
+        const r = await window.__bio.enroll(pend.pw, pend.key);
+        if(!r.ok){ alert('رمز درست نیست'); }
+        else { alert(r.mode==='prf' ? 'ورود با اثر انگشت/چهره فعال شد (حالت امن).' : 'ورود با اثر انگشت/چهره فعال شد (حالت راحتی). این گوشی قفل رمزنگاری بایومتریک را پشتیبانی نمی‌کند.'); }
+      } catch(e){
+        const localFile = !window.isSecureContext || !location.hostname || location.protocol === 'file:' || location.protocol === 'content:';
+        const nm = e && e.name ? ' ('+e.name+')' : '';
+        alert((localFile ? 'فعال‌سازی بایومتریک در فایل دانلودشده ممکن نیست؛ مرورگر به مبدأ امن HTTPS نیاز دارد.' : 'فعال‌سازی انجام نشد'+nm+'. درخواست رد شد یا بایومتریک وب در این مرورگر پشتیبانی نمی‌شود. Face ID را برای Safari در تنظیمات آیفون فعال کن و دوباره امتحان کن.')+' رمز اصلی همچنان قابل استفاده است.');
+      }
+      render(); return;
+    }
+    // مرحله‌ی ۱: بررسی رمز
     const pw = document.getElementById('secBioPw').value;
     if(!pw){ alert('اول رمز ورود را وارد کن'); return; }
-    const btn = document.getElementById('secBioOn'); btn.disabled = true; btn.textContent = 'منتظر تأیید گوشی...';
-    try {
-      const r = await window.__bio.enroll(pw);
-      if(!r.ok){ alert('رمز درست نیست'); }
-      else { alert(r.mode==='prf' ? 'ورود با اثر انگشت/چهره فعال شد (حالت امن).' : 'ورود با اثر انگشت/چهره فعال شد (حالت راحتی). این گوشی قفل رمزنگاری بایومتریک را پشتیبانی نمی‌کند.'); }
-    } catch(e){
-      const localFile = !window.isSecureContext || !location.hostname || location.protocol === 'file:' || location.protocol === 'content:';
-      alert(localFile ? 'فعال‌سازی بایومتریک در فایل دانلودشده ممکن نیست؛ مرورگر به مبدأ امن HTTPS نیاز دارد. رمز اصلی همچنان قابل استفاده است.' : 'فعال‌سازی انجام نشد. درخواست مرورگر/گوشی رد شد یا بایومتریک وب پشتیبانی نمی‌شود. رمز اصلی همچنان قابل استفاده است.');
-    }
-    render();
+    const label = btn.textContent; btn.disabled = true; btn.textContent = 'در حال بررسی رمز...';
+    let key = null; try { key = await window.__bio.verifyPw(pw); } catch(e){}
+    if(!key){ btn.disabled = false; btn.textContent = label; alert('رمز درست نیست'); return; }
+    window.__bioPend = { pw, key }; setTimeout(()=>{ window.__bioPend = null; }, 120000);
+    btn.disabled = false; btn.textContent = 'مرحله‌ی آخر: اینجا را لمس کن و با Face ID / Touch ID تأیید کن';
   });
   document.getElementById('secRecNew')?.addEventListener('click', async ()=>{
     const pw = document.getElementById('secRecPw').value;
@@ -7565,8 +7656,9 @@ function render(){
   `;
   // آیکون کوچیک هدر از همون فاویکون (مربعی و بدون نوشته) میاد، نه از لوگوی کامل چاپی
   // (اون یکی افقی و برای سربرگ فاکتوره، توی یه مربع کوچیک بد دیده می‌شه)
-  const brandLogoSrcHdr = brandInfo.logo || document.querySelector('link[rel="icon"]')?.href;
-  if(brandLogoSrcHdr){ const headerLogoEl = document.getElementById('brandHeaderLogo'); if(headerLogoEl) headerLogoEl.src = brandLogoSrcHdr; }
+  const embeddedLogoSrc = document.getElementById('studioLogoSrc')?.src || '';
+  const brandLogoSrcHdr = brandInfo.logo || embeddedLogoSrc || document.querySelector('link[rel="icon"]')?.href;
+  if(brandLogoSrcHdr){ const headerLogoEl = document.getElementById('brandHeaderLogo'); if(headerLogoEl){ if(embeddedLogoSrc) headerLogoEl.onerror = ()=>{ headerLogoEl.onerror=null; headerLogoEl.src = embeddedLogoSrc; }; headerLogoEl.src = brandLogoSrcHdr; } }
   document.getElementById('navBackBtn')?.addEventListener('click', ()=>{
     smartBack();
   });
@@ -8437,7 +8529,7 @@ async function pwAsk(title,withConfirm){ let msg='';
     if(a.length<6){ msg='رمز باید حداقل ۶ کاراکتر باشد'; continue; } if(withConfirm&&a!==b){ msg='تکرار رمز یکسان نیست'; continue; } return a; } }
 const _b64e=u=>{ let x=''; for(let i=0;i<u.length;i+=0x8000) x+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000)); return btoa(x); };
 const _b64d=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
-async function bkKey(pw,salt,iter){ const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(toLatinDigits(pw)),'PBKDF2',false,['deriveKey']); return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']); }
+async function bkKey(pw,salt,iter){ const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(_legacyLatinDigits(pw)),'PBKDF2',false,['deriveKey']); return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']); }
 async function bkEnc(obj,pw){ const salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12)), key=await bkKey(pw,salt,250000);
   const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(obj)))); const o=new Uint8Array(12+ct.length); o.set(iv); o.set(ct,12);
   return JSON.stringify({format:'atelier-backup',v:2,enc:true,iter:250000,salt:_b64e(salt),data:_b64e(o)}); }
@@ -9299,8 +9391,9 @@ render();
     } catch(e){ return false; }
   };
   Bio.disable = async () => { localStorage.removeItem(BIO_KEY); try { await idbDelete(); } catch(e){} };
-  Bio.enroll = async pw => {
-    const key = await verifyWith(pw);
+  Bio.verifyPw = pw => verifyWith(pw);
+  Bio.enroll = async (pw, preKey) => {
+    const key = preKey || await verifyWith(pw);
     if(!key) return { ok:false, reason:'badpw' };
     const salt = rnd(32);
     const cred = await navigator.credentials.create({ publicKey: {
@@ -9472,7 +9565,8 @@ render();
     const bioCfg = Bio.config();
     el.innerHTML = `<div class="lock-box"><img class="lock-logo" src="${logo}" alt="">
       ${relock ? '' : `<div style="font-size:23px;font-weight:850;margin:4px 0 8px">ورود همکار</div><p class="note" style="margin:0 0 14px;line-height:1.8">با نام کاربری و رمز اختصاصی که مدیر برایت تعریف کرده وارد شو.</p><div id="lkStaffBox" style="margin-top:10px;text-align:right"><input id="lkStaffName" autocomplete="username" placeholder="نام کاربری همکار" style="width:100%;margin-bottom:8px"><input id="lkStaffPw" type="password" autocomplete="current-password" placeholder="رمز اختصاصی همکار" style="width:100%;margin-bottom:8px"><button id="lkStaffGo" class="btn btn-red" style="width:100%">ورود همکار</button></div><button id="lkStaffToggle" class="lock-link" type="button" style="margin-top:14px">ورود مدیر با رمز اصلی</button>`}
-      <div id="lkManagerBox" style="${relock ? '' : 'display:none;'}margin-top:12px"><div class="lock-wrap"><input id="lkPw" type="password" autocomplete="current-password" placeholder="رمز اصلی آتلیه را وارد کنید">${eye('lkPw')}</div><button id="lkGo" class="btn btn-red" style="width:100%;margin-top:8px">ورود مدیر</button>${bioCfg ? `<button id="lkBio" class="btn btn-outline" style="width:100%;margin-top:10px">ورود با Face ID / Touch ID</button>` : ''}</div>
+      <div id="lkManagerBox" style="${relock ? '' : 'display:none;'}margin-top:12px"><div class="lock-wrap"><input id="lkPw" type="password" autocomplete="current-password" placeholder="رمز اصلی آتلیه را وارد کنید">${eye('lkPw')}</div><button id="lkGo" class="btn btn-red" style="width:100%;margin-top:8px">ورود مدیر</button></div>
+      ${bioCfg ? `<button id="lkBio" type="button" class="btn btn-outline" style="width:100%;margin-top:10px">ورود با Face ID / Touch ID</button>` : ''}
       <div class="lock-err" id="lkErr"></div>
       ${relock ? '' : `<button id="lkForgot" class="lock-link">رمز اصلی را فراموش کرده‌ام</button><div id="lkResetBox"></div>`}
       ${creditHTML()}</div>`;
@@ -9499,7 +9593,7 @@ render();
         err.textContent = 'ورود با بایومتریک دیگر معتبر نیست (رمز عوض شده). با رمز وارد شو و دوباره فعالش کن.';
         if(b) b.remove();
       } catch(e){
-        if(!auto) err.textContent = 'تأیید اثر انگشت/چهره انجام نشد؛ دوباره امتحان کن یا رمز را بزن.';
+        if(!auto) err.textContent = 'تأیید اثر انگشت/چهره انجام نشد' + (e && e.name ? ' ('+e.name+')' : '') + '؛ دوباره امتحان کن یا رمز را بزن. اگر برنامه را دوباره نصب کرده‌ای، ورود بایومتریک را از تنظیمات امنیت دوباره فعال کن.';
       }
       bioBusy = false; if($('lkBio')) $('lkBio').disabled = false;
     };
@@ -9594,6 +9688,26 @@ render();
     const reg = () => navigator.serviceWorker.register('./sw.js').then(r => r.update()).catch(() => {});
     if(document.readyState === 'complete') reg(); else window.addEventListener('load', reg);
   }
+})();
+</script>
+<script id="iosViewportFix">
+(function(){
+  /* Keep the lock screen exactly as tall as the *visible* viewport (iOS keyboard / URL bar) and bring the focused field into view. */
+  var vv = window.visualViewport;
+  function lock(){ return document.getElementById('lockScreen'); }
+  function fit(){
+    var el = lock(); if(!el) return;
+    if(vv){ el.style.bottom='auto'; el.style.height = vv.height + 'px'; el.style.top = vv.offsetTop + 'px'; }
+    var kb = vv && (window.innerHeight - vv.height) > 120;
+    el.classList.toggle('kb-open', !!kb);
+  }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
+  window.addEventListener('orientationchange', function(){ setTimeout(fit,250); });
+  document.addEventListener('focusin', function(e){
+    var el = lock(); if(!el || !el.contains(e.target)) return;
+    setTimeout(function(){ fit(); try{ e.target.scrollIntoView({block:'center',behavior:'smooth'}); }catch(_){} }, 320);
+  });
+  document.addEventListener('focusout', function(){ setTimeout(function(){ var el=lock(); if(el && !el.contains(document.activeElement)){ el.style.height=''; el.style.top=''; el.style.bottom=''; el.classList.remove('kb-open'); } }, 200); });
 })();
 </script>
 </body>
