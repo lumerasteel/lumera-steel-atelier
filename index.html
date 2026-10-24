@@ -7985,7 +7985,7 @@ function render(){
       render();
     });
   });
-  if(tab==='home'){ document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.home;navBackStack=['home'];if(tab==='invoice')invTab='list';render();})); document.getElementById('homeQuickInv')?.addEventListener('click',()=>{tab='invoice';newInvoiceFromDraft();render();}); }
+  if(tab==='home'){ document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>{const target=b.dataset.home;navBackStack=['home'];if(target==='contracts'){tab='contracts';ctOpenStep=0;ctDraft=blankContract();ctEditingId=null;ctView='edit';}else{tab=target;if(tab==='invoice')invTab='list';}render();})); document.getElementById('homeQuickInv')?.addEventListener('click',()=>{tab='invoice';newInvoiceFromDraft();render();}); }
   if(tab==='rentals') bindRentalsEvents();
   if(tab==='club') bindClubEvents();
   if(tab==='project') bindProjectEvents();
