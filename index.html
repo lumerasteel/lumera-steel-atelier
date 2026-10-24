@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-AYy1d/8MjWj+X+ECtUHEPuS0iZmZJ+FWtZKk7bJqqfI=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
 <meta name="author" content="فرشاد شهرت">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
@@ -1240,6 +1241,9 @@ button, input, select, textarea { font-family: inherit; }
 <div class="wrap" id="app"></div>
 <!-- Offline build: no CDN runtime dependencies -->
 <script type="text/plain" id="appMain">
+/* SECURITY-FIX: فقط تصویر data:/blob: امن اجازه‌ی ورود به src دارد (جلوگیری از XSS ذخیره‌شده) */
+function safeImg(u){ u=String(u==null?'':u); if(u.length>6000000) return ''; return (/^data:image\/(?:png|jpe?g|gif|webp);base64,[A-Za-z0-9+\/=]+$/.test(u)||/^blob:[A-Za-z0-9:\/._\-]+$/.test(u))?u:''; }
+
 const STORE_KEYS = { materials:'studio_materials', products:'studio_products', productCategories:'studio_productCategories', records:'studio_records', invoices:'studio_invoices', invoiceSeq:'studio_invoiceSeq', customers:'studio_customers', transactions:'studio_transactions', overheadPerUnit:'studio_overheadPerUnit', overheadPercent:'studio_overheadPercent', suppliers:'studio_suppliers', purchases:'studio_purchases', reminders:'studio_reminders', expenses:'studio_expenses', expenseCategories:'studio_expenseCategories', bankInfo:'studio_bankInfo', downloadDirName:'studio_downloadDirName', cheques:'studio_cheques', brandInfo:'studio_brandInfo', bookings:'studio_bookings', rentals:'studio_rentals', club:'studio_club', lastBackup:'studio_lastBackup', roles:'studio_roles', staff:'studio_staff', tariff:'studio_tariff', quickExp:'studio_quickExp', contracts:'studio_contracts', contractTpl:'studio_contractTpl', theme:'studio_theme', equipment:'studio_equipment', bookingResources:'studio_bookingResources', users:'studio_users' };
 const UNITS = ['عدد','جلد','برگ','بسته','متر','متر مربع'];
 const LABOR_PRESETS = ['ساعت عکاسی','ساعت فیلم‌برداری','ادیت و رتوش','تدوین','طراحی آلبوم','دستیار / عوامل'];
@@ -1973,7 +1977,7 @@ let bankInfo = loadJSON(STORE_KEYS.bankInfo, { bankName:'', accountHolder:'', ca
 let bankInfoEditorOpen = false;
 let brandInfo = Object.assign({ name:'Prestige Studio', ownerName:'', phone:'', address:'', slogan:'', social:'', logo:'', vatRate:'10' }, loadJSON(STORE_KEYS.brandInfo, {}));
 let brandEditorOpen = false;
-function brandLogoSrc(){ return brandInfo.logo || document.getElementById('studioLogoSrc')?.src || ''; }
+function brandLogoSrc(){ return safeImg(brandInfo.logo) || document.getElementById('studioLogoSrc')?.src || ''; }
 // فضاهای کاری آتلیه — برای تغییر نام/رنگ یا افزودن فضای جدید فقط همین لیست را ویرایش کن
 const WORKSPACES = [
   { key:'photo', label:'عکاسی',        color:'#E61E32' },
@@ -2587,7 +2591,7 @@ function renderSecuritySettings(){
         })()}
         <div style="font-weight:700;font-size:13px;margin-bottom:6px">تغییر رمز ورود</div>
         <input id="secOldPw" type="password" autocomplete="current-password" placeholder="رمز فعلی" style="margin-bottom:8px">
-        <input id="secNewPw" type="password" autocomplete="new-password" placeholder="رمز جدید (حداقل ۶ کاراکتر)" style="margin-bottom:8px">
+        <input id="secNewPw" type="password" autocomplete="new-password" placeholder="رمز جدید (حداقل ۱۲ کاراکتر)" style="margin-bottom:8px">
         <input id="secNewPw2" type="password" autocomplete="new-password" placeholder="تکرار رمز جدید" style="margin-bottom:8px">
         <button id="secChangeBtn" class="btn btn-black" style="width:100%">تغییر رمز</button>
         <div style="font-weight:700;font-size:13px;margin:16px 0 6px">کد بازیابی رمز</div>
@@ -2642,7 +2646,7 @@ function bindSecurityEvents(){
   document.getElementById('secChangeBtn')?.addEventListener('click', async ()=>{
     const o = document.getElementById('secOldPw').value, n = document.getElementById('secNewPw').value, n2 = document.getElementById('secNewPw2').value;
     if(!o){ alert('رمز فعلی را وارد کن'); return; }
-    if(n.length < 6){ alert('رمز جدید باید حداقل ۶ کاراکتر باشد'); return; }
+    { const w=window.__pwWeak(n); if(w){ alert(w); return; } }
     if(n !== n2){ alert('تکرار رمز جدید یکسان نیست'); return; }
     const btn = document.getElementById('secChangeBtn'); btn.disabled = true; btn.textContent = 'در حال تغییر...';
     const ok = await window.__vault.changePassword(o, n);
@@ -2665,7 +2669,7 @@ function renderBrandSettings(){
       ${isOpen? `
       <div style="padding:0 14px 14px">
         <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
-          <img src="${brandLogoSrc()}" style="width:56px;height:56px;object-fit:contain;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0;background:#fff">
+          <img src="${safeImg(brandLogoSrc())}" style="width:56px;height:56px;object-fit:contain;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0;background:#fff">
           <div style="flex:1;display:flex;flex-direction:column;gap:6px">
             <input type="file" id="brandLogoInput" accept="image/*" style="font-size:11px;padding:6px">
             ${brandInfo.logo? `<button id="brandLogoRemoveBtn" class="btn btn-outline" style="font-size:11px;padding:4px 8px">حذف لوگو</button>` : ''}
@@ -3074,7 +3078,7 @@ function buildA4DispatchHTML(b){
     <div class="a4-page" data-cont="${escapeAttr('برگه اعزام — '+(b.title||b.customerName||''))}">
       <div class="a4-header">
         <div class="a4-header-right"><div class="a4-header-name">${escapeAttr(brandInfo.ownerName||brandInfo.name||'')}</div><div class="a4-header-meta">${[brandInfo.phone, brandInfo.address].filter(Boolean).map(escapeAttr).join('&nbsp;|&nbsp;')}</div></div>
-        ${logoSrc ? `<img class="a4-logo" src="${logoSrc}">` : ''}
+        ${logoSrc ? `<img class="a4-logo" src="${safeImg(logoSrc)}">` : ''}
       </div>
       <div class="a4-title-bar"><div class="a4-invoice-title">${b._individualDispatch ? 'برگه اختصاصی اعزام' : 'برگه اعزام اکیپ'}</div><div class="a4-red-line"></div><div style="font-size:11px;color:#6B7075">${escapeAttr(b.title||b.customerName||'')}</div></div>
       <div class="a4-grid a4-contract-meta">
@@ -3602,7 +3606,7 @@ function buildA4ContractHTML(ct){
           <div class="a4-header-name">${escapeAttr(brandInfo.ownerName || brandInfo.name || '')}</div>
           <div class="a4-header-meta">${[brandInfo.phone, brandInfo.address].filter(Boolean).map(escapeAttr).join('&nbsp;|&nbsp;')}</div>
         </div>
-        ${logoSrc ? `<img class="a4-logo" src="${logoSrc}">` : ''}
+        ${logoSrc ? `<img class="a4-logo" src="${safeImg(logoSrc)}">` : ''}
       </div>
       <div class="a4-title-bar">
         <div class="a4-invoice-title">${escapeAttr(fillTemplate(contractTpl.title, vars))}</div>
@@ -5424,7 +5428,7 @@ function buildA4InvoiceHTML(inv){
           <div class="a4-header-name">${escapeAttr(brandInfo.ownerName || brandInfo.name || '')}</div>
           <div class="a4-header-meta">${[brandInfo.phone, brandInfo.address].filter(Boolean).map(escapeAttr).join('&nbsp;|&nbsp;')}</div>
         </div>
-        ${logoSrc? `<img class="a4-logo" src="${logoSrc}">` : ''}
+        ${logoSrc? `<img class="a4-logo" src="${safeImg(logoSrc)}">` : ''}
       </div>
       <div class="a4-title-bar">
         <div class="a4-invoice-title">${invoicePrintTitle(inv)}</div>
@@ -6166,7 +6170,7 @@ function renderProductCard(p){
     <div class="card" style="margin-bottom:8px">
       <div class="card-title" style="margin-bottom:8px">ویرایش اطلاعات: ${escapeAttr(p.name)}</div>
       <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
-        ${catalogDraft.image? `<img src="${catalogDraft.image}" style="width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0">`
+        ${catalogDraft.image? `<img src="${safeImg(catalogDraft.image)}" style="width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0">`
           : `<div style="width:64px;height:64px;border-radius:10px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:20px;color:#bbb;flex-shrink:0">🖼</div>`}
         <div style="flex:1;display:flex;flex-direction:column;gap:6px">
           <input type="file" id="catalogImageInput" accept="image/*" style="font-size:11px;padding:6px">
@@ -6188,7 +6192,7 @@ function renderProductCard(p){
   return `
     <div class="card" data-row-id="${p.id}" style="margin-bottom:8px">
       <div style="display:flex;gap:10px;align-items:center">
-        ${p.image? `<img src="${p.image}" style="width:56px;height:56px;object-fit:cover;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0">`
+        ${p.image? `<img src="${safeImg(p.image)}" style="width:56px;height:56px;object-fit:cover;border-radius:10px;border:1px solid var(--c-line);flex-shrink:0">`
           : `<div style="width:56px;height:56px;border-radius:10px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:20px;color:#bbb;flex-shrink:0">🖼</div>`}
         <div style="flex:1;min-width:0">
           <div class="card-title">${escapeAttr(p.name)}</div>
@@ -8000,7 +8004,7 @@ function render(){
     <div id="tabContent">
       ${subnavHTML()}${tab==='home'?renderHomeTab(): tab==='internal'?renderInternalTab():tab==='rentals'?renderRentalsTab(): tab==='club'?renderClubTab(): tab==='project'?renderProjectTab(): tab==='ops'?renderOpsTab(): tab==='settings'?renderSettingsTab(): tab==='editing'?renderEditingTab(): tab==='staff'?renderStaffTab(): tab==='tariff'?renderTariffTab(): tab==='contracts'?renderContractsTab(): tab==='equipment'?renderEquipmentTab(): tab==='bookings'?renderBookingsTab(): tab==='calc'?renderCalcTab(): tab==='invoice'?renderInvoiceTab(): tab==='customers'?renderCustomersTab(): tab==='suppliers'?renderSuppliersTab(): tab==='materials'?renderMaterialsTab(): tab==='products'?renderProductsTab(): tab==='report'?renderDashboardTab(): tab==='dashboard'?renderDashboardTab(): tab==='expenses'?renderExpensesTab(): tab==='cheques'?renderChequesTab(): renderHistoryTab()}
     </div>
-    ${tab==='home' && bkManagerOK() ? `<section class="card home-backup-card" style="margin-top:14px;text-align:right">
+    ${tab==='home' ? `<section class="card home-backup-card" style="margin-top:14px;text-align:right">
       <div class="card-title">پشتیبان‌گیری</div>
       ${FS_SUPPORTED ? `<div class="row-flex" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
       <div class="card" style="flex:1;margin:0;padding:10px 14px">
@@ -8008,7 +8012,7 @@ function render(){
         <div style="font-weight:700">${downloadDirName? escapeAttr(downloadDirName) : 'انتخاب نشده — دانلودها میره تو پوشه پیش‌فرض مرورگر'}</div>
       </div>
       <button id="pickFolderBtn" class="btn btn-outline" style="flex:0 0 auto">${downloadDirName?'تغییر پوشه':'انتخاب پوشه'}</button>
-      ${downloadDirName? `<button id="clearFolderBtn" class="btn-icon" style="flex:0 0 auto">×</button>` : ''}
+      ${(downloadDirName||!bkManagerOK())? `<button id="clearFolderBtn" class="btn-icon" style="flex:0 0 auto">×</button>` : ''}
     </div>` : ''}
       <div class="row-flex backup-row" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
       <button id="downloadBackupBtn" class="btn btn-outline" style="flex:1">دانلود بک‌آپ</button>
@@ -8041,7 +8045,7 @@ function render(){
   document.getElementById('navBackBtn')?.addEventListener('click', ()=>{
     smartBack();
   });
-  document.getElementById('sheetBackdrop')?.addEventListener('click', ()=>{ bottomSheetOpen = null; render(); });
+  document.getElementById('sheetBackdrop')?.addEventListener('click', (e)=>{ if(e.target!==e.currentTarget) return; bottomSheetOpen = null; render(); });
   document.querySelectorAll('[data-nav-group]').forEach(el=>{
     el.addEventListener('click', ()=>{ bottomSheetOpen = el.dataset.navGroup; render(); });
   });
@@ -8495,7 +8499,7 @@ const _panelBase=atelierPanelHTML;
 atelierPanelHTML=function(section){let h=_panelBase(section);h=h.replace(/<button class="btn [a-z-]+" data-sec="tasks">وظایف روزانه<\/button>/,'');return h;};
 /* ===== UX redesign: one system, one navigation model, fast retrieval ===== */
 function uxSectionLabel(){return TAB_LABELS[tab]||({home:'خانه',ops:'عملیات و پیگیری',invoice:'فاکتورها',contracts:'قراردادها',bookings:'آفیش‌ها',staff:'کادر',customers:'مشتریان',expenses:'هزینه‌ها',equipment:'تجهیزات',club:'باشگاه مشتریان'}[tab]||'آتلیه');}
-function uxSearch(){document.getElementById('uxSearchOverlay')?.remove();const ov=document.createElement('div');ov.id='uxSearchOverlay';ov.innerHTML=`<div class="ux-search-backdrop"><div class="ux-search-box"><div class="ux-search-head"><b>جست‌وجوی سریع</b><button id="uxSearchClose" class="btn-icon">×</button></div><input id="uxSearchInput" autofocus placeholder="نام مشتری، فاکتور، قرارداد، آفیش یا کار..."/><div id="uxSearchResults" class="ux-search-results"><p class="empty">شروع به تایپ کن</p></div></div></div>`;document.body.appendChild(ov);const input=ov.querySelector('#uxSearchInput'),out=ov.querySelector('#uxSearchResults');const close=()=>ov.remove();ov.querySelector('#uxSearchClose').onclick=close;ov.querySelector('.ux-search-backdrop').onclick=e=>{if(e.target===e.currentTarget)close()};input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();if(!q){out.innerHTML='<p class="empty">شروع به تایپ کن</p>';return;}const rows=[];customers.forEach(c=>{if((c.name||'').toLowerCase().includes(q))rows.push({t:'مشتری',n:c.name,go:()=>openCustomer(c.id)});});invoices.forEach(i=>{if(('#'+i.number+' '+(i.customerName||'')).toLowerCase().includes(q))rows.push({t:'فاکتور',n:'#'+invNumStr(i.number)+' · '+i.customerName,go:()=>openProject(i.id)});});contracts.forEach(c=>{if(('#'+c.number+' '+(c.customerName||'')).toLowerCase().includes(q))rows.push({t:'قرارداد',n:'#'+invNumStr(c.number)+' · '+c.customerName,go:()=>{tab='contracts';ctView='list';render()}});});bookings.forEach(b=>{if((b.title+' '+b.customerName).toLowerCase().includes(q))rows.push({t:'آفیش',n:b.title||b.customerName,go:()=>{tab='bookings';bkView='list';render()}});});if(auIsManager())staff.forEach(x=>{if((x.name||'').toLowerCase().includes(q))rows.push({t:'کادر',n:x.name,go:()=>{tab='staff';staffView='list';render()}});});atelierTasks.filter(x=>(x.title||'').toLowerCase().includes(q)).forEach(x=>rows.push({t:'وظیفه',n:x.title,go:()=>{tab='home';render()}}));out.innerHTML=rows.slice(0,12).map((r,i)=>`<button class="ux-result" data-i="${i}"><span>${atelierEsc(r.n)}</span><small>${r.t}</small></button>`).join('')||'<p class="empty">موردی پیدا نشد</p>';out.querySelectorAll('.ux-result').forEach((b,i)=>b.onclick=()=>{const r=rows[i];close();r.go();});});input.addEventListener('keydown',e=>{if(e.key==='Escape')close();});}
+function uxSearch(){document.getElementById('uxSearchOverlay')?.remove();const ov=document.createElement('div');ov.id='uxSearchOverlay';ov.innerHTML=`<div class="ux-search-backdrop"><div class="ux-search-box"><div class="ux-search-head"><b>جست‌وجوی سریع</b><button id="uxSearchClose" class="btn-icon">×</button></div><input id="uxSearchInput" autofocus placeholder="نام مشتری، فاکتور، قرارداد، آفیش یا کار..."/><div id="uxSearchResults" class="ux-search-results"><p class="empty">شروع به تایپ کن</p></div></div></div>`;document.body.appendChild(ov);const input=ov.querySelector('#uxSearchInput'),out=ov.querySelector('#uxSearchResults');const close=()=>ov.remove();ov.querySelector('#uxSearchClose').onclick=close;ov.querySelector('.ux-search-backdrop').onclick=e=>{if(e.target===e.currentTarget)close()};input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();if(!q){out.innerHTML='<p class="empty">شروع به تایپ کن</p>';return;}const rows=[];const can=k=>auIsManager()||(atelierCurrentUser&&atelierCurrentUser.role==='staff'&&(atelierCurrentUser.permissions||[]).includes(k));if(can('customers'))customers.forEach(c=>{if((c.name||'').toLowerCase().includes(q))rows.push({t:'مشتری',n:c.name,go:()=>openCustomer(c.id)});});if(can('invoice'))invoices.forEach(i=>{if(('#'+i.number+' '+(i.customerName||'')).toLowerCase().includes(q))rows.push({t:'فاکتور',n:'#'+invNumStr(i.number)+' · '+i.customerName,go:()=>openProject(i.id)});});if(can('contracts'))contracts.forEach(c=>{if(('#'+c.number+' '+(c.customerName||'')).toLowerCase().includes(q))rows.push({t:'قرارداد',n:'#'+invNumStr(c.number)+' · '+c.customerName,go:()=>{tab='contracts';ctView='list';render()}});});if(can('bookings'))bookings.forEach(b=>{if((b.title+' '+b.customerName).toLowerCase().includes(q))rows.push({t:'آفیش',n:b.title||b.customerName,go:()=>{tab='bookings';bkView='list';render()}});});if(auIsManager())staff.forEach(x=>{if((x.name||'').toLowerCase().includes(q))rows.push({t:'کادر',n:x.name,go:()=>{tab='staff';staffView='list';render()}});});if(can('home'))atelierTasks.filter(x=>(x.title||'').toLowerCase().includes(q)).forEach(x=>rows.push({t:'وظیفه',n:x.title,go:()=>{tab='home';render()}}));out.innerHTML=rows.slice(0,12).map((r,i)=>`<button class="ux-result" data-i="${i}"><span>${atelierEsc(r.n)}</span><small>${r.t}</small></button>`).join('')||'<p class="empty">موردی پیدا نشد</p>';out.querySelectorAll('.ux-result').forEach((b,i)=>b.onclick=()=>{const r=rows[i];close();r.go();});});input.addEventListener('keydown',e=>{if(e.key==='Escape')close();});}
 function uxInjectHeader(){const h=document.querySelector('.brand-header');if(!h)return;h.querySelector('#uxSearchBtn')?.remove();const b=document.createElement('button');b.id='uxSearchBtn';b.className='ux-icon-btn';b.title='جست‌وجوی سریع';b.innerHTML=navIcon('<circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21"/>');b.onclick=uxSearch;h.insertBefore(b,h.querySelector('#headerMenuBtn')||null);const title=document.querySelector('.mobile-nav-bar .card');if(title){title.innerHTML='<span class="ux-title-dot"></span><span>'+atelierEsc(uxSectionLabel())+'</span>'+(secSub()?'<span class="ux-sub">› '+atelierEsc(secSub())+'</span>':'');}}
 function uxInjectBottom(){const bar=document.querySelector('.bottom-tab-bar');if(!bar)return;bar.classList.add('ux-bottom-bar');const old=bar.querySelectorAll('.bottom-tab-item');old.forEach(x=>x.classList.add('ux-bottom-item'));}
 /* ===== Remove star shortcut: every utility is now placed in its natural section ===== */
@@ -8518,7 +8522,8 @@ renderBottomSheet=function(){
   const keys = [bottomSheetOpen];
   const nodes = keys.map(k=>NAV_TREE.find(n=>n.key===k)).filter(Boolean);
   if(!nodes.length) return '';
-  return `<div class="sheet-backdrop open" id="sheetBackdrop"><div class="bottom-sheet" onclick="event.stopPropagation()"><div class="sheet-handle"></div>${nodes.map(node=>`<div class="sheet-title">${escapeAttr(node.label)}</div><div class="sheet-grid">${node.children.map(c=>`<button class="nav-leaf ${tab===c.tab?'nav-leaf-active':''}" data-tab="${c.tab}"><span class="nav-icon">${navIcon(NAV_ICONS[c.tab]||'')}</span>${escapeAttr(c.label)}</button>`).join('')}</div>`).join('')}</div></div>`;
+  const visibleNodes=nodes;
+  return `<div class="sheet-backdrop open" id="sheetBackdrop"><div class="bottom-sheet"><div class="sheet-handle"></div>${visibleNodes.map(node=>`<div class="sheet-title">${escapeAttr(node.label)}</div><div class="sheet-grid">${node.children.map(c=>`<button class="nav-leaf ${tab===c.tab?'nav-leaf-active':''}" data-tab="${c.tab}"><span class="nav-icon">${navIcon(NAV_ICONS[c.tab]||'')}</span>${escapeAttr(c.label)}</button>`).join('')}</div>`).join('')}</div></div>`;
 };
 const _speBase=staffPaymentEntries;
 staffPaymentEntries=function(id){
@@ -8558,7 +8563,7 @@ function ctExtrasHTML(){
     <div style="margin-top:6px;font-size:12.5px;line-height:1.9;color:${f.w.length?'var(--red)':'#1A7A3A'}">${f.w.length?f.w.map(x=>'⚠ '+x).join('<br>'):'✅ مغایرتی دیده نشد'}</div>
     <div class="row-flex" style="margin-top:8px"><input id="ctDefTax" inputmode="decimal" value="${escapeAttr(brandInfo.vatRate||'10')}" placeholder="نرخ پیش‌فرض مالیات ٪" style="flex:1"><button id="ctDefTaxSave" class="btn btn-outline" style="flex:1;font-size:12px">ذخیره نرخ پیش‌فرض</button></div></div>
     <h2 class="sec">امضای دو طرف</h2><div class="row-flex" style="gap:8px;margin-bottom:12px;align-items:flex-start">
-    ${[['ctSigA','signatureAtelier','آتلیه'],['ctSigC','signatureClient','مشتری']].map(([id,k,l])=>`<div style="flex:1"><div class="small">امضای ${l}</div><div class="ct-sig-box" data-k="${k}">${c[k]?`<img src="${c[k]}" style="max-width:100%;max-height:100%">`:'<span>لمس کنید و امضا کنید</span>'}</div><button class="btn btn-outline ct-sig-clear" data-k="${k}" style="width:100%;font-size:11px;padding:3px;min-height:28px;margin-top:4px">پاک کردن</button></div>`).join('')}</div>
+    ${[['ctSigA','signatureAtelier','آتلیه'],['ctSigC','signatureClient','مشتری']].map(([id,k,l])=>`<div style="flex:1"><div class="small">امضای ${l}</div><div class="ct-sig-box" data-k="${k}">${c[k]?`<img src="${safeImg(c[k])}" style="max-width:100%;max-height:100%">`:'<span>لمس کنید و امضا کنید</span>'}</div><button class="btn btn-outline ct-sig-clear" data-k="${k}" style="width:100%;font-size:11px;padding:3px;min-height:28px;margin-top:4px">پاک کردن</button></div>`).join('')}</div>
     <h2 class="sec">یادداشت‌های ${escapeAttr(c.customerName||'مشتری')}</h2><div class="box-gray" style="margin-bottom:12px">
     <textarea id="ctNoteText" rows="3" placeholder="رتوش، زاویه عکاس، توافق اقساطی..." style="width:100%;font-family:inherit;margin-bottom:8px">${escapeAttr(ctNoteDraft)}</textarea>
     <button id="ctNoteAdd" class="btn btn-black" style="width:100%">ثبت یادداشت</button>
@@ -8673,6 +8678,8 @@ const SRCH_KEY='studio_recentSearch';
 const SRCH_ICON='<circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21"/>';
 function srchNorm(x){ return toLatinDigits(String(x==null?'':x)).toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').trim(); }
 function quickAction(k){
+  const need=({'inv':'invoice','exp':'expenses','bk':'bookings','cust':'customers','active':'invoice','debtors':'customers'})[k];
+  if(need&&typeof auCanAccess==='function'&&!auCanAccess(need)){auShowDenied();return;}
   const from=tab; navBackStack=[from];
   if(k==='inv'){ tab='invoice'; newInvoiceFromDraft(); }
   else if(k==='exp'){ navBackStack=[]; return openQuickExpense(); }
@@ -8683,23 +8690,23 @@ function quickAction(k){
   render();
 }
 function srchBuild(q){
-  const n=srchNorm(q), G=[], has=(...f)=>f.some(v=>srchNorm(v).includes(n));
+  const n=srchNorm(q), G=[], has=(...f)=>f.some(v=>srchNorm(v).includes(n)), can=k=>typeof auCanAccess!=='function'||auCanAccess(k);
   const grp=(label,rows)=>{ if(rows.length) G.push({label,rows}); };
   const push=()=>{ if(navBackStack[navBackStack.length-1]!==tab) navBackStack.push(tab); };
-  grp('پرونده‌ها',invoices.filter(i=>has('#'+i.number,String(i.number),invNumStr(i.number),i.customerName,i.customerPhone,i.projectCode,(i.fileArchive||{}).media)).slice(0,5).map(i=>({ic:'invoice',t:'#'+invNumStr(i.number)+' · '+(i.customerName||'بدون نام'),sub:(STATUS_LABELS[i.status]||'')+' · '+fmt(computeInvoiceTotals(i).grandTotal)+' ت',go:()=>openProject(i.id)})));
-  grp('مشتریان',customers.filter(c=>has(c.name,c.phone)).slice(0,5).map(c=>{ const b=customerBalance(c.id); return {ic:'customers',t:c.name,sub:(c.phone||'')+(b.net<0?' · بدهکار '+fmt(-b.net)+' ت':''),go:()=>openCustomer(c.id)}; }));
-  grp('قراردادها',contracts.filter(c=>has('#'+c.number,String(c.number),c.customerName,c.title)).slice(0,4).map(c=>({ic:'contracts',t:'قرارداد #'+invNumStr(c.number)+' · '+(c.customerName||''),sub:c.title||jalaliStr(c.date),go:()=>{ push(); ctDraft=ctClone(c); ctEditingId=c.id; ctView='edit'; tab='contracts'; render(); }})));
-  grp('آفیش‌ها',bookings.filter(b=>has(b.title,b.customerName,b.placeNote,jalaliStr(b.date))).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(b=>({ic:'bookings',t:b.title||b.customerName||'آفیش',sub:jalaliStr(b.date)+' · '+bkTimeStr(b),go:()=>{ push(); bkDraft=bkNormalize(JSON.parse(JSON.stringify(b))); editingBookingId=b.id; bkView='form'; bkReturnTab=null; tab='bookings'; render(); }})));
+  grp('پرونده‌ها',(can('invoice')?invoices:[]).filter(i=>has('#'+i.number,String(i.number),invNumStr(i.number),i.customerName,i.customerPhone,i.projectCode,(i.fileArchive||{}).media)).slice(0,5).map(i=>({ic:'invoice',t:'#'+invNumStr(i.number)+' · '+(i.customerName||'بدون نام'),sub:(STATUS_LABELS[i.status]||'')+' · '+fmt(computeInvoiceTotals(i).grandTotal)+' ت',go:()=>openProject(i.id)})));
+  grp('مشتریان',(can('customers')?customers:[]).filter(c=>has(c.name,c.phone)).slice(0,5).map(c=>{ const b=customerBalance(c.id); return {ic:'customers',t:c.name,sub:(c.phone||'')+(b.net<0?' · بدهکار '+fmt(-b.net)+' ت':''),go:()=>openCustomer(c.id)}; }));
+  grp('قراردادها',(can('contracts')?contracts:[]).filter(c=>has('#'+c.number,String(c.number),c.customerName,c.title)).slice(0,4).map(c=>({ic:'contracts',t:'قرارداد #'+invNumStr(c.number)+' · '+(c.customerName||''),sub:c.title||jalaliStr(c.date),go:()=>{ push(); ctDraft=ctClone(c); ctEditingId=c.id; ctView='edit'; tab='contracts'; render(); }})));
+  grp('آفیش‌ها',(can('bookings')?bookings:[]).filter(b=>has(b.title,b.customerName,b.placeNote,jalaliStr(b.date))).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(b=>({ic:'bookings',t:b.title||b.customerName||'آفیش',sub:jalaliStr(b.date)+' · '+bkTimeStr(b),go:()=>{ push(); bkDraft=bkNormalize(JSON.parse(JSON.stringify(b))); editingBookingId=b.id; bkView='form'; bkReturnTab=null; tab='bookings'; render(); }})));
   const to=(ic,label,sub,tb,fn)=>({ic,t:label,sub,go:()=>{ push(); tab=tb; if(fn) fn(); render(); }});
   grp('کادر، تجهیزات و خدمات',[
-    ...staff.filter(x=>has(x.name,x.phone)).slice(0,3).map(x=>to('staff',x.name,(x.roles||[]).join('، '),'staff',()=>{ staffView='list'; })),
-    ...equipment.filter(x=>has(x.name)).slice(0,3).map(x=>to('equipment',x.name,'تجهیزات','equipment')),
-    ...products.filter(x=>has(x.name)).slice(0,3).map(x=>to('products',x.name,'خدمات و پکیج‌ها','products')),
-    ...rentals.filter(x=>has(x.item)).slice(0,3).map(x=>to('rentals',x.item,'اجاره','rentals',()=>{ rentalView='list'; rentalFilter='all'; }))]);
+    ...(auIsManager()?staff:[]).filter(x=>has(x.name,x.phone)).slice(0,3).map(x=>to('staff',x.name,(x.roles||[]).join('، '),'staff',()=>{ staffView='list'; })),
+    ...(can('equipment')?equipment:[]).filter(x=>has(x.name)).slice(0,3).map(x=>to('equipment',x.name,'تجهیزات','equipment')),
+    ...(can('products')?products:[]).filter(x=>has(x.name)).slice(0,3).map(x=>to('products',x.name,'خدمات و پکیج‌ها','products')),
+    ...(can('rentals')?rentals:[]).filter(x=>has(x.item)).slice(0,3).map(x=>to('rentals',x.item,'اجاره','rentals',()=>{ rentalView='list'; rentalFilter='all'; }))]);
   grp('مالی',[
-    ...expenses.filter(e=>has(e.categoryName,e.note)).slice(0,3).map(e=>to('expenses',e.categoryName,jalaliStr(e.date)+' · '+fmt(e.amount)+' ت','expenses',()=>{ expView='list'; expSearchQuery=q; expFilterTag='all'; expListLimit=15; })),
-    ...cheques.filter(c=>has(c.personName,c.chequeNumber)).slice(0,3).map(c=>to('cheques','چک '+(c.personName||''),jalaliStr(c.dueDate)+' · '+fmt(c.amount)+' ت','cheques'))]);
-  grp('رفتن به بخش',Object.entries(TAB_LABELS).filter(([k,l])=>k!=='project'&&has(l)).slice(0,4).map(([k,l])=>({ic:NAV_ICONS[k]?k:'lists',t:l,sub:'باز کردن بخش',go:()=>{ navBackStack=[]; tab=k; if(k==='invoice') invTab='list'; if(k==='customers') custView='list'; if(k==='contracts') ctView='list'; if(k==='bookings') bkView='list'; render(); }})));
+    ...(can('expenses')?expenses:[]).filter(e=>has(e.categoryName,e.note)).slice(0,3).map(e=>to('expenses',e.categoryName,jalaliStr(e.date)+' · '+fmt(e.amount)+' ت','expenses',()=>{ expView='list'; expSearchQuery=q; expFilterTag='all'; expListLimit=15; })),
+    ...(can('cheques')?cheques:[]).filter(c=>has(c.personName,c.chequeNumber)).slice(0,3).map(c=>to('cheques','چک '+(c.personName||''),jalaliStr(c.dueDate)+' · '+fmt(c.amount)+' ت','cheques'))]);
+  grp('رفتن به بخش',Object.entries(TAB_LABELS).filter(([k,l])=>k!=='project'&&can(k)&&has(l)).slice(0,4).map(([k,l])=>({ic:NAV_ICONS[k]?k:'lists',t:l,sub:'باز کردن بخش',go:()=>{ navBackStack=[]; tab=k; if(k==='invoice') invTab='list'; if(k==='customers') custView='list'; if(k==='contracts') ctView='list'; if(k==='bookings') bkView='list'; render(); }})));
   return G;
 }
 uxSearch=function(){
@@ -8983,13 +8990,13 @@ function uiModal(title,body,btns){ return new Promise(res=>{
 async function pwAsk(title,withConfirm){ let msg='';
   for(;;){ const r=await uiModal(title,`${withConfirm?'<p style="font-size:12px;margin:0 0 8px;color:var(--c-steel)">این رمز جایی ذخیره نمی‌شود؛ بدون آن بک‌آپ باز نمی‌شود.</p>':''}${msg?`<p style="color:var(--red);font-size:12px;margin:0 0 8px">${msg}</p>`:''}<input type="password" placeholder="رمز بک‌آپ" autocomplete="off" style="margin-bottom:8px">${withConfirm?'<input type="password" placeholder="تکرار رمز" autocomplete="off">':''}`,[{t:'تأیید',c:'btn-red'},{t:'انصراف'}]);
     if(r.i!==0) return null; const a=r.v[0], b=r.v[1];
-    if(a.length<6){ msg='رمز باید حداقل ۶ کاراکتر باشد'; continue; } if(withConfirm&&a!==b){ msg='تکرار رمز یکسان نیست'; continue; } return a; } }
+    if(a.length<6){ msg='رمز باید حداقل ۶ کاراکتر باشد'; continue; } if(withConfirm){ const w=window.__pwWeak(a); if(w){ msg=w; continue; } } if(withConfirm&&a!==b){ msg='تکرار رمز یکسان نیست'; continue; } return a; } }
 const _b64e=u=>{ let x=''; for(let i=0;i<u.length;i+=0x8000) x+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000)); return btoa(x); };
 const _b64d=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
 async function bkKey(pw,salt,iter){ const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(_legacyLatinDigits(pw)),'PBKDF2',false,['deriveKey']); return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']); }
-async function bkEnc(obj,pw){ const salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12)), key=await bkKey(pw,salt,250000);
+async function bkEnc(obj,pw){ const salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12)), key=await bkKey(pw,salt,600000);
   const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(obj)))); const o=new Uint8Array(12+ct.length); o.set(iv); o.set(ct,12);
-  return JSON.stringify({format:'atelier-backup',v:2,enc:true,iter:250000,salt:_b64e(salt),data:_b64e(o)}); }
+  return JSON.stringify({format:'atelier-backup',v:2,enc:true,iter:600000,salt:_b64e(salt),data:_b64e(o)}); }
 async function bkDec(env,pw){ const it=Math.min(+env.iter||250000,2000000), raw=_b64d(env.data), key=await bkKey(pw,_b64d(env.salt),it);
   return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:raw.slice(0,12)},key,raw.slice(12)))); }
 const BKT=[['materials',()=>materials,v=>{materials=v},STORE_KEYS.materials],['products',()=>products,v=>{products=v},STORE_KEYS.products],['productCategoriesList',()=>productCategoriesList,v=>{productCategoriesList=v},STORE_KEYS.productCategories],['records',()=>records,v=>{records=v},STORE_KEYS.records],['invoices',()=>invoices,v=>{invoices=v},STORE_KEYS.invoices],['customers',()=>customers,v=>{customers=v},STORE_KEYS.customers],['transactions',()=>transactions,v=>{transactions=v},STORE_KEYS.transactions],['suppliers',()=>suppliers,v=>{suppliers=v},STORE_KEYS.suppliers],['purchases',()=>purchases,v=>{purchases=v},STORE_KEYS.purchases],['manualReminders',()=>manualReminders,v=>{manualReminders=v},STORE_KEYS.reminders],['expenses',()=>expenses,v=>{expenses=v},STORE_KEYS.expenses],['expenseCategories',()=>expenseCategories,v=>{expenseCategories=v},STORE_KEYS.expenseCategories],['cheques',()=>cheques,v=>{cheques=v},STORE_KEYS.cheques],['bookings',()=>bookings,v=>{bookings=v},STORE_KEYS.bookings],['bookingResources',()=>bookingResources,v=>{bookingResources=v},STORE_KEYS.bookingResources],['equipment',()=>equipment,v=>{equipment=v},STORE_KEYS.equipment],['staff',()=>staff,v=>{staff=v},STORE_KEYS.staff],['tariff',()=>tariff,v=>{tariff=v},STORE_KEYS.tariff],['rentals',()=>rentals,v=>{rentals=v},STORE_KEYS.rentals],['contracts',()=>contracts,v=>{contracts=v},STORE_KEYS.contracts],['atelierNotes',()=>atelierNotes,v=>{atelierNotes=v},ATELIER_KEYS.notes],['atelierTasks',()=>atelierTasks,v=>{atelierTasks=v},ATELIER_KEYS.tasks],['atelierMaintenance',()=>atelierMaintenance,v=>{atelierMaintenance=v},ATELIER_KEYS.maintenance],['clubPointsLedger',()=>clubPointsLedger,v=>{clubPointsLedger=v},CLUB_POINTS_KEY],['staffFinance',()=>staffFinance,v=>{staffFinance=v},STAFF_FINANCE_KEY]];
@@ -9023,6 +9030,7 @@ async function importBackupFile(file){
   let data; try{ data=JSON.parse(await file.text()); }catch(e){ alert('فایل بک‌آپ معتبر نیست'); return; }
   let plain=true;
   if(data&&data.format==='atelier-backup'&&data.enc){ plain=false; const pw=await pwAsk('رمز این بک‌آپ را وارد کنید',false); if(!pw) return; try{ data=await bkDec(data,pw); }catch(e){ alert('رمز نادرست است یا فایل آسیب دیده'); return; } }
+  if(plain){ alert('فقط بک‌آپ رمزگذاری‌شده پذیرفته می‌شود. فایل بدون رمز می‌تواند حاوی کد مخرب باشد.'); return; }
   const errs=validateBackup(data); if(errs.length){ alert('بک‌آپ معتبر نیست:\n'+errs.join('\n')); return; }
   const exp=data.exportedAt?jalaliStr(data.exportedAt.slice(0,10)):'نامشخص', info=`<p style="font-size:13px;line-height:1.9;margin:0 0 8px">تاریخ بک‌آپ: ${exp}<br>${toPersianDigits(data.invoices.length)} فاکتور · ${toPersianDigits(data.customers.length)} مشتری · ${toPersianDigits((data.contracts||[]).length)} قرارداد${plain?'<br><b>این فایل رمزگذاری نشده بود.</b>':''}</p>`;
   const prev=buildBackupData();
@@ -9510,7 +9518,7 @@ let atelierUsers = loadJSON(STORE_KEYS.users, []);
 let atelierCurrentUser = null;
 let atelierWelcomePending = false;
 const ATELIER_PERMS = [
-  ['ops','عملیات روزانه'],['bookings','آفیش‌ها'],['editing','پیگیری ادیتور'],['rentals','اجاره و همکاران'],
+  ['home','خانه و خلاصه مدیریتی'],['ops','عملیات روزانه'],['bookings','آفیش‌ها'],['editing','پیگیری ادیتور'],['rentals','اجاره و همکاران'],
   ['invoice','فاکتورها'],['contracts','قراردادها'],['customers','مشتریان'],['club','باشگاه مشتریان'],
   ['expenses','هزینه‌ها'],['cheques','چک‌ها'],['dashboard','داشبورد مدیریتی'],
   ['products','خدمات و پکیج‌ها'],['tariff','تعرفه'],['materials','مواد مصرفی'],['staff','کادر'],['equipment','تجهیزات']
@@ -9519,25 +9527,35 @@ const ATELIER_PERMS = [
 
 const auSave=()=>saveJSON(STORE_KEYS.users,atelierUsers);
 const auIsManager=()=>!!(atelierCurrentUser&&atelierCurrentUser.role==='manager');
+const AU_TAB_PERMISSION={project:'invoice',calc:'products',suppliers:'rentals',internal:'ops',report:'dashboard'};
+const auCanAccess=(key)=>{const perm=AU_TAB_PERMISSION[key]||key;return !!(atelierCurrentUser&&(atelierCurrentUser.role==='manager'||(atelierCurrentUser.role==='staff'&&Array.isArray(atelierCurrentUser.permissions)&&atelierCurrentUser.permissions.includes(perm))));};
+function auShowDenied(){
+ const old=document.getElementById('auDeniedNotice');if(old)old.remove();
+ const n=document.createElement('div');n.id='auDeniedNotice';n.setAttribute('role','alert');
+ n.style.cssText='position:fixed;inset:0;z-index:100000;background:#17191d88;display:flex;align-items:center;justify-content:center;padding:20px;direction:rtl';
+ n.innerHTML='<div style="max-width:360px;width:100%;padding:24px;background:var(--c-card,#fff);border:1px solid var(--c-line,#ddd);border-radius:18px;text-align:center;box-shadow:0 16px 50px #0003"><div style="font-size:22px;margin-bottom:8px">⛔ عدم مجوز دسترسی</div><p style="line-height:1.9;margin:0 0 16px">مدیریت اجازهٔ استفاده از این قابلیت را برای حساب شما فعال نکرده است.</p><button type="button" class="btn btn-red" id="auDeniedClose" style="width:100%">متوجه شدم</button></div>';
+ document.body.appendChild(n);n.querySelector('#auDeniedClose').onclick=()=>n.remove();n.addEventListener('click',e=>{if(e.target===n)n.remove();});
+}
+function auGuardClick(e){
+ if(!atelierCurrentUser||auIsManager())return;
+ const el=e.target&&e.target.closest?e.target.closest('[data-tab],[data-nav-tab],[data-t],.subnav-btn,[data-home],[data-hq],[data-hq-bk],[data-k],[data-open-cust],[data-open-project],#homeQuickInv,#fabInv,#fabExp,#downloadBackupBtn,#mergeBackupBtn,#replaceBackupBtn,#shareBackupBtn,#pickFolderBtn,#clearFolderBtn'):null;
+ if(!el)return;
+ let key=el.dataset.tab||el.dataset.navTab||el.dataset.t||el.dataset.home;
+ if(el.hasAttribute('data-open-cust'))key='customers';
+ if(el.hasAttribute('data-open-project'))key='invoice';
+ if(el.id==='homeQuickInv'||el.id==='fabInv')key='invoice';
+ if(el.id==='fabExp')key='expenses';
+ if(['downloadBackupBtn','mergeBackupBtn','replaceBackupBtn','shareBackupBtn','pickFolderBtn','clearFolderBtn'].includes(el.id))key='__managerOnly__';
+ if(el.hasAttribute('data-k'))key=({'inv':'invoice','exp':'expenses','bk':'bookings','cust':'customers','debtors':'customers'})[el.dataset.k]||'';
+ if(el.hasAttribute('data-hq'))key=({'inv':'invoice','exp':'expenses','bk':'bookings','cust':'customers','active':'invoice','debtors':'customers'})[el.dataset.hq]||'';
+ if(el.hasAttribute('data-hq-bk'))key='bookings';
+ if(key&&!auCanAccess(key)){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();auShowDenied();}
+}
+if(!window.__atelierAccessClickGuard){document.addEventListener('click',auGuardClick,true);window.__atelierAccessClickGuard=true;}
 function auGate(){
- const app=document.getElementById('app'); if(!app)return;
- app.innerHTML=`<div style="max-width:440px;margin:8vh auto;padding:24px;background:var(--c-card,#fff);border:1px solid var(--c-line,#ddd);border-radius:18px;box-shadow:0 12px 35px #0000000d;direction:rtl">
- <div style="font-size:23px;font-weight:850;margin-bottom:6px">ورود کاربران</div>
- <p class="note" style="line-height:1.9">نام کاربری و رمز اختصاصی خودت را وارد کن.</p>
- <label class="small">نام کاربری</label><input id="auName" autocomplete="username" placeholder="نام کاربری" style="width:100%;margin:5px 0 12px">
- <label class="small">رمز ورود</label><input id="auPass" type="password" autocomplete="current-password" placeholder="رمز اختصاصی" style="width:100%;margin:5px 0 12px">
- <div id="auErr" style="color:var(--red);font-size:12px;margin:4px 0 10px"></div>
- <button id="auEnter" class="btn btn-red" style="width:100%">ورود به برنامه</button>
- <p class="small" style="line-height:1.8;margin-top:14px">کدهای کاربران از داخل تنظیمات برنامه و توسط مدیر تعریف می‌شوند.</p></div>`;
- const enter=async()=>{
-  const btn=document.getElementById('auEnter'),name=document.getElementById('auName').value.trim(),pass=document.getElementById('auPass').value,err=document.getElementById('auErr');
-  if(!name||!pass){err.textContent='نام کاربری و رمز را وارد کن';return;}
-  btn.disabled=true;btn.textContent='در حال بررسی…';err.textContent='';
-  try{err.textContent='برای ورود همکار، از گزینهٔ «ورود همکار با حساب اختصاصی» در صفحهٔ قفل استفاده کن. حساب‌های قدیمی باید یک‌بار توسط مدیر بازنشانی شوند.';return;}
-  finally{if(document.getElementById('auEnter')){btn.disabled=false;btn.textContent='ورود به برنامه';}}
- };
- document.getElementById('auEnter').onclick=enter;
- document.querySelectorAll('#auName,#auPass').forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter')enter();}));
+ const app=document.getElementById('app');if(!app)return;
+ app.innerHTML='<div class="card" style="max-width:440px;margin:8vh auto;padding:24px;text-align:center;direction:rtl"><h3>ورود کاربران</h3><p class="note" style="line-height:1.9">برای جلوگیری از باقی‌ماندن اطلاعات حساب قبلی در حافظه، ورود همکار فقط از صفحهٔ قفل انجام می‌شود.</p><button id="auGateReload" class="btn btn-red" style="width:100%">رفتن به صفحهٔ ورود</button></div>';
+ document.getElementById('auGateReload')?.addEventListener('click',()=>{if(window.__vault?.unlocked)window.__vault.lock(true);else location.reload();});
 }
 function auUsersPanel(){
  if(!auIsManager())return '<div class="card"><b>مدیریت کاربران</b><p class="note">این بخش فقط برای مدیر فعال است.</p></div>';
@@ -9546,7 +9564,7 @@ function auUsersPanel(){
  return managerSetup+`<div class="card" style="margin-top:12px"><div class="card-title"><span>کاربران و سطح دسترسی</span><span class="small">${toPersianDigits(atelierUsers.length)} حساب</span></div>
  <p class="note" style="line-height:1.8">دسترسی همکاران به‌صورت پیش‌فرض فقط شامل ثبت فاکتور، ثبت قرارداد و ثبت آفیش است. دسترسی به هر بخش دیگر باید با انتخاب مدیر فعال شود.</p>
  ${atelierUsers.map(u=>`<div class="r-row" style="align-items:flex-start;border-top:1px dashed var(--c-line,#ddd);padding:10px 0;gap:8px"><div style="flex:1;min-width:0"><b>${escapeAttr(u.displayName||u.name)}</b><div class="small">${escapeAttr(u.name)} · ${u.role==='manager'?'مدیر':'همکار'}</div>${u.role==='staff'?`<div class="small" style="margin-top:4px">${toPersianDigits((u.permissions||[]).length)} بخش مجاز</div>`:''}</div>${u.role==='staff'?`<button class="btn btn-outline au-edit" data-id="${u.id}" style="font-size:12px">ویرایش</button><button class="btn btn-outline au-del" data-id="${u.id}" style="font-size:12px;color:var(--red)">حذف</button>`:'<span class="small">حساب مدیر</span>'}</div>`).join('')}
- ${hasManager?`<div style="border-top:1px solid var(--c-line,#ddd);padding-top:12px;margin-top:8px"><div style="font-weight:750;margin-bottom:8px" id="auFormTitle">افزودن حساب همکار</div><input id="auEditId" type="hidden"><div class="row-flex"><input id="auNewDisplay" placeholder="نام همکار" style="flex:1"><input id="auNewName" placeholder="نام کاربری" style="flex:1"></div><input id="auNewPass" type="password" autocomplete="new-password" placeholder="رمز ورود (حداقل ۸ کاراکتر)" style="width:100%;margin-top:8px"><input id="auNewPass2" type="password" autocomplete="new-password" placeholder="تکرار رمز ورود" style="width:100%;margin-top:8px">
+ ${hasManager?`<div style="border-top:1px solid var(--c-line,#ddd);padding-top:12px;margin-top:8px"><div style="font-weight:750;margin-bottom:8px" id="auFormTitle">افزودن حساب همکار</div><input id="auEditId" type="hidden"><div class="row-flex"><input id="auNewDisplay" placeholder="نام همکار" style="flex:1"><input id="auNewName" placeholder="نام کاربری" style="flex:1"></div><input id="auNewPass" type="password" autocomplete="new-password" placeholder="رمز ورود (حداقل ۱۲ کاراکتر)" style="width:100%;margin-top:8px"><input id="auNewPass2" type="password" autocomplete="new-password" placeholder="تکرار رمز ورود" style="width:100%;margin-top:8px">
  <div class="small" style="margin:12px 0 6px;font-weight:700">بخش‌های مجاز</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">${ATELIER_PERMS.map(([k,l])=>`<label style="display:flex;align-items:center;gap:7px;font-size:12px"><input type="checkbox" class="au-perm" value="${k}" ${['invoice','contracts','bookings'].includes(k)?'checked':''}> ${l}</label>`).join('')}</div>
  <div class="row-flex" style="margin-top:12px"><button id="auSaveUser" class="btn btn-red" style="flex:1">ذخیره حساب</button><button id="auCancelEdit" class="btn btn-outline">پاک‌کردن فرم</button></div><div id="auFormErr" class="small" style="color:var(--red);margin-top:8px"></div></div>`:''}</div>`;
 }
@@ -9554,22 +9572,29 @@ const _auRenderSettings=renderSettingsTab;
 renderSettingsTab=function(){return _auRenderSettings();};
 const _auRender=render;
 render=function(){
- if(!atelierCurrentUser){try{const sid=sessionStorage.getItem('studio_staff_auth_id');if(sid){const su=atelierUsers.find(x=>x.id===sid&&x.role==='staff');if(su){atelierCurrentUser=su;sessionStorage.removeItem('studio_staff_auth_id');atelierWelcomePending=true;}}}catch(e){}}
- // رمز اصلی Vault یا بایومتریک موجود، احراز هویت مدیر است؛ حساب مدیر رمز مستقل ندارد.
- if(!atelierCurrentUser){const existingManager=atelierUsers.find(x=>x.role==='manager');if(existingManager){atelierCurrentUser=existingManager;if(existingManager.hash){delete existingManager.hash;auSave();}}}
- // اگر مدیر هنوز از تنظیمات حساب نساخته، ورود اولیه مستقیماً به برنامه انجام می‌شود.
- if(!atelierUsers.length&&!atelierCurrentUser)atelierCurrentUser={id:'first-manager-session',name:'',displayName:'مدیر',role:'manager',permissions:ATELIER_PERMS.map(x=>x[0]),temporary:true};
+ // نقش کاربر فقط از نتیجه‌ی احراز هویت همین نشست پذیرفته می‌شود؛ وجود حساب مدیر به‌تنهایی مجوز مدیر بودن نیست.
+ if(!atelierCurrentUser&&window.__staffAuthProfile&&window.__staffAuthProfile.id){atelierCurrentUser={...window.__staffAuthProfile,role:'staff'};}
+ if(!atelierCurrentUser){
+  let authRole='',staffId='';
+  try{authRole=sessionStorage.getItem('studio_auth_role')||'';staffId=sessionStorage.getItem('studio_staff_auth_id')||'';}catch(e){}
+  if(authRole==='staff'&&staffId){const su=atelierUsers.find(x=>x.id===staffId&&x.role==='staff');if(su){atelierCurrentUser=su;atelierWelcomePending=true;}else{try{sessionStorage.removeItem('studio_auth_role');sessionStorage.removeItem('studio_staff_auth_id');}catch(e){}}}
+  else if(authRole==='manager'){const manager=atelierUsers.find(x=>x.role==='manager');if(manager)atelierCurrentUser=manager;}
+  // نصب تازه فقط وقتی هیچ حسابی تعریف نشده باشد، وارد مسیر راه‌اندازی مدیر می‌شود.
+  if(!atelierCurrentUser&&!atelierUsers.length&&window.__vault&&window.__vault.role==='manager')atelierCurrentUser={id:'first-manager-session',name:'',displayName:'مدیر',role:'manager',permissions:ATELIER_PERMS.map(x=>x[0]),temporary:true};
+ }
  if(!atelierCurrentUser){auGate();return;}
- const allowed=atelierCurrentUser.role==='manager'||(atelierCurrentUser.permissions||[]).includes(tab)||tab==='home';
- if(!allowed){alert('برای این بخش دسترسی نداری.');tab='home';navBackStack=[];}
+ const userPerms=Array.isArray(atelierCurrentUser.permissions)?atelierCurrentUser.permissions:[];
+ const allowed=auCanAccess(tab);
+ if(!allowed){
+  const app=document.getElementById('app');
+  if(app)app.innerHTML='<div class="card" style="margin:10vh auto;max-width:520px;text-align:center;direction:rtl"><h3>⛔ عدم مجوز دسترسی</h3><p class="note">مدیریت اجازهٔ استفاده از این بخش را برای حساب شما فعال نکرده است.</p><button class="btn btn-outline" id="auReturnAllowed">بازگشت به بخش مجاز</button></div>';
+  document.getElementById('auReturnAllowed')?.addEventListener('click',()=>{const first=ATELIER_PERMS.find(([key])=>userPerms.includes(key));tab=first?first[0]:'home';navBackStack=[];render();});
+  return;
+ }
  _auRender();
  if(tab==='settings'&&auIsManager())auBindUsers();
  if(atelierWelcomePending){atelierWelcomePending=false;const w=document.createElement('div');w.id='atelierWelcome';w.style.cssText='position:fixed;inset:0;z-index:99999;background:#17191dcc;display:flex;align-items:center;justify-content:center;padding:22px;direction:rtl';w.innerHTML=`<div style="max-width:360px;width:100%;padding:28px 22px;background:var(--c-card,#fff);border:1px solid var(--c-line,#ddd);border-radius:20px;text-align:center;box-shadow:0 18px 60px #0003"><div style="font-size:24px;font-weight:850;margin-bottom:8px">خوش آمدی، ${escapeAttr(atelierCurrentUser.displayName||atelierCurrentUser.name||'مدیر')}</div><div class="note" style="margin-bottom:20px">ورود با موفقیت انجام شد.</div><button id="atelierWelcomeGo" class="btn btn-red" style="width:100%">ورود به برنامه</button></div>`;document.body.appendChild(w);w.querySelector('#atelierWelcomeGo').onclick=()=>w.remove();}
- if(!auIsManager()){
-  document.querySelectorAll('#downloadBackupBtn,#mergeBackupBtn,#replaceBackupBtn,#shareBackupBtn,#pickFolderBtn,#clearFolderBtn').forEach(x=>x.remove());
-  // لینک تب‌های غیرمجاز را از منوها حذف می‌کنیم تا بخش‌های حساس در دسترس روزمره نباشند.
-  document.querySelectorAll('[data-tab]').forEach(x=>{const k=x.dataset.tab;if(k&&!['home'].includes(k)&&!(atelierCurrentUser.permissions||[]).includes(k))x.remove();});
- }
+ // گزینه‌های مدیریتی نیز در صورت حضور در صفحه دیده می‌شوند؛ کلیک غیرمجاز در capture متوقف می‌شود.
 };
 async function auConfirmManagerAgain(){
  let verified=false;
@@ -9598,12 +9623,13 @@ function auBindUsers(){
   const passwordComparable=v=>String(v||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
   if(!displayName||!name){err.textContent='نام همکار و نام کاربری را وارد کن';return;}
   if(atelierUsers.some(u=>u.name.toLowerCase()===name.toLowerCase()&&u.id!==id)){err.textContent='این نام کاربری قبلاً ثبت شده';return;}
-  if(!id&&pass.length<8){err.textContent='رمز کاربر باید حداقل ۸ کاراکتر باشد';return;}
-  if(id&&pass&&pass.length<8){err.textContent='رمز جدید باید حداقل ۸ کاراکتر باشد';return;}
+  if(!id&&window.__pwWeak(pass)){err.textContent=window.__pwWeak(pass);return;}
+  if(id&&pass&&window.__pwWeak(pass)){err.textContent=window.__pwWeak(pass);return;}
+  if(id&&!pass&&window.__vault.staffNeedsReset(id)){err.textContent='برای تکمیل جداسازی امن، باید برای این همکار رمز جدید تعیین کنی.';return;}
   if(!id||pass){if(passwordComparable(pass)!==passwordComparable(pass2)){err.textContent='رمز و تکرار آن یکسان نیستند؛ ارقام فارسی و انگلیسی یکسان در نظر گرفته می‌شوند.';return;}}
   if(!id||pass){if(!await auConfirmManagerAgain()){err.textContent='تأیید مدیریت انجام نشد؛ رمز کاربر ثبت یا تغییر نکرد.';return;}}
   b.disabled=true;b.textContent='در حال ذخیره…';
-  try{const permissions=[...document.querySelectorAll('.au-perm:checked')].map(c=>c.value);if(id){const u=atelierUsers.find(x=>x.id===id);if(!u)return;if(pass){await window.__vault.setStaffAccess(u.id,name,pass);delete u.hash;}else if(u.name!==name)await window.__vault.renameStaffAccess(u.id,name);u.displayName=displayName;u.name=name;u.permissions=permissions;}else{const uid=nid();await window.__vault.setStaffAccess(uid,name,pass);atelierUsers.push({id:uid,displayName,name,role:'staff',permissions,createdAt:Date.now()});}auSave();render();}
+  try{const permissions=[...document.querySelectorAll('.au-perm:checked')].map(c=>c.value);if(id){const u=atelierUsers.find(x=>x.id===id);if(!u)return;if(pass){await window.__vault.setStaffAccess(u.id,name,pass,permissions,displayName);delete u.hash;}else{await window.__vault.updateStaffAccess(u.id,name,displayName,permissions);}u.displayName=displayName;u.name=name;u.permissions=permissions;}else{const uid=nid();await window.__vault.setStaffAccess(uid,name,pass,permissions,displayName);atelierUsers.push({id:uid,displayName,name,role:'staff',permissions,createdAt:Date.now()});}auSave();render();}
   catch(e){err.textContent='ذخیره انجام نشد؛ دوباره بررسی کن.';}
   finally{if(document.getElementById('auSaveUser')){b.disabled=false;b.textContent='ذخیره حساب';}}
  });
@@ -9613,14 +9639,14 @@ render();
 </script>
 <script id="vaultLayer">
 /* لایه‌ی قفل و رمزگذاری — قبل از اجرای برنامه اجرا می‌شود.
-   اطلاعات با AES-GCM و کلیدی که از رمز کاربر با PBKDF2 ساخته می‌شود روی همین دستگاه رمزگذاری می‌شود.
-   رمز هیچ‌جا ذخیره نمی‌شود. */
+   داده‌ها با کلیدهای مستقل AES-GCM رمزگذاری می‌شوند؛ کلید اصلی مدیر و کلید مستقل هر همکار فقط کلیدهای مجاز را بسته‌بندی می‌کنند.
+   رمزها ذخیره نمی‌شوند؛ از PBKDF2 برای مشتق‌سازی کلید استفاده می‌شود. */
 (function(){
   'use strict';
   const OWNER = 'فرشاد شهرت', OWNER_PHONE = '09142030904';          // نام و تلفن صاحب حق نشر — اینجا قابل تغییر است
   const META_KEY = 'studio_vault_meta', FAIL_KEY = 'studio_vault_fail', LOCK_KEY = 'studio_autolock', BIO_KEY = 'studio_bio';
   const SYS_KEYS = [META_KEY, FAIL_KEY, LOCK_KEY, BIO_KEY];
-  const ITER = 250000, PREFIX = 'enc1:', CHECK = 'studio-vault-ok';
+  const ITER = 600000, PREFIX = 'enc1:', CHECK = 'studio-vault-ok';
   const te = new TextEncoder(), td = new TextDecoder();
   const $ = id => document.getElementById(id);
   const norm = s => String(s||'').replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
@@ -9633,8 +9659,32 @@ render();
     d.innerHTML='<img src="'+iconHref()+'" alt="" style="width:min(220px,62vw);height:auto;object-fit:contain">'; document.body.appendChild(d); return d; }
   function endSplash(){ const d=document.getElementById('splash'); if(!d) return; d.style.opacity='0'; setTimeout(()=>d.remove(),320); }
   let _ts=0; function touchSess(){ const n=Date.now(); if(n-_ts<4000) return; _ts=n; try{ if(sessionStorage.getItem('studio_sess_k')) sessionStorage.setItem('studio_sess_t',String(n)); }catch(e){} }
-  async function saveSession(){ try{ sessionStorage.setItem('studio_sess_k', b64e(await crypto.subtle.exportKey('raw', Vault.key))); sessionStorage.setItem('studio_sess_t', String(Date.now())); }catch(e){} }
+  async function saveSession(){ try{ if(Vault.role==='staff'||!Vault.key){ clearSession(); return; } sessionStorage.setItem('studio_sess_k', b64e(await crypto.subtle.exportKey('raw', Vault.key))); sessionStorage.setItem('studio_sess_t', String(Date.now())); }catch(e){} }
   function clearSession(){ try{ sessionStorage.removeItem('studio_sess_k'); sessionStorage.removeItem('studio_sess_t'); }catch(e){} }
+  // دسترسی هر کلید ذخیره‌سازی به یک مجوز مشخص متصل است؛ کلیدهای ناشناخته فقط برای مدیرند.
+  const KEY_PERMS = {
+    studio_users:[], studio_customers:['customers'], studio_clientNotes:['customers','editing'],
+    studio_invoices:['invoice'], studio_invoiceSeq:['invoice'], studio_contracts:['contracts'], studio_contractTpl:['contracts'],
+    studio_bookings:['bookings'], studio_bookingResources:['bookings'], studio_rentals:['rentals'],
+    studio_club:['club'], studio_clubPointsLedger:['club'], studio_expenses:['expenses'], studio_expenseCategories:['expenses'],
+    studio_quickExp:['expenses'], studio_transactions:['expenses'], studio_bankInfo:['expenses','cheques'], studio_cheques:['cheques'],
+    studio_staffFinance:['staff'], studio_staff:['staff'], studio_roles:['staff'], studio_products:['products'],
+    studio_productCategories:['products'], studio_materials:['materials'], studio_tariff:['tariff'], studio_suppliers:['rentals'],
+    studio_purchases:['rentals'], studio_equipment:['equipment'], studio_equipmentMaintenance:['equipment'],
+    studio_records:['products'], studio_internalTasks:['ops','home'], studio_drafts:['editing'], studio_recentSearch:['ops'],
+    studio_reminders:['ops'], studio_overheadPerUnit:['tariff'], studio_overheadPercent:['tariff'], studio_defaultTaxRate:['tariff'],
+    studio_serviceTexts:['tariff'], studio_orderTemplates:['tariff'], studio_brandInfo:['products','tariff'], studio_theme:['home','ops','bookings','editing','rentals','invoice','contracts','customers','club','expenses','cheques','dashboard','products','tariff','materials','staff','equipment'],
+    studio_downloadDirName:[], studio_lastBackup:[], studio_vault_meta:[]
+  };
+  const permsForKey = k => Object.prototype.hasOwnProperty.call(KEY_PERMS,k) ? KEY_PERMS[k] : [];
+  const keyAllowedForProfile = (k, profile) => !!profile && profile.role==='staff' && permsForKey(k).some(p=>(profile.permissions||[]).includes(p));
+  const MIG_DB='studioVaultMigration', MIG_STORE='snapshots';
+  function migrationDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(MIG_DB,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(MIG_STORE))r.result.createObjectStore(MIG_STORE);};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+  async function migrationPut(v){const db=await migrationDB();return new Promise((resolve,reject)=>{const t=db.transaction(MIG_STORE,'readwrite');t.objectStore(MIG_STORE).put(v,'pre-v3');t.oncomplete=()=>{db.close();resolve();};t.onerror=()=>{db.close();reject(t.error);};});}
+  async function migrationGet(){const db=await migrationDB();return new Promise((resolve,reject)=>{const r=db.transaction(MIG_STORE).objectStore(MIG_STORE).get('pre-v3');r.onsuccess=()=>{db.close();resolve(r.result||null);};r.onerror=()=>{db.close();reject(r.error);};});}
+  async function migrationClear(){try{const db=await migrationDB();await new Promise((resolve,reject)=>{const t=db.transaction(MIG_STORE,'readwrite');t.objectStore(MIG_STORE).delete('pre-v3');t.oncomplete=resolve;t.onerror=()=>reject(t.error);});db.close();}catch(e){}}
+  async function recoverInterruptedMigration(){let m;try{m=JSON.parse(localStorage.getItem(META_KEY)||'null');}catch(e){}if(!m||!m.migrationInProgress)return;const snap=await migrationGet();if(!snap)throw new Error('مهاجرت نیمه‌تمام است و نسخهٔ پشتیبان در دسترس نیست؛ از تغییر بیشتر داده‌ها خودداری شد.');for(const k of Object.keys(snap.values))localStorage.setItem(k,snap.values[k]);localStorage.setItem(META_KEY,snap.meta);await migrationClear();}
+
   makeSplash();
   window.__appCredit = () => ({ year: year(), owner: OWNER, phone: OWNER_PHONE });
 
@@ -9655,45 +9705,96 @@ render();
     return td.decode(await crypto.subtle.decrypt({ name:'AES-GCM', iv: raw.slice(0,12) }, key, raw.slice(12)));
   }
 
-  const Vault = { cache:{}, key:null, pending:new Set(), busy:Promise.resolve(), unlocked:false, warned:false, locked:false };
+  const Vault = { cache:{}, key:null, dataKeys:{}, role:'manager', staffProfile:null, pending:new Set(), busy:Promise.resolve(), unlocked:false, warned:false, locked:false };
   Vault.get = k => Object.prototype.hasOwnProperty.call(Vault.cache, k) ? Vault.cache[k] : null;
-  Vault.set = (k, v) => { Vault.cache[k] = v; Vault.pending.add(k); Vault.flush(); };
+  Vault.set = (k, v) => {
+    if(Vault.role==='staff'&&!Vault.dataKeys[k]){try{window.__vaultAccessDenied=true;window.dispatchEvent(new CustomEvent('atelier:access-denied',{detail:{key:k}}));}catch(e){}return false;}
+    Vault.cache[k] = v; Vault.pending.add(k); Vault.flush(); return true;
+  };
   function chip(st){
     let c=document.getElementById('saveChip'); if(!c){ c=document.createElement('div'); c.id='saveChip'; c.style.cssText='position:fixed;top:calc(6px + env(safe-area-inset-top,0px));left:8px;z-index:100002;font:600 11px Vazirmatn,Tahoma,sans-serif;padding:4px 10px;border-radius:999px;transition:opacity .3s;pointer-events:none;opacity:0'; document.body.appendChild(c); }
     clearTimeout(chip.t); const m={saving:['در حال ذخیره…','#6B7075'],saved:['ذخیره شد ✓','#1A7A3A'],failed:['ذخیره نشد — تلاش مجدد…','#C0392B']}[st];
     c.textContent=m[0]; c.style.background='#fff'; c.style.color=m[1]; c.style.border='1px solid '+m[1]; c.style.opacity='1';
     if(st==='saved') chip.t=setTimeout(()=>{ c.style.opacity='0'; },1400); }
+  async function ensureManagerDataKey(k){
+    if(Vault.dataKeys[k])return Vault.dataKeys[k];
+    if(Vault.role!=='manager'||!Vault.key)throw new Error('مجوز رمزگذاری این داده وجود ندارد');
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');meta.keyring=meta.keyring||{};
+    const dk=await newDek();meta.keyring[k]={wrap:await encStr(Vault.key,await dekRaw(dk))};Vault.dataKeys[k]=dk;
+    // اگر کلید ذخیره‌سازی جدیدی به برنامه اضافه شد، فقط به همکارانی بسته‌بندی شود که مجوز مربوط را دارند.
+    for(const entry of (meta.staffAccess||[])){try{if(!entry.managerWrap)continue;const secret=await dekFrom(await decStr(Vault.key,entry.managerWrap));const profile=JSON.parse(await decStr(secret,entry.profile));if(permsForKey(k).some(p=>(profile.permissions||[]).includes(p))){entry.keys=entry.keys||{};entry.keys[k]=await encStr(secret,await dekRaw(dk));}}catch(e){}}
+    localStorage.setItem(META_KEY,JSON.stringify(meta));return dk;
+  }
   async function flushNow(){
-    if(!Vault.key||!Vault.pending.size) return; chip('saving'); let failed=false;
+    if(!Vault.unlocked||!Vault.pending.size) return; chip('saving'); let failed=false;
     for(const k of [...Vault.pending]){ const v=Vault.cache[k];
-      try { localStorage.setItem(k, await encStr(Vault.key, v)); if(Vault.cache[k]===v) Vault.pending.delete(k); }
-      catch(e){ failed=true; } }
-    if(failed){ chip('failed'); if(!Vault.warned){ Vault.warned=true; alert('ذخیره روی این مرورگر ناموفق بود (احتمالاً حافظه پر است). یک بک‌آپ بگیر؛ برنامه دوباره تلاش می‌کند.'); } clearTimeout(Vault.retry); Vault.retry=setTimeout(()=>Vault.flush(),5000); }
+      try { const dk=Vault.role==='manager'?await ensureManagerDataKey(k):Vault.dataKeys[k];if(!dk)throw new Error('مجاز نیست');localStorage.setItem(k, await encStr(dk, v)); if(Vault.cache[k]===v) Vault.pending.delete(k); }
+      catch(e){ failed=true; }
+    }
+    if(failed){ chip('failed'); if(!Vault.warned){ Vault.warned=true; alert('ذخیرهٔ بعضی داده‌ها ناموفق شد (احتمالاً حافظه پر است یا داده‌ای مجاز نیست). یک بک‌آپ بگیر و اطلاعات تغییرکرده را بررسی کن.'); } clearTimeout(Vault.retry);Vault.retry=setTimeout(()=>Vault.flush(),5000); }
     else chip('saved');
   }
   Vault.flush = () => { Vault.busy = Vault.busy.then(flushNow).catch(()=>{}); return Vault.busy; };
 
   const hasMeta = () => !!localStorage.getItem(META_KEY);
-  const dataKeys = () => { const out = []; for(let i=0;i<localStorage.length;i++){ const k = localStorage.key(i); if(k && k.startsWith('studio_') && !SYS_KEYS.includes(k)) out.push(k); } return out; };
-  const hasPlain = () => dataKeys().some(k => !(localStorage.getItem(k)||'').startsWith(PREFIX));
-
-  async function loadAll(key){
-    for(const k of dataKeys()){
-      const raw = localStorage.getItem(k) || '';
-      if(raw.startsWith(PREFIX)){ try { Vault.cache[k] = await decStr(key, raw); } catch(e){ try{ localStorage.setItem('bad_'+k, raw); }catch(x){} (Vault.corrupt=Vault.corrupt||[]).push(k); } }
-      else { Vault.cache[k] = raw; Vault.pending.add(k); }
+  const listDataKeys = () => { const out = []; for(let i=0;i<localStorage.length;i++){ const k = localStorage.key(i); if(k && k.startsWith('studio_') && !SYS_KEYS.includes(k)) out.push(k); } return out; };
+  const hasPlain = () => listDataKeys().some(k => !(localStorage.getItem(k)||'').startsWith(PREFIX));
+  async function clearMemory(){Vault.cache={};Vault.dataKeys={};Vault.pending.clear();Vault.staffProfile=null;Vault.key=null;Vault.role='manager';Vault.unlocked=false;}
+  async function loadAll(key, staffEntry=null, staffSecret=null){
+    await clearMemory();const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');
+    if(meta.v===3&&meta.keyring){
+      if(staffEntry){
+        Vault.role='staff';Vault.staffProfile=staffEntry.profile;Vault.key=null;
+        for(const k of Object.keys(staffEntry.keys||{})){
+          if(!meta.keyring[k])continue;
+          try{const dk=await dekFrom(await decStr(staffSecret,staffEntry.keys[k]));Vault.dataKeys[k]=dk;const raw=localStorage.getItem(k)||'';if(raw.startsWith(PREFIX))Vault.cache[k]=await decStr(dk,raw);else if(raw){Vault.cache[k]=raw;Vault.pending.add(k);}}
+          catch(e){(Vault.corrupt=Vault.corrupt||[]).push(k);}
+        }
+      }else{
+        Vault.role='manager';Vault.key=key;
+        for(const k of Object.keys(meta.keyring)){
+          try{const dk=await dekFrom(await decStr(key,meta.keyring[k].wrap));Vault.dataKeys[k]=dk;const raw=localStorage.getItem(k)||'';if(raw.startsWith(PREFIX))Vault.cache[k]=await decStr(dk,raw);else if(raw){Vault.cache[k]=raw;Vault.pending.add(k);}}
+          catch(e){try{localStorage.setItem('bad_'+k,localStorage.getItem(k)||'');}catch(x){}(Vault.corrupt=Vault.corrupt||[]).push(k);}
+        }
+        try{ Vault.missing=[]; for(const k of Object.keys(meta.keyring)) if(!localStorage.getItem(k)) Vault.missing.push(k); const bad=[...new Set([...(Vault.corrupt||[]),...Vault.missing])]; if(bad.length&&!Vault._warned){ Vault._warned=1; setTimeout(()=>{ try{ alert('هشدار امنیتی: داده‌ی این بخش‌ها حذف یا خراب شده است:\n'+bad.map(x=>x.replace(/^studio_/,'')).join('، ')+'\nاز آخرین بک‌آپ بازیابی کن و بررسی کن کسی به دستگاه دسترسی نداشته باشد.'); }catch(e){} },1500); } }catch(e){}
+        // Keys added by a later app version are initialized on first manager write.
+        for(const k of listDataKeys())if(!meta.keyring[k]){const raw=localStorage.getItem(k)||'';if(raw.startsWith(PREFIX)){try{Vault.cache[k]=await decStr(key,raw);Vault.pending.add(k);}catch(e){}}else if(raw){Vault.cache[k]=raw;Vault.pending.add(k);}}
+      }
+      return;
     }
+    if(staffEntry)throw new Error('مدیر باید یک بار وارد شود تا جداسازی امن داده‌ها انجام شود.');
+    Vault.role='manager';Vault.key=key;
+    for(const k of listDataKeys()){
+      const raw=localStorage.getItem(k)||'';
+      if(raw.startsWith(PREFIX)){try{Vault.cache[k]=await decStr(key,raw);}catch(e){try{localStorage.setItem('bad_'+k,raw);}catch(x){}(Vault.corrupt=Vault.corrupt||[]).push(k);}}
+      else{Vault.cache[k]=raw;Vault.pending.add(k);}
+    }
+  }
+  async function migrateToV3(masterKey){
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');if(meta.v===3&&meta.keyring)return;
+    const keys=listDataKeys(), snapshot={meta:localStorage.getItem(META_KEY),values:{}};
+    keys.forEach(k=>snapshot.values[k]=localStorage.getItem(k));
+    await migrationPut(snapshot);
+    try{
+      const inProgress={...meta,migrationInProgress:true};localStorage.setItem(META_KEY,JSON.stringify(inProgress));
+      const keyring={},outputs={};Vault.dataKeys={};
+      for(const k of keys){const dk=await newDek();Vault.dataKeys[k]=dk;keyring[k]={wrap:await encStr(masterKey,await dekRaw(dk))};const plain=Object.prototype.hasOwnProperty.call(Vault.cache,k)?Vault.cache[k]:(localStorage.getItem(k)||'');outputs[k]=await encStr(dk,plain);}
+      for(const k of keys)localStorage.setItem(k,outputs[k]);
+      // Legacy staff wrappers unlocked the entire master key; they are intentionally revoked.
+      let oldStaffUsers=false;try{oldStaffUsers=JSON.parse(Vault.cache['studio_users']||'[]').some(u=>u&&u.role==='staff');}catch(e){}const finalMeta={...meta,v:3,keyring,staffAccess:[],legacyStaffResetRequired:(Array.isArray(meta.staffAccess)&&meta.staffAccess.length>0)||oldStaffUsers};delete finalMeta.migrationInProgress;
+      localStorage.setItem(META_KEY,JSON.stringify(finalMeta));await migrationClear();Vault.key=masterKey;Vault.role='manager';
+    }catch(e){for(const k of Object.keys(snapshot.values)){if(snapshot.values[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,snapshot.values[k]);}localStorage.setItem(META_KEY,snapshot.meta);await migrationClear();throw e;}
   }
   async function verifyWith(pw){
     const meta = JSON.parse(localStorage.getItem(META_KEY));
     const kek = await deriveKey(pw, b64d(meta.salt), meta.iter);
-    if(meta.v === 2){          // کلید اصلی داده‌ها (DEK) با رمز قفل شده است
+    if(meta.v === 2 || meta.v === 3){          // کلید اصلی مدیریت کلیدهای داده با رمز قفل شده است
       try { const dek = await dekFrom(await decStr(kek, meta.wrapPw)); return (await decStr(dek, meta.check)) === CHECK ? dek : null; } catch(e){ return null; }
     }
     try { return (await decStr(kek, meta.check)) === CHECK ? kek : null; } catch(e){ return null; }
   }
-  /* مدل کلید: داده‌ها با یک «کلید اصلی» تصادفی (DEK) رمزگذاری می‌شوند. این کلید یک‌بار با رمز کاربر و یک‌بار با «کد بازیابی» قفل می‌شود؛
-     پس تغییر یا بازیابی رمز فقط کلید اصلی را دوباره قفل می‌کند و به داده‌ها دست نمی‌زند. */
+  /* مدل کلید نسخهٔ ۳: هر کلید ذخیره‌سازی کلید دادهٔ مستقل دارد؛ کلید اصلی مدیر، کلیدهای داده را بسته‌بندی می‌کند.
+     رمز مدیر و کد بازیابی فقط کلید اصلی را بسته‌بندی می‌کنند؛ رمز همکار به‌جای کلید اصلی، فقط کلیدهای مجاز خودش را باز می‌کند. */
   const REC_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
   const recNorm = c => String(c||'').toUpperCase().replace(/[^0-9A-Z]/g,'').replace(/O/g,'0').replace(/[IL]/g,'1');
   const recPretty = c => c.match(/.{1,4}/g).join('-');
@@ -9704,12 +9805,11 @@ render();
   Vault.setup = async pw => {
     const dek = await newDek();
     const salt = crypto.getRandomValues(new Uint8Array(16)), kek = await deriveKey(pw, salt, ITER);
-    const meta = { v:2, salt: b64e(salt), iter: ITER, check: await encStr(dek, CHECK), wrapPw: await encStr(kek, await dekRaw(dek)) };
+    const meta = { v:3, salt: b64e(salt), iter: ITER, check: await encStr(dek, CHECK), wrapPw: await encStr(kek, await dekRaw(dek)), keyring:{}, staffAccess:[] };
     await loadAll(dek);
     localStorage.setItem(META_KEY, JSON.stringify(meta));
-    Vault.key = dek;
+    Vault.key = dek; Vault.role='manager'; Vault.dataKeys={}; Vault.unlocked = true;
     await Vault.flush();
-    Vault.unlocked = true;
     Vault.needsRecovery = true;
   };
   // نسخه‌ی قدیمی (کلید مستقیم از رمز) بی‌صدا به مدل جدید ارتقا می‌یابد؛ همه‌ی داده‌ها قبل از هر نوشتن آماده می‌شوند
@@ -9726,67 +9826,79 @@ render();
     Vault.needsRecovery = true;
   }
   Vault.unlock = async pw => {
+    if(Vault.unlocked&&Vault.role==='staff')return false;
     const meta = JSON.parse(localStorage.getItem(META_KEY));
-    const key = await verifyWith(pw);
-    if(!key) return false;
+    const key = await verifyWith(pw);if(!key)return false;
     await loadAll(key);
-    if(meta.v !== 2) await migrateToV2(pw);
-    else { Vault.key = key; await Vault.flush(); if(!meta.rec) Vault.needsRecovery = true; }
-    Vault.unlocked = true;
+    let masterKey=key;
+    if(meta.v!==2&&meta.v!==3){await migrateToV2(pw);masterKey=Vault.key||key;}
+    const latest=JSON.parse(localStorage.getItem(META_KEY)||'{}');
+    if(latest.v!==3||!latest.keyring){await migrateToV3(masterKey);await loadAll(masterKey);}
+    Vault.key=masterKey;Vault.role='manager';Vault.unlocked=true;await Vault.flush();
+     try{ const m2=JSON.parse(localStorage.getItem(META_KEY)||'{}'); if(m2.wrapPw&&(m2.iter|0)<ITER){ const sl=crypto.getRandomValues(new Uint8Array(16)), kk=await deriveKey(pw,sl,ITER); m2.salt=b64e(sl); m2.iter=ITER; m2.wrapPw=await encStr(kk,await dekRaw(masterKey)); localStorage.setItem(META_KEY,JSON.stringify(m2)); } }catch(e){}
+    if(!latest.rec)Vault.needsRecovery=true;
     return true;
   };
   Vault.verify = async pw => !!(await verifyWith(pw));
-  // حساب‌های همکار فقط کلید دسترسی به همین DEK را دریافت می‌کنند؛ داده‌ها گاوصندوق دوم ندارند.
+  // هر همکار کلید مستقل دارد و فقط کلیدهای دادهٔ مجازش با آن بسته‌بندی می‌شوند.
   const staffNorm = s => String(s||'').trim().toLocaleLowerCase();
-  // رمز همکار با همان deriveKey و همان نرمال‌سازی ارقامِ گاوصندوق اصلی مشتق می‌شود؛ رمز مستقل/هش موازی نداریم.
-  Vault.setStaffAccess = async (id, username, password) => {
-    if(!Vault.key || !Vault.unlocked) throw new Error('vault locked');
-    const meta = JSON.parse(localStorage.getItem(META_KEY));
-    const salt = crypto.getRandomValues(new Uint8Array(16));
-    const kek = await deriveKey(password, salt, ITER);
-    const access = Array.isArray(meta.staffAccess) ? meta.staffAccess.filter(x=>x.id!==id && staffNorm(x.username)!==staffNorm(username)) : [];
-    access.push({id, username:String(username).trim(), salt:b64e(salt), iter:ITER, wrap:await encStr(kek, await dekRaw(Vault.key))});
-    meta.staffAccess = access;
-    localStorage.setItem(META_KEY, JSON.stringify(meta));
+  async function makeStaffEntry(id, username, password, profile, oldEntry=null){
+    if(!Vault.key||!Vault.unlocked||Vault.role!=='manager')throw new Error('فقط مدیر می‌تواند دسترسی همکار را تغییر دهد');
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');if(meta.v!==3||!meta.keyring)throw new Error('ابتدا مهاجرت امنیتی را کامل کن');
+    const salt=crypto.getRandomValues(new Uint8Array(16)),kek=await deriveKey(password,salt,ITER),secret=await newDek();
+    const entry={id,username:String(username).trim(),salt:b64e(salt),iter:ITER,staffWrap:await encStr(kek,await dekRaw(secret)),managerWrap:await encStr(Vault.key,await dekRaw(secret)),profile:await encStr(secret,JSON.stringify({...profile,id,role:'staff',name:String(username).trim()})),keys:{}};
+    const allowed=new Set((profile.permissions||[]));
+    for(const k of Object.keys(meta.keyring))if(permsForKey(k).some(p=>allowed.has(p))){const dk=Vault.dataKeys[k];if(dk)entry.keys[k]=await encStr(secret,await dekRaw(dk));}
+    return entry;
+  }
+  Vault.setStaffAccess = async (id, username, password, permissions=[], displayName='') => {
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');const profile={id,role:'staff',name:String(username).trim(),displayName:displayName||String(username).trim(),permissions:Array.isArray(permissions)?permissions:[]};
+    const entry=await makeStaffEntry(id,username,password,profile);
+    meta.staffAccess=(Array.isArray(meta.staffAccess)?meta.staffAccess:[]).filter(x=>x.id!==id&&staffNorm(x.username)!==staffNorm(username));meta.staffAccess.push(entry);localStorage.setItem(META_KEY,JSON.stringify(meta));
+  };
+  Vault.staffNeedsReset = id => {try{const m=JSON.parse(localStorage.getItem(META_KEY)||'{}');return !(m.staffAccess||[]).some(x=>x.id===id&&x.staffWrap&&x.managerWrap);}catch(e){return true;}};
+  Vault.updateStaffAccess = async (id, username, displayName, permissions) => {
+    if(!Vault.key||Vault.role!=='manager')throw new Error('فقط مدیر می‌تواند دسترسی همکار را تغییر دهد');
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}'),entry=(meta.staffAccess||[]).find(x=>x.id===id);if(!entry||!entry.managerWrap)throw new Error('حساب همکار نیاز به بازنشانی رمز دارد');
+    const secret=await dekFrom(await decStr(Vault.key,entry.managerWrap));entry.username=String(username).trim();entry.profile=await encStr(secret,JSON.stringify({id,role:'staff',name:String(username).trim(),displayName:displayName||String(username).trim(),permissions:Array.isArray(permissions)?permissions:[]}));entry.keys={};
+    for(const k of Object.keys(meta.keyring||{}))if(permsForKey(k).some(p=>(permissions||[]).includes(p))&&Vault.dataKeys[k])entry.keys[k]=await encStr(secret,await dekRaw(Vault.dataKeys[k]));
+    localStorage.setItem(META_KEY,JSON.stringify(meta));
   };
   Vault.renameStaffAccess = async (id, username) => {
-    const meta=JSON.parse(localStorage.getItem(META_KEY));
-    if(!Array.isArray(meta.staffAccess)) return;
-    const a=meta.staffAccess.find(x=>x.id===id); if(a){a.username=String(username).trim();localStorage.setItem(META_KEY,JSON.stringify(meta));}
+    if(!Vault.unlocked||Vault.role!=='manager'||!Vault.key)throw new Error('فقط مدیر می‌تواند دسترسی همکار را تغییر دهد');
+    const meta=JSON.parse(localStorage.getItem(META_KEY));if(!Array.isArray(meta.staffAccess))return;const a=meta.staffAccess.find(x=>x.id===id);if(a){a.username=String(username).trim();if(a.managerWrap){const secret=await dekFrom(await decStr(Vault.key,a.managerWrap));try{const prof=JSON.parse(await decStr(secret,a.profile));prof.name=a.username;a.profile=await encStr(secret,JSON.stringify(prof));}catch(e){}}localStorage.setItem(META_KEY,JSON.stringify(meta));}
   };
-  Vault.removeStaffAccess = async id => {
-    const meta=JSON.parse(localStorage.getItem(META_KEY));
-    if(Array.isArray(meta.staffAccess)){meta.staffAccess=meta.staffAccess.filter(x=>x.id!==id);localStorage.setItem(META_KEY,JSON.stringify(meta));}
-  };
+  Vault.removeStaffAccess = async id => {if(!Vault.unlocked||Vault.role!=='manager'||!Vault.key)throw new Error('فقط مدیر می‌تواند دسترسی همکار را تغییر دهد');const meta=JSON.parse(localStorage.getItem(META_KEY));if(Array.isArray(meta.staffAccess)){meta.staffAccess=meta.staffAccess.filter(x=>x.id!==id);localStorage.setItem(META_KEY,JSON.stringify(meta));}};
   Vault.unlockStaff = async (username, password) => {
-    const meta=JSON.parse(localStorage.getItem(META_KEY));
-    const a=(Array.isArray(meta.staffAccess)?meta.staffAccess:[]).find(x=>staffNorm(x.username)===staffNorm(username));
-    if(!a) return null;
+    if(Vault.unlocked)return null;
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');if(meta.v!==3||!meta.keyring)return null;
+    const entry=(Array.isArray(meta.staffAccess)?meta.staffAccess:[]).find(x=>staffNorm(x.username)===staffNorm(username));if(!entry||!entry.staffWrap||!entry.profile||!entry.keys)return null;
     try{
-      const kek=await deriveKey(password,b64d(a.salt),a.iter||ITER);
-      const dek=await dekFrom(await decStr(kek,a.wrap));
-      if((await decStr(dek,meta.check))!==CHECK) return null;
-      await loadAll(dek); Vault.key=dek; Vault.unlocked=true; Vault.locked=false;
-      if(!meta.rec) Vault.needsRecovery=true;
-      return a.id;
+      const kek=await deriveKey(password,b64d(entry.salt),entry.iter||ITER),secret=await dekFrom(await decStr(kek,entry.staffWrap));
+      const profile=JSON.parse(await decStr(secret,entry.profile));if(!profile||profile.id!==entry.id||profile.role!=='staff')return null;
+      const cleanEntry={...entry,profile,keys:{}};
+      for(const k of Object.keys(entry.keys)){if(!meta.keyring[k])continue;try{await dekFrom(await decStr(secret,entry.keys[k]));cleanEntry.keys[k]=entry.keys[k];}catch(e){}}
+      await loadAll(null,cleanEntry,secret);Vault.unlocked=true;Vault.locked=false;Vault.staffProfile=profile;Vault.role='staff';Vault.key=null;clearSession();
+      window.__staffAuthProfile=profile;Vault.needsRecovery=false;return profile.id;
     }catch(e){return null;}
   };
   Vault.unlockWithKey = async key => {
-    const meta = JSON.parse(localStorage.getItem(META_KEY));
-    try { if((await decStr(key, meta.check)) !== CHECK) return false; } catch(e){ return false; }
-    await loadAll(key);
-    Vault.key = key;
-    await Vault.flush();
-    Vault.unlocked = true;
-    if(!meta.rec) Vault.needsRecovery = true;
-    return true;
+    if(Vault.unlocked&&Vault.role==='staff')return false;
+    const meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');
+    try{if((await decStr(key,meta.check))!==CHECK)return false;}catch(e){return false;}
+    await loadAll(key);let masterKey=key;
+    if(meta.v!==2&&meta.v!==3){return false;}
+    const latest=JSON.parse(localStorage.getItem(META_KEY)||'{}');
+    if(latest.v!==3||!latest.keyring){await migrateToV3(masterKey);await loadAll(masterKey);}
+    Vault.key=masterKey;Vault.role='manager';Vault.unlocked=true;await Vault.flush();if(!latest.rec)Vault.needsRecovery=true;return true;
   };
   Vault.nonExtractable = async key => crypto.subtle.importKey('raw', await crypto.subtle.exportKey('raw', key), { name:'AES-GCM' }, false, ['encrypt','decrypt']);
   Vault.changePassword = async (oldPw, newPw) => {
+    if(!Vault.unlocked||Vault.role!=='manager'||!Vault.key)return false;
     const dek = await verifyWith(oldPw);
     if(!dek) return false;
     const meta = JSON.parse(localStorage.getItem(META_KEY));
-    if(meta.v !== 2) return false;
+    if(meta.v !== 2 && meta.v !== 3) return false;
     const salt = crypto.getRandomValues(new Uint8Array(16)), kek = await deriveKey(newPw, salt, ITER);
     meta.salt = b64e(salt); meta.iter = ITER; meta.wrapPw = await encStr(kek, await dekRaw(dek));
     localStorage.setItem(META_KEY, JSON.stringify(meta));
@@ -9804,28 +9916,27 @@ render();
     Vault.needsRecovery = false;
     return recPretty(code);
   };
-  Vault.regenRecovery = async pw => { const dek = await verifyWith(pw); return dek ? Vault.makeRecovery() : null; };
+  Vault.regenRecovery = async pw => { if(!Vault.unlocked||Vault.role!=='manager'||!Vault.key)return null;const dek = await verifyWith(pw); return dek ? Vault.makeRecovery() : null; };
   Vault.recoverWithCode = async (code, newPw) => {
-    const meta = JSON.parse(localStorage.getItem(META_KEY));
-    if(!meta.rec) return false;
-    let dek;
-    try { const kek = await deriveKey(recNorm(code), b64d(meta.rec.salt), meta.rec.iter); dek = await dekFrom(await decStr(kek, meta.rec.wrap)); if((await decStr(dek, meta.check)) !== CHECK) return false; } catch(e){ return false; }
-    await loadAll(dek);
-    const salt = crypto.getRandomValues(new Uint8Array(16)), kek2 = await deriveKey(newPw, salt, ITER);
-    meta.salt = b64e(salt); meta.iter = ITER; meta.wrapPw = await encStr(kek2, await dekRaw(dek));
-    localStorage.setItem(META_KEY, JSON.stringify(meta));
-    Vault.key = dek; await Vault.flush(); Vault.unlocked = true;
-    try { await Bio.disable(); } catch(e){}
-    return true;
+    if(Vault.unlocked)return false;
+    let meta;try{meta=JSON.parse(localStorage.getItem(META_KEY)||'{}');}catch(e){return false;}
+    if(!meta.rec||(meta.v!==2&&meta.v!==3))return false;
+    let dek;try{const kek=await deriveKey(recNorm(code),b64d(meta.rec.salt),meta.rec.iter);dek=await dekFrom(await decStr(kek,meta.rec.wrap));if((await decStr(dek,meta.check))!==CHECK)return false;}catch(e){return false;}
+    await loadAll(dek);if(meta.v!==3||!meta.keyring){await migrateToV3(dek);await loadAll(dek);}
+    const latest=JSON.parse(localStorage.getItem(META_KEY)||'{}'),salt=crypto.getRandomValues(new Uint8Array(16)),kek2=await deriveKey(newPw,salt,ITER);
+    latest.salt=b64e(salt);latest.iter=ITER;latest.wrapPw=await encStr(kek2,await dekRaw(dek));localStorage.setItem(META_KEY,JSON.stringify(latest));
+    Vault.key=dek;Vault.role='manager';Vault.unlocked=true;await Vault.flush();
+    try{await Bio.disable();}catch(e){}return true;
   };
     Vault.getAutolock = () => { const v = localStorage.getItem(LOCK_KEY); return v === null ? 5 : (parseInt(v) || 0); };
-  Vault.setAutolock = m => { localStorage.setItem(LOCK_KEY, String(m)); };
+  Vault.setAutolock = m => { if(Vault.role==='manager'&&Vault.unlocked)localStorage.setItem(LOCK_KEY, String(m)); };
   Vault.resetAll = async () => {
-    dataKeys().concat(SYS_KEYS.filter(k=>k!==LOCK_KEY)).forEach(k => localStorage.removeItem(k));
-    try { await idbDelete(); } catch(e){}
+    listDataKeys().concat(SYS_KEYS.filter(k=>k!==LOCK_KEY)).forEach(k => localStorage.removeItem(k));
+    try { await idbDelete(); } catch(e){} try{await migrationClear();}catch(e){}
     location.reload();
   };
   window.__vault = Vault;
+  window.addEventListener('atelier:access-denied',()=>{if(typeof window.auShowDenied==='function')window.auShowDenied();else alert('⛔ عدم مجوز دسترسی: مدیریت اجازهٔ استفاده از این قابلیت را نداده است.');});
   // آخرین تغییرات قبل از ترک تب یا رفتن برنامه به پس‌زمینه flush می‌شوند.
   document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') Vault.flush(); });
   window.addEventListener('pagehide', ()=>{ Vault.flush(); });
@@ -9973,10 +10084,14 @@ render();
   iconize(document.body);
 
   /* ---------- محدودیت تلاش اشتباه ---------- */
-  function failState(){ try { return JSON.parse(localStorage.getItem(FAIL_KEY)) || { n:0, until:0 }; } catch(e){ return { n:0, until:0 }; } }
+  const COMMON_PW=['password','12345678','123456789','1234567890','qwertyuiop','iloveyou','admin1234','11111111','00000000','abcdefgh','abc12345','qwerty123','letmein','welcome123','atelier','prestige'];
+  function pwWeak(p){ p=norm(String(p||'')); if(p.length<12) return 'رمز باید حداقل ۱۲ کاراکتر باشد (بهتر است یک عبارت چندکلمه‌ای باشد)'; if(/^\d+$/.test(p)) return 'رمز نباید فقط عدد باشد'; if(new Set(p).size<6) return 'رمز باید کاراکترهای متنوع‌تری داشته باشد'; const l=p.toLowerCase(); if(COMMON_PW.some(c=>l.includes(c))) return 'این رمز بیش‌ازحد رایج است'; return ''; }
+  window.__pwWeak=pwWeak;
+  let memFail={n:0,until:0};
+  function failState(){ let a={n:0,until:0},b={n:0,until:0}; try{a=JSON.parse(localStorage.getItem(FAIL_KEY))||a;}catch(e){} try{b=JSON.parse(sessionStorage.getItem(FAIL_KEY))||b;}catch(e){} return { n:Math.max(a.n|0,b.n|0,memFail.n|0), until:Math.max(+a.until||0,+b.until||0,memFail.until||0) }; }
   const waitSec = () => Math.max(0, Math.ceil((failState().until - Date.now())/1000));
-  function registerFail(){ const f = failState(); f.n++; if(f.n >= 5) f.until = Date.now() + Math.min(600, 30*(f.n-4))*1000; localStorage.setItem(FAIL_KEY, JSON.stringify(f)); }
-  const clearFail = () => localStorage.removeItem(FAIL_KEY);
+  function registerFail(){ const f = failState(); f.n++; if(f.n >= 5) f.until = Date.now() + Math.min(900, 30*Math.pow(2,f.n-5))*1000; memFail={n:f.n,until:f.until}; try{localStorage.setItem(FAIL_KEY, JSON.stringify(f));}catch(e){} try{sessionStorage.setItem(FAIL_KEY, JSON.stringify(f));}catch(e){} }
+  const clearFail = () => { memFail={n:0,until:0}; try{localStorage.removeItem(FAIL_KEY);}catch(e){} try{sessionStorage.removeItem(FAIL_KEY);}catch(e){} };
 
   /* ---------- صفحه قفل ---------- */
   function creditHTML(){ return `<div class="lock-credit">© ${esc(year())} — تمامی حقوق این برنامه محفوظ است<br>طراحی و توسعه: ${esc(OWNER)} — <a href="tel:${esc(OWNER_PHONE)}" style="color:inherit;text-decoration:none">${esc(OWNER_PHONE.replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]))}</a></div>`; }
@@ -10015,18 +10130,18 @@ render();
       el.innerHTML = `<div class="lock-box"><img class="lock-logo" src="${logo}" alt="">
         <div class="lock-title">ایجاد رمز ورود</div>
         
-        <div class="lock-wrap"><input id="lkPw" type="password" autocomplete="new-password" placeholder="رمز ورود (حداقل ۸ کاراکتر)">${eye('lkPw')}</div>
+        <div class="lock-wrap"><input id="lkPw" type="password" autocomplete="new-password" placeholder="رمز ورود (حداقل ۱۲ کاراکتر)">${eye('lkPw')}</div>
         <div class="lock-wrap"><input id="lkPw2" type="password" autocomplete="new-password" placeholder="تکرار رمز">${eye('lkPw2')}</div>
         <div class="lock-err" id="lkErr"></div>
         <button id="lkGo" class="btn btn-red" style="width:100%">ایجاد رمز و ورود</button>${creditHTML()}</div>`;
       wireEyes(el);
       const go = async () => {
         const p = $('lkPw').value, p2 = $('lkPw2').value, err = $('lkErr');
-        if(p.length < 8){ err.textContent = 'رمز باید حداقل ۸ کاراکتر باشد'; return; }
+        { const w = pwWeak(p); if(w){ err.textContent = w; return; } }
         if(p !== p2){ err.textContent = 'تکرار رمز یکسان نیست'; return; }
         if(!(window.crypto && crypto.subtle)){ err.textContent = 'این مرورگر یا آدرس از رمزگذاری پشتیبانی نمی‌کند (برنامه باید از https باز شود)'; return; }
         const b = $('lkGo'); b.disabled = true; b.textContent = 'در حال ایجاد...';
-        try { await Vault.setup(p); const rc = await Vault.makeRecovery(); showRecoveryScreen(rc, bootApp); } catch(e){ err.textContent = 'خطا در ایجاد رمز: ' + e.message; b.disabled = false; b.textContent = 'ایجاد رمز و ورود'; }
+        try { await Vault.setup(p); try{sessionStorage.setItem('studio_auth_role','manager');sessionStorage.removeItem('studio_staff_auth_id');}catch(_){} const rc = await Vault.makeRecovery(); showRecoveryScreen(rc, bootApp); } catch(e){ err.textContent = 'خطا در ایجاد رمز: ' + e.message; b.disabled = false; b.textContent = 'ایجاد رمز و ورود'; }
       };
       $('lkGo').addEventListener('click', go);
       el.querySelectorAll('input').forEach(i => i.addEventListener('keydown', e => { if(e.key === 'Enter') go(); }));
@@ -10048,7 +10163,15 @@ render();
     tick();
     const finish = () => {
       clearFail();
-      if(relock){ Vault.locked = false; lastAct = Date.now(); el.classList.remove('show'); el.innerHTML = ''; return; }
+      if(relock){
+        Vault.locked = false; lastAct = Date.now(); el.classList.remove('show'); el.innerHTML = '';
+        // بعد از بازشدن قفل، نقش قبلی در حافظه قابل اعتماد نیست؛ نقش احراز‌شده‌ی همین ورود دوباره بارگذاری می‌شود.
+        saveSession();
+        try{if(typeof atelierCurrentUser!=='undefined')atelierCurrentUser=null;if(typeof tab!=='undefined')tab='home';if(typeof navBackStack!=='undefined')navBackStack=[];}catch(_){}
+        if(typeof render==='function')render();
+        window.__staffSessionLogin=false;
+        return;
+      }
       if(Vault.needsRecovery && !window.__staffSessionLogin){ Vault.makeRecovery().then(rc => showRecoveryScreen(rc, bootApp)).catch(() => bootApp()); return; }
       bootApp();
     };
@@ -10060,7 +10183,7 @@ render();
         const r = await Bio.auth();
         let ok = true;
         if(!relock) ok = r.pw ? await Vault.unlock(r.pw) : await Vault.unlockWithKey(r.key);
-        if(ok){ finish(); return; }
+        if(ok){ try{sessionStorage.setItem('studio_auth_role','manager');sessionStorage.removeItem('studio_staff_auth_id');}catch(_){} finish(); return; }
         await Bio.disable();
         err.textContent = 'ورود با بایومتریک دیگر معتبر نیست (رمز عوض شده). با رمز وارد شو و دوباره فعالش کن.';
         if(b) b.remove();
@@ -10074,12 +10197,14 @@ render();
       const p = $('lkPw').value; if(!p){ err.textContent = 'رمز را وارد کن'; return; }
       if(!(window.crypto && crypto.subtle)){ err.textContent = 'این مرورگر یا آدرس از رمزگذاری پشتیبانی نمی‌کند (برنامه باید از https باز شود)'; return; }
       const b = $('lkGo'); b.disabled = true; b.textContent = 'در حال بررسی...';
-      let ok = false;
-      try { ok = relock ? await Vault.verify(p) : await Vault.unlock(p); } catch(e){ ok = false; }
+      let ok = false, unlockError = null;
+      try { ok = relock ? await Vault.verify(p) : await Vault.unlock(p); } catch(e){ unlockError=e; ok = false; }
       b.disabled = false; b.textContent = 'ورود';
       if(ok){
+        try{sessionStorage.setItem('studio_auth_role','manager');sessionStorage.removeItem('studio_staff_auth_id');}catch(_){}
         finish();
-      } else {
+      } else if(unlockError){err.textContent='ورود انجام نشد؛ خطای آماده‌سازی امن داده‌ها: '+String(unlockError.message||unlockError);}
+      else {
         registerFail(); $('lkPw').value = ''; err.textContent = 'رمز درست نیست'; tick(); $('lkPw').focus();
       }
     };
@@ -10089,14 +10214,14 @@ render();
     // Biometric authentication is therefore started only by tapping the explicit button.
     $('lkPw').addEventListener('keydown', e => { if(e.key === 'Enter') go(); });
     $('lkStaffToggle') && $('lkStaffToggle').addEventListener('click',()=>{const box=$('lkManagerBox');if(!box)return;const opening=box.style.display==='none';box.style.display=opening?'block':'none';$('lkStaffToggle').textContent=opening?'بازگشت به ورود همکار':'ورود مدیر با رمز اصلی';if(opening&&$('lkPw'))$('lkPw').focus();else if($('lkStaffName'))$('lkStaffName').focus();});
-    const staffGo=async()=>{const n=$('lkStaffName').value.trim(),p=$('lkStaffPw').value,b=$('lkStaffGo');if(!n||!p){err.textContent='نام کاربری و رمز همکار را وارد کن';return;}b.disabled=true;b.textContent='در حال بررسی…';let uid=null;try{uid=await Vault.unlockStaff(n,p);}catch(e){}if(uid){try{sessionStorage.setItem('studio_staff_auth_id',uid);}catch(e){}window.__staffSessionLogin=true;finish();}else{registerFail();err.textContent='نام کاربری یا رمز همکار نادرست است';b.disabled=false;b.textContent='ورود همکار';}};
+    const staffGo=async()=>{if(waitSec()>0){tick();return;}const n=$('lkStaffName').value.trim(),p=$('lkStaffPw').value,b=$('lkStaffGo');if(!n||!p){err.textContent='نام کاربری و رمز همکار را وارد کن';return;}b.disabled=true;b.textContent='در حال بررسی…';let uid=null;try{uid=await Vault.unlockStaff(n,p);}catch(e){}if(uid){try{clearSession();sessionStorage.setItem('studio_staff_auth_id',uid);sessionStorage.setItem('studio_auth_role','staff');}catch(e){}window.__staffSessionLogin=true;finish();}else{registerFail();err.textContent='نام کاربری یا رمز همکار نادرست است؛ اگر این حساب از نسخهٔ قبلی است، مدیر باید رمز آن را بازنشانی کند.';b.disabled=false;b.textContent='ورود همکار';}};
     $('lkStaffGo') && $('lkStaffGo').addEventListener('click',staffGo);
     $('lkStaffPw') && $('lkStaffPw').addEventListener('keydown',e=>{if(e.key==='Enter')staffGo();});
     $('lkForgot') && $('lkForgot').addEventListener('click', () => {
       const hasRec = Vault.hasRecovery();
       $('lkResetBox').innerHTML = `${hasRec ? `<div class="lock-reset" style="background:#F4F9F5;border-color:#B7D8BE;color:#1F4D2B"><b>بازیابی رمز با کد بازیابی</b> (اطلاعاتت پاک نمی‌شود)
           <input id="lkRecIn" dir="ltr" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX-XXXX" style="margin:8px 0;text-align:center;letter-spacing:.05em">
-          <input id="lkRecNew" type="password" autocomplete="new-password" placeholder="رمز جدید (حداقل ۶ کاراکتر)" style="margin-bottom:8px">
+          <input id="lkRecNew" type="password" autocomplete="new-password" placeholder="رمز جدید (حداقل ۱۲ کاراکتر)" style="margin-bottom:8px">
           <input id="lkRecNew2" type="password" autocomplete="new-password" placeholder="تکرار رمز جدید" style="margin-bottom:8px">
           <div class="lock-err" id="lkRecErr"></div>
           <button id="lkRecDo" class="btn btn-black" style="width:100%">بازیابی و ورود</button></div>` : ''}
@@ -10109,7 +10234,7 @@ render();
         if(waitSec() > 0){ e2.textContent = 'تلاش‌های اشتباه زیاد بود. ' + waitSec() + ' ثانیه صبر کن.'; return; }
         const code = $('lkRecIn').value, p = $('lkRecNew').value, p2 = $('lkRecNew2').value;
         if(recNorm(code).length !== 20){ e2.textContent = 'کد بازیابی باید ۲۰ حرف و عدد انگلیسی باشد'; return; }
-        if(p.length < 6){ e2.textContent = 'رمز جدید باید حداقل ۶ کاراکتر باشد'; return; }
+        { const w = pwWeak(p); if(w){ e2.textContent = w; return; } }
         if(p !== p2){ e2.textContent = 'تکرار رمز جدید یکسان نیست'; return; }
         const b = $('lkRecDo'); b.disabled = true; b.textContent = 'در حال بازیابی...';
         let ok = false; try { ok = await Vault.recoverWithCode(code, p); } catch(e){ ok = false; }
@@ -10119,7 +10244,7 @@ render();
     });
     setTimeout(() => $('lkPw') && $('lkPw').focus(), 50);
   }
-  Vault.lock = manual => { if(!Vault.unlocked || Vault.locked) return; clearSession(); Vault.locked = true; showLock('relock', { auto: !manual }); };
+  Vault.lock = async manual => { if(!Vault.unlocked || Vault.locked) return; Vault.locked=true; try{await Vault.flush();}catch(e){} clearSession();try{sessionStorage.removeItem('studio_auth_role');sessionStorage.removeItem('studio_staff_auth_id');}catch(e){}; location.reload(); };
 
   /* ---------- قفل خودکار ---------- */
   let lastAct = Date.now(), hiddenAt = 0;
@@ -10131,9 +10256,11 @@ render();
     else { const m = Vault.getAutolock(); if(m > 0 && hiddenAt && Date.now() - hiddenAt > m*60000) Vault.lock(); hiddenAt = 0; }
   });
   window.addEventListener('pagehide', () => { if(Vault.unlocked) Vault.flush(); });
+  window.addEventListener('storage',e=>{if(e.key===META_KEY&&Vault.unlocked){clearSession();try{sessionStorage.removeItem('studio_auth_role');sessionStorage.removeItem('studio_staff_auth_id');}catch(x){}location.reload();}});
 
   /* ---------- راه‌اندازی برنامه بعد از ورود ---------- */
   function bootApp(){ window.__staffSessionLogin=false; setTimeout(()=>{ if(Vault.corrupt&&Vault.corrupt.length) alert(Vault.corrupt.length+' بخش از اطلاعات خوانده نشد (خراب یا با رمز دیگر). نسخه‌ی خام آن‌ها نگه داشته شده؛ از بک‌آپ بازیابی کنید.'); },2500); makeSplash(); saveSession(); setTimeout(endSplash,800);
+    if(Vault.role==='manager'){try{const mm=JSON.parse(localStorage.getItem(META_KEY)||'{}');if(mm.legacyStaffResetRequired){mm.legacyStaffResetRequired=false;localStorage.setItem(META_KEY,JSON.stringify(mm));setTimeout(()=>alert('برای تکمیل جداسازی رمزنگاری، رمز حساب‌های همکاران نسخهٔ قبلی لغو شده است. از تنظیمات کاربران، برای هر همکار رمز جدید تعیین کن. اطلاعات اصلی برنامه حفظ شده است.'),900);}}catch(e){}}
     const el = $('lockScreen'); el.classList.remove('show'); el.innerHTML = '';
     lastAct = Date.now();
     const sc = document.createElement('script');
@@ -10141,10 +10268,11 @@ render();
     document.body.appendChild(sc);
   }
   (async()=>{
+    try{await recoverInterruptedMigration();}catch(e){endSplash();showLock(hasMeta()?'login':'setup',{auto:true});const x=$('lockScreen');if(x){const m=document.createElement('div');m.className='lock-err';m.textContent=e.message;x.appendChild(m);}return;}
     if(hasMeta()){
       try{
         const k=sessionStorage.getItem('studio_sess_k'), t=+sessionStorage.getItem('studio_sess_t')||0, m=Vault.getAutolock();
-        if(k && (m===0 || Date.now()-t < m*60000)){
+        if(k && sessionStorage.getItem('studio_auth_role') && (Date.now()-t < (m===0?30*60000:m*60000))){
           const key=await crypto.subtle.importKey('raw', b64d(k), { name:'AES-GCM' }, true, ['encrypt','decrypt']);
           if(await Vault.unlockWithKey(key)){ bootApp(); return; }
         }
