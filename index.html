@@ -389,7 +389,7 @@
   .qe-sheet{width:100%;max-width:520px;max-height:96%;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--c-bg);border-radius:22px 22px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(0,0,0,.25);}
   .qe-seg{display:flex;gap:6px;margin-bottom:10px;}
   .qe-seg button{flex:1;padding:10px 4px;border-radius:12px;border:2px solid transparent;background:var(--c-panel);font-family:inherit;font-size:13px;font-weight:700;color:var(--c-ink);cursor:pointer;}
-  .qe-seg button.on{border-color:var(--c-accent);background:var(--c-accent-soft);color:var(--c-accent);}
+  .qe-seg button.qe-seg-off{opacity:.55;}.qe-seg button.on{border-color:var(--c-accent);background:var(--c-accent-soft);color:var(--c-accent);}
   .qe-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;max-height:84px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .qe-chip{padding:8px 12px;border-radius:999px;border:1.5px solid var(--c-line);background:var(--c-panel);font-family:inherit;font-size:12.5px;color:var(--c-ink);cursor:pointer;}
   .qe-chip.on{border-color:var(--c-accent);background:var(--c-accent);color:#fff;font-weight:700;}
@@ -4005,14 +4005,15 @@ function renderQuickExpense(){
     <div class="qe-seg">
       <button data-s="personal" class="${qe.scope==='personal'?'on':''}">شخصی</button>
       <button data-s="business" class="${qe.scope==='business'?'on':''}">جاری آتلیه</button>
-      ${hasInv ? `<button data-s="invoice" class="${isInv?'on':''}">برای فاکتور</button>` : ''}
+      <button data-s="invoice" class="${isInv?'on':''}${hasInv?'':' qe-seg-off'}" ${hasInv?'':'aria-disabled="true" title="ابتدا یک فاکتور ثبت کنید"'}>برای فاکتور</button>
     </div>
+    ${hasInv?'':'<div id="qeInvHint" class="small" style="display:none;margin:-4px 0 8px;color:var(--c-accent)">برای ثبت هزینه روی فاکتور، ابتدا یک فاکتور بساز (در این دستگاه فاکتوری ذخیره نشده است).</div>'}
     ${isInv ? `<select id="qeInv" style="margin-bottom:8px">${invoices.filter(i=>i.status!=='cancelled').sort((a,b)=>(b.number||0)-(a.number||0)).map(i=>`<option value="${i.id}" ${qe.invoiceId===i.id?'selected':''}>#${invNumStr(i.number)} — ${escapeAttr(i.customerName||'بدون نام')}</option>`).join('')}</select>` : ''}
     <div class="qe-chips">${chips.map(c=>`<button class="qe-chip ${sel===c.key?'on':''}" data-k="${escapeAttr(c.key)}">${escapeAttr(c.label)}</button>`).join('')}</div>
     <input id="qeTitle" placeholder="${isInv ? 'شرح (اختیاری — مثلا اجاره لنز ۸۵)' : 'عنوان دلخواه (یا یکی از بالا را بزن)'}" value="${escapeAttr(isInv ? (qe.title||'') : (chips.some(c=>c.key===qe.title) ? '' : qe.title))}" style="margin-bottom:6px">
     <div class="qe-amt" id="qeAmt">${qeAmtText()}${parseInt(qe.amt)? ' تومان':''}</div>
     <div class="qe-words" id="qeWords">${parseInt(qe.amt) ? amountToWordsToman(parseInt(qe.amt)) : ''}</div>
-    <div class="qe-pad">${['1','2','3','4','5','6','7','8','9','000','0','back'].map(k=>`<button class="qe-key" data-p="${k}">${k==='back' ? '⌫' : k}</button>`).join('')}</div>
+    <div class="qe-pad">${['1','2','3','4','5','6','7','8','9','000','0','back'].map(k=>`<button class="qe-key" data-p="${k}">${k==='back' ? '⌫' : toPersianDigits(k)}</button>`).join('')}</div>
     <div class="row-flex" style="gap:8px;margin-bottom:8px;align-items:center">
       <button id="qeNoteBtn" class="btn btn-outline" style="flex:1;font-size:12px;padding:6px">${qe.noteOpen ? '− یادداشت' : '+ یادداشت'}</button>
       ${isInv ? '' : `<button id="qeDateBtn" class="btn btn-outline" style="flex:1;font-size:12px;padding:6px">${qe.date===todayStr() ? 'امروز · تغییر تاریخ' : jalaliStr(qe.date)}</button>`}
@@ -4025,7 +4026,7 @@ function renderQuickExpense(){
   ov.addEventListener('click', e=>{ if(e.target===ov) closeQuickExpense(); });
   ov.querySelector('#qeClose').addEventListener('click', closeQuickExpense);
   ov.querySelectorAll('.qe-seg button').forEach(b=> b.addEventListener('click', e=>{
-    const sc = e.currentTarget.dataset.s; if(sc===qe.scope) return;
+    const sc = e.currentTarget.dataset.s; if(sc==='invoice' && !hasInv){ const h=document.getElementById('qeInvHint'); if(h) h.style.display='block'; return; } if(sc===qe.scope) return;
     qe.scope = sc; qe.title = sc==='invoice' ? '' : (qeState.last[sc] || ''); qe.kind = qeState.last.invoice || 'other'; renderQuickExpense();
   }));
   ov.querySelectorAll('.qe-chip').forEach(b=> b.addEventListener('click', e=>{
@@ -4590,16 +4591,16 @@ function renderRentalForm(){
   const bks = d.invoiceId ? bookings.filter(b=>b.invoiceId===d.invoiceId) : [];
   return `
     <button id="rtCancel" class="btn btn-outline" style="width:100%;margin-bottom:10px">← بازگشت</button>
-    <div class="box-gray">
+    <div class="box-gray rt-form-card">
       <label class="small" style="display:block;margin-bottom:3px">از چه کسی اجاره کردیم؟</label>
       <select id="rtVendor" style="margin-bottom:6px"><option value="">— انتخاب اجاره‌دهنده —</option>${suppliers.map(v=>`<option value="${v.id}" ${d.vendorId===v.id?'selected':''}>${escapeAttr(v.name)}</option>`).join('')}</select>
       <input id="rtNewVendor" placeholder="یا نام اجاره‌دهنده‌ی جدید را بنویس" value="${escapeAttr(d.newVendor)}" style="margin-bottom:10px">
       <input id="rtItem" placeholder="چه چیزی؟ (مثلا لنز ۸۵، پهپاد، نور استودیویی)" value="${escapeAttr(d.item)}" style="margin-bottom:8px">
       <div class="row-flex" style="margin-bottom:8px"><input id="rtQty" inputmode="decimal" placeholder="تعداد" value="${escapeAttr(d.qty)}" style="flex:1"><input id="rtPrice" inputmode="decimal" placeholder="مبلغ کل اجاره (تومان)" value="${escapeAttr(d.price)}" style="flex:2"></div>
       <div class="row-flex" style="margin-bottom:8px"><div style="flex:1"><label class="small" style="display:block;margin-bottom:3px">از تاریخ</label>${renderJalaliDateInput('rtFrom', d.from, 'width:100%')}</div><div style="flex:1"><label class="small" style="display:block;margin-bottom:3px">تا تاریخ (برگشت)</label>${renderJalaliDateInput('rtTo', d.to, 'width:100%')}</div></div>
-      <div class="row-flex" style="margin-bottom:8px;align-items:center"><input id="rtDeposit" inputmode="decimal" placeholder="ودیعه (اختیاری)" value="${escapeAttr(d.deposit)}" style="flex:1"><label class="row-flex" style="align-items:center;gap:6px;cursor:pointer;flex:1;margin:0"><input type="checkbox" id="rtDepRet" ${d.depositReturned?'checked':''} style="width:auto"><span class="small">ودیعه پس گرفته شد</span></label></div>
+      <div class="rt-field-grid rt-deposit-row"><input id="rtDeposit" inputmode="decimal" placeholder="ودیعه (اختیاری)" value="${escapeAttr(d.deposit)}"><label class="rt-check-row" for="rtDepRet"><input type="checkbox" id="rtDepRet" ${d.depositReturned?'checked':''}><span>ودیعه پس گرفته شد</span></label></div>
       <select id="rtStatus" style="margin-bottom:8px">${Object.keys(RENTAL_STATUS).map(k=>`<option value="${k}" ${d.status===k?'selected':''}>${RENTAL_STATUS[k]}</option>`).join('')}</select>
-      <label class="row-flex" style="align-items:center;gap:6px;cursor:pointer;margin-bottom:8px"><input type="checkbox" id="rtPaid" ${d.paid?'checked':''} style="width:auto"><span class="small">مبلغ اجاره پرداخت شده</span></label>
+      <label class="rt-check-row rt-paid-row" for="rtPaid"><input type="checkbox" id="rtPaid" ${d.paid?'checked':''}><span>مبلغ اجاره پرداخت شده</span></label>
       <label class="small" style="display:block;margin-bottom:3px">برای کدام پروژه؟ (هزینه‌اش روی همان فاکتور حساب می‌شود)</label>
       <select id="rtInvoice" style="margin-bottom:8px"><option value="">— بدون اتصال به پروژه —</option>${invList.map(i=>`<option value="${i.id}" ${d.invoiceId===i.id?'selected':''}>#${invNumStr(i.number)} — ${escapeAttr(i.customerName||'بدون نام')}</option>`).join('')}</select>
       ${bks.length ? `<select id="rtBooking" style="margin-bottom:8px"><option value="">— آفیش مرتبط (اختیاری) —</option>${bks.map(b=>`<option value="${b.id}" ${d.bookingId===b.id?'selected':''}>${jalaliStr(b.date)} — ${toPersianDigits(b.start)}</option>`).join('')}</select>` : ''}
@@ -5879,6 +5880,91 @@ html { scroll-behavior: smooth; }
 }
 </style>
 
+
+<style id="atelier-ui-consistency-pass">
+/* UI consistency pass: predictable spacing, controls and responsive form grids */
+#app { --atelier-ui-radius:12px; --atelier-ui-gap:10px; }
+#app input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+#app select,
+#app textarea {
+  box-sizing:border-box;
+  max-width:100%;
+  border-radius:var(--atelier-ui-radius);
+}
+#app button.btn { box-sizing:border-box; border-radius:11px; }
+#app .card, #app .box-gray { border-radius:16px; }
+#app .row-flex { min-width:0; }
+#app .row-flex > * { min-width:0; }
+#app .rt-form-card { display:flex; flex-direction:column; gap:10px; padding:12px; }
+#app .rt-form-card > label.small { margin:0 0 -4px!important; line-height:1.6; }
+#app .rt-form-card input:not([type="checkbox"]),
+#app .rt-form-card select { width:100%; min-width:0; margin:0!important; min-height:46px; }
+#app .rt-form-card .row-flex { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin:0!important; align-items:stretch; }
+#app .rt-form-card .row-flex > div { min-width:0; }
+#app .rt-form-card .row-flex > div input { width:100%; }
+#app .rt-field-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; align-items:stretch; }
+#app .rt-deposit-row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+#app .rt-check-row {
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  min-width:0;
+  min-height:46px;
+  padding:10px 12px;
+  margin:0!important;
+  border:1px solid var(--ux-line, #E2E4E8);
+  border-radius:12px;
+  background:var(--c-panel,#fff);
+  color:var(--c-ink,#333);
+  font-size:13px;
+  line-height:1.5;
+  cursor:pointer;
+  box-shadow:none;
+}
+#app .rt-check-row span { flex:1; min-width:0; }
+#app .rt-check-row input[type="checkbox"] {
+  -webkit-appearance:none;
+  appearance:none;
+  display:inline-grid;
+  place-content:center;
+  flex:0 0 20px;
+  width:20px!important;
+  min-width:20px!important;
+  height:20px!important;
+  margin:0!important;
+  padding:0!important;
+  border:1.5px solid #B9BEC7;
+  border-radius:6px;
+  background:#fff;
+  box-shadow:none!important;
+  outline:none;
+}
+#app .rt-check-row input[type="checkbox"]::before {
+  content:"";
+  width:10px;
+  height:6px;
+  border:solid #fff;
+  border-width:0 0 2px 2px;
+  transform:rotate(-45deg) scale(0);
+  transform-origin:center;
+}
+#app .rt-check-row input[type="checkbox"]:checked {
+  border-color:var(--c-accent,#8050D8);
+  background:var(--c-accent,#8050D8);
+}
+#app .rt-check-row input[type="checkbox"]:checked::before { transform:rotate(-45deg) scale(1); }
+#app .rt-check-row:has(input:checked) { border-color:color-mix(in srgb, var(--c-accent,#8050D8) 40%, var(--ux-line,#E2E4E8)); background:color-mix(in srgb, var(--c-accent,#8050D8) 5%, white); }
+#app .rt-paid-row { margin:0!important; }
+@media(max-width:420px) {
+  #app .rt-form-card { padding:10px; gap:9px; }
+  #app .rt-form-card .row-flex { gap:8px; }
+  #app .rt-field-grid { gap:8px; }
+  #app .rt-check-row { padding:9px; gap:8px; font-size:12.5px; }
+}
+</style>
 </head><body><div class="a4-sheets">${sheetsHTML}</div></body></html>`);
   w.document.close();
   let done = false;
@@ -6989,12 +7075,12 @@ function renderExpSummaryView(){
   return `
     ${expScopeCardsHTML(monthIncome, netBalance)}
 
-    <div class="card" style="margin-bottom:14px">
-      <div class="card-title"><span>هزینه‌های ثبت‌شده روی فاکتورها (این ماه)</span></div>
-      ${ic.total>0 ? `<div style="margin-top:6px;font-size:12px">${Object.entries(ic.byKind).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="grid2" style="margin-top:2px"><span>${jobKindLabel(k)}</span><span>${fmt(v)} ت</span></div>`).join('')}</div>
-      <div class="r-row bold" style="margin-top:6px"><span>جمع هزینه فاکتورها</span><span>${fmt(ic.total)} تومان</span></div>
-      <button id="expGotoInvCostsBtn" class="btn btn-outline" style="width:100%;margin-top:8px;font-size:12px">دیدن ریز هزینه هر فاکتور ←</button>`
-      : ``}
+    <div class="card" style="margin-bottom:14px;border-inline-start:3px solid var(--c-accent)">
+      <div class="card-title"><span>🧾 هزینه‌های فاکتور (این ماه)</span><span style="font-weight:800">${fmt(ic.total)} ت</span></div>
+      ${ic.total>0 ? `<div style="margin-top:6px;font-size:12px">${Object.entries(ic.byKind).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="grid2" style="margin-top:2px"><span>${jobKindLabel(k)}</span><span>${fmt(v)} ت</span></div>`).join('')}</div>` : `<p class="small" style="margin:6px 0 8px">هزینه‌های مربوط به هر فاکتور را از همین‌جا ثبت کن؛ اطلاعات مستقیماً در همان فاکتور ذخیره می‌شود.</p>`}
+      <button id="expAddInvoiceCostBtn" class="btn btn-red" style="width:100%;margin-top:8px;font-size:13px" ${invoices.some(i=>i.status!=='cancelled')?'':'disabled'}>＋ ثبت هزینه برای فاکتور</button>
+      <button id="expGotoInvCostsBtn" class="btn btn-outline" style="width:100%;margin-top:8px;font-size:12px">دیدن ریز هزینه هر فاکتور ←</button>
+      ${invoices.some(i=>i.status!=='cancelled')?'':'<p class="small" style="margin:8px 0 0">برای ثبت هزینه، ابتدا یک فاکتور ایجاد کن.</p>'}
     </div>
 
     <button id="expGotoAddBtn" class="btn btn-red" style="width:100%;margin-bottom:16px;min-height:50px;font-size:15px">💸 ثبت هزینه</button>
@@ -7153,6 +7239,7 @@ function bindExpensesEvents(){
   document.querySelectorAll('.exp-staff-pay').forEach(el=> el.addEventListener('click', e=>{ const x = staff.find(q=>q.id===e.currentTarget.dataset.id); if(x) openQuickExpense({ scope:'business', title:'حقوق ' + x.name, amount: staffRemaining(x), staffId: x.id }); }));
   document.querySelectorAll('.exp-fixed-pay').forEach(el=> el.addEventListener('click', e=>{ const c = expenseCategories.find(x=>x.id===e.currentTarget.dataset.id); if(c) openQuickExpense({ scope:'business', title:c.name, amount:parseFloat(c.defaultAmount)||0, categoryId:c.id }); }));
   document.getElementById('expGotoInvCostsBtn')?.addEventListener('click', ()=>{ expView='list'; expFilterTag='invoice'; expListLimit=15; render(); });
+  document.getElementById('expAddInvoiceCostBtn')?.addEventListener('click', ()=>{ if(!invoices.some(i=>i.status!=='cancelled')){ alert('برای ثبت هزینه، ابتدا یک فاکتور ایجاد کن.'); return; } openQuickExpense({scope:'invoice'}); });
   document.querySelectorAll('.exp-open-inv').forEach(el=> el.addEventListener('click', e=>{ navBackStack.push('expenses'); tab='invoice'; loadInvoiceForEdit(e.currentTarget.dataset.id); render(); }));
   document.getElementById('expGotoListBtn')?.addEventListener('click', ()=>{ expView='list'; render(); });
   document.getElementById('expCancelEditBtn')?.addEventListener('click', ()=>{ cancelEditExpense(); render(); });
@@ -7913,8 +8000,9 @@ function render(){
     <div id="tabContent">
       ${subnavHTML()}${tab==='home'?renderHomeTab(): tab==='internal'?renderInternalTab():tab==='rentals'?renderRentalsTab(): tab==='club'?renderClubTab(): tab==='project'?renderProjectTab(): tab==='ops'?renderOpsTab(): tab==='settings'?renderSettingsTab(): tab==='editing'?renderEditingTab(): tab==='staff'?renderStaffTab(): tab==='tariff'?renderTariffTab(): tab==='contracts'?renderContractsTab(): tab==='equipment'?renderEquipmentTab(): tab==='bookings'?renderBookingsTab(): tab==='calc'?renderCalcTab(): tab==='invoice'?renderInvoiceTab(): tab==='customers'?renderCustomersTab(): tab==='suppliers'?renderSuppliersTab(): tab==='materials'?renderMaterialsTab(): tab==='products'?renderProductsTab(): tab==='report'?renderDashboardTab(): tab==='dashboard'?renderDashboardTab(): tab==='expenses'?renderExpensesTab(): tab==='cheques'?renderChequesTab(): renderHistoryTab()}
     </div>
-    ${tab==='settings' && FS_SUPPORTED ? `
-    <div class="row-flex" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
+    ${tab==='home' && bkManagerOK() ? `<section class="card home-backup-card" style="margin-top:14px;text-align:right">
+      <div class="card-title">پشتیبان‌گیری</div>
+      ${FS_SUPPORTED ? `<div class="row-flex" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
       <div class="card" style="flex:1;margin:0;padding:10px 14px">
         <div class="card-sub" style="margin-bottom:2px">پوشه دانلود فاکتور و بک‌آپ</div>
         <div style="font-weight:700">${downloadDirName? escapeAttr(downloadDirName) : 'انتخاب نشده — دانلودها میره تو پوشه پیش‌فرض مرورگر'}</div>
@@ -7922,7 +8010,7 @@ function render(){
       <button id="pickFolderBtn" class="btn btn-outline" style="flex:0 0 auto">${downloadDirName?'تغییر پوشه':'انتخاب پوشه'}</button>
       ${downloadDirName? `<button id="clearFolderBtn" class="btn-icon" style="flex:0 0 auto">×</button>` : ''}
     </div>` : ''}
-    ${tab==='settings' ? `<div class="row-flex backup-row" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
+      <div class="row-flex backup-row" style="margin-top:20px;border-top:1px solid #eee;padding-top:16px">
       <button id="downloadBackupBtn" class="btn btn-outline" style="flex:1">دانلود بک‌آپ</button>
       <button id="mergeBackupBtn" class="btn btn-outline" style="flex:1">ادغام بک‌آپ</button>
       <button id="replaceBackupBtn" class="btn btn-outline" style="flex:0 0 auto;color:var(--red);font-size:12px">جایگزینی کامل</button>
@@ -7930,7 +8018,8 @@ function render(){
     </div>
     <button id="shareBackupBtn" class="btn btn-outline" style="width:100%;margin-top:8px;font-size:13px">ارسال یا ذخیره بک‌آپ رمزگذاری‌شده</button>
     <p class="note" style="margin-top:8px;line-height:1.9">برای آیفون: روی «ارسال یا ذخیره بک‌آپ رمزگذاری‌شده» بزنید و از منوی اشتراک‌گذاری، گزینهٔ «Save to Files» و سپس iCloud Drive را انتخاب کنید؛ فایل در فضای iCloud متصل به Apple ID شما ذخیره می‌شود.</p>
-    <section class="card" style="margin-top:14px;text-align:right">
+    </section>` : ''}
+    ${tab==='settings' ? `    <section class="card" style="margin-top:14px;text-align:right">
       <div class="card-title">گزارش خطا و عیب‌یابی</div>
       <p class="note" style="line-height:1.9">خطاهای جاوااسکریپت و خطاهای Promise ثبت می‌شوند. اطلاعات مالی، رمزها و محتوای فرم‌ها عمداً وارد گزارش نمی‌شوند.</p>
       <div id="diagSummary" class="note" style="margin-bottom:8px">در حال آماده‌سازی گزارش…</div>
@@ -8130,6 +8219,7 @@ function mergeArrayById(local, incoming){
   return Array.from(map.values());
 }
 
+function bkManagerOK(){ try{ return !!auIsManager(); }catch(e){ return false; } }
 function bindBackupEvents(){
   document.getElementById('pickFolderBtn')?.addEventListener('click', pickDownloadFolder);
   document.getElementById('clearFolderBtn')?.addEventListener('click', clearDownloadFolder);
@@ -8359,7 +8449,7 @@ if(typeof window.html2canvas!=='function'){ window.html2canvas=async (el,o)=>{ c
 function atelierWeeklyBackup(){ const last=loadJSON(STORE_KEYS.lastBackup,''); const now=Date.now(), old=!last||((now-new Date(last+'T00:00:00').getTime())>7*86400000); if(old && typeof downloadBackup==='function'){ try{downloadBackup();}catch(e){} } }
 
 function atelierOpenPanel(section='home'){ document.getElementById('atelierPanel')?.remove(); const ov=document.createElement('div'); ov.id='atelierPanel'; ov.innerHTML=atelierPanelHTML(section); document.body.appendChild(ov); atelierBindPanel(ov); }
-function atelierPanelHTML(section){ const cust=customers[0]||{id:'',name:''}; const open=(k)=>section===k?'btn-black':'btn-outline'; return `<div class="atelier-overlay"><div class="atelier-modal"><div class="atelier-modal-head"><b>سرویس تجهیزات</b><button id="atelierClose" class="btn-icon">×</button></div><div class="atelier-tabs"><button class="btn ${open('tasks')}" data-sec="tasks">وظایف روزانه</button><button class="btn ${open('maint')}" data-sec="maint">سرویس تجهیزات</button></div>${section==='home'?atelierHomeHTML():section==='notes'?atelierNotesHTML(cust):section==='tasks'?atelierTasksHTML():atelierMaintHTML()}</div></div>`; }
+function atelierPanelHTML(section){ const cust=customers[0]||{id:'',name:''}; const open=(k)=>section===k?'btn-black':'btn-outline'; return `<div class="atelier-overlay"><div class="atelier-modal"><div class="atelier-modal-head"><b>${({home:"تنظیمات آتلیه",notes:"یادداشت‌های مشتری",tasks:"وظایف روزانه",maint:"سرویس تجهیزات"})[section]||"سرویس تجهیزات"}</b><button id="atelierClose" class="btn-icon">×</button></div><div class="atelier-tabs"><button class="btn ${open('tasks')}" data-sec="tasks">وظایف روزانه</button><button class="btn ${open('maint')}" data-sec="maint">سرویس تجهیزات</button></div>${section==='home'?atelierHomeHTML():section==='notes'?atelierNotesHTML(cust):section==='tasks'?atelierTasksHTML():atelierMaintHTML()}</div></div>`; }
 function atelierHomeHTML(){ const rate=brandInfo.vatRate||10; const warnings=invoices.filter(i=>i.status!=='cancelled'&&!i.vatEnabled).slice(0,5); return `<div class="card"><div class="card-title"><span>مالیات یکپارچه</span><span class="small">فاکتور و قرارداد</span></div><input id="atelierTax" inputmode="decimal" value="${atelierEsc(rate)}" placeholder="درصد مالیات"><button id="atelierTaxSave" class="btn btn-red" style="width:100%;margin-top:8px">ذخیره نرخ و اعمال به قراردادهای مرتبط</button></div><div class="card"><div class="card-title">امضای دوطرفه قرارداد</div><select id="atelierSigContract"><option value="">انتخاب قرارداد</option>${contracts.map(c=>`<option value="${c.id}">#${invNumStr(c.number)} — ${atelierEsc(c.customerName)}</option>`).join('')}</select><div class="row-flex"><div style="flex:1"><div class="small">امضای آتلیه</div><canvas id="atelierSigA" width=260 height=100 class="atelier-sign-canvas"></canvas></div><div style="flex:1"><div class="small">امضای مشتری</div><canvas id="atelierSigC" width=260 height=100 class="atelier-sign-canvas"></canvas></div></div><button id="atelierSigSave" class="btn btn-red" style="width:100%;margin-top:8px">ذخیره امضاها در قرارداد</button></div><div class="card"><div class="card-title">انتخاب‌گر تاریخ جلالی مستقل</div><div class="small">ماه و روز با کنترل کبیسه</div>${atelierPicker('atelierDate',todayStr())}<button id="atelierDateCheck" class="btn btn-outline" style="width:100%;margin-top:8px">اعتبارسنجی تاریخ</button><div id="atelierDateResult" class="note"></div></div><div class="card"><div class="card-title">ساختار خروجی قرارداد</div></div>`; }
 function atelierNotesHTML(c){ return `<div class="card"><div class="card-title">یادداشت‌های تاریخچه‌دار مشتری</div><select id="atelierNoteCust"><option value="">انتخاب مشتری</option>${customers.map(x=>`<option value="${x.id}">${atelierEsc(x.name)}</option>`).join('')}</select><textarea id="atelierNoteText" rows="4" placeholder="رتوش، زاویه عکاس، توافق اقساطی..."></textarea><button id="atelierNoteSave" class="btn btn-red" style="width:100%;margin-top:8px">ثبت یادداشت</button></div><div id="atelierNotesList">${atelierNotes.slice().reverse().map(n=>`<div class="card"><b>${atelierEsc((customers.find(c=>c.id===n.customerId)||{}).name||'مشتری')}</b><div class="small">${jalaliStr(n.date)}</div><div>${atelierEsc(n.text)}</div></div>`).join('')||'<p class="empty">یادداشتی ثبت نشده</p>'}</div>`; }
 function atelierTasksHTML(){ return `<div class="card"><div class="card-title">چک‌لیست کارهای جاری</div><input id="atelierTaskTitle" placeholder="مثلا ادیت عکس، طراحی آلبوم، آماده‌سازی چاپ"><button id="atelierTaskAdd" class="btn btn-red" style="width:100%;margin-top:8px">افزودن وظیفه</button></div>${atelierTasks.map(t=>`<div class="card atelier-task ${t.done?'done':''}"><label><input type="checkbox" data-task="${t.id}" ${t.done?'checked':''}> ${atelierEsc(t.title)}</label><span class="small">${jalaliStr(t.date)}</span></div>`).join('')||'<p class="empty">وظیفه‌ای ثبت نشده</p>'}`; }
@@ -10249,5 +10339,113 @@ input[type="checkbox"], input[type="radio"], input[type="range"], input[type="co
 })();
 </script>
 
+<style id="final-consistency-patch">
+/* ================================================================
+   FINAL CONSISTENCY PATCH — loaded last. Fixes found in pre-delivery UI review.
+   Single source of truth for: desktop sidebar, form controls, checkboxes,
+   buttons feedback (hover/active/focus), modal stacking, typography outliers.
+   ================================================================ */
+:root{
+  --fx-field-h:48px; --fx-field-fs:16px; --fx-radius:10px; --fx-btn-h:44px;
+  --fx-focus:var(--c-accent,#CC3333); --fx-danger:#D92D3F;
+  --fx-ease:.16s ease;
+}
+@media (min-width:700px){ :root{ --fx-field-h:44px; --fx-field-fs:14px; --fx-btn-h:40px; } }
+
+/* 1) Desktop sidebar: beat the "final-authority" bar block (left/right:0 + margin auto + flex-direction:row) */
+@media (min-width:1100px){
+  html body #app > .bottom-tab-bar{
+    left:auto !important; right:0 !important; top:0 !important; bottom:0 !important; margin:0 !important;
+    width:clamp(238px,19vw,300px) !important; max-width:none !important;
+    height:100vh !important; height:100dvh !important; min-height:0 !important;
+    flex-direction:column !important; justify-content:flex-start !important; align-items:stretch !important;
+    gap:8px; padding:24px 14px 20px !important; background:#fff !important;
+    border-top:0 !important; border-left:1px solid var(--c-line,#E5E5E5);
+    box-shadow:-8px 0 28px rgba(35,42,48,.06); transform:none !important; z-index:100 !important;
+  }
+  html body.bars-hidden #app > .bottom-tab-bar{ transform:none !important; }
+  html body #app .bottom-tab-bar .bottom-tab-item{
+    flex:0 0 auto !important; width:100%; min-height:48px !important; height:auto !important;
+    flex-direction:row !important; justify-content:flex-start !important; align-items:center !important;
+    gap:12px !important; padding:11px 14px !important; border-radius:12px; font-size:13px; text-align:right;
+  }
+  html body #app .bottom-tab-bar .bottom-tab-item span{ max-width:none; }
+  /* forms: stop stretching to ~1000px */
+  html body #tabContent .box-gray{ max-width:860px; margin-inline-end:auto; margin-inline-start:0; }
+}
+
+/* 2) Modal stacking: above the tab bar (1000), below pickers (100004) */
+.atelier-overlay{ z-index:1100 !important; }
+#atelierClose{ width:36px; height:36px; min-height:0; padding:0; font-size:22px; line-height:1; border-radius:var(--fx-radius); display:inline-flex; align-items:center; justify-content:center; }
+
+/* 3) Checkboxes / radios: one size, one colour, never stretched */
+html body input[type="checkbox"], html body input[type="radio"]{
+  flex:0 0 auto !important; width:20px !important; height:20px !important; min-width:20px !important; min-height:0 !important;
+  padding:0 !important; margin:0 !important; accent-color:var(--c-accent,#CC3333); display:inline-block !important; vertical-align:middle;
+}
+html body label:has(> input[type="checkbox"]), html body label:has(> input[type="radio"]){ display:flex; align-items:center; gap:8px; font-size:13px; line-height:1.5; }
+html body label:has(> input[type="checkbox"]) > span, html body label:has(> input[type="radio"]) > span{ font-size:13px; font-weight:500; flex:1; min-width:0; }
+html body #app .rt-check-row{ font-size:13px; }
+
+/* 4) Form fields: same height / font / alignment for text, date, time, select */
+html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]):not([type="hidden"]),
+html body select{
+  box-sizing:border-box; height:var(--fx-field-h); min-height:var(--fx-field-h); font-size:var(--fx-field-fs); font-weight:400; line-height:1.4;
+}
+html body textarea{ box-sizing:border-box; font-size:var(--fx-field-fs); min-height:calc(var(--fx-field-h) * 2); }
+html body input.pick, html body input.pick-date, html body input.pick-time{ text-align:start !important; font-size:var(--fx-field-fs); font-weight:400; color:var(--c-ink,#000); }
+html body input.pick::placeholder{ font-size:var(--fx-field-fs); color:var(--c-steel-light,#999); opacity:1; }
+html body input::placeholder, html body textarea::placeholder{ opacity:1; }
+/* grid rows: columns may shrink, labels stack above their field (fixes staff-form overlap) */
+.row-flex > *{ min-width:0; }
+.row-flex > label.small:has(> input), .row-flex > label.small:has(> select){ display:flex; flex-direction:column; gap:4px; align-items:stretch; }
+.row-flex > label.small > input, .row-flex > label.small > select{ width:100%; }
+/* lock screen: 16px stops iOS zoom-on-focus */
+#lockScreen input{ font-size:16px !important; }
+
+/* 5) Buttons: one radius / size / font and one feedback model */
+html body .btn:not(.btn-sm):not(.btn-icon){ border-radius:var(--fx-radius); min-height:var(--fx-btn-h); font-size:13px; font-weight:700; }
+html body .btn, html body .btn-icon, .ux-icon-btn, .hm-search, .ct-sh, .ux-chip, .bottom-tab-item, .qe-key, .pill, .mode-toggle .btn{
+  transition:transform var(--fx-ease), background-color var(--fx-ease), border-color var(--fx-ease), color var(--fx-ease), opacity var(--fx-ease), box-shadow var(--fx-ease);
+}
+@media (hover:hover){
+  html body .btn-red:hover, html body .btn-black:hover{ opacity:.92 !important; transform:translateY(-1px); }
+  html body .btn-outline:hover{ border-color:var(--fx-focus); color:var(--fx-focus); transform:translateY(-1px); }
+  .ux-icon-btn:hover, .hm-search:hover, .ct-sh:hover, .ux-chip:hover, .btn-icon:hover{ background:var(--c-accent-soft,#FBEDED); }
+}
+html body .btn:active, html body .btn-icon:active, .ux-icon-btn:active, .hm-search:active, .ct-sh:active, .ux-chip:active, .bottom-tab-item:active, .pill:active{ transform:translateY(1px) scale(.98) !important; }
+html body .btn:disabled, html body button:disabled{ opacity:.45 !important; cursor:not-allowed; transform:none !important; }
+/* focus ring: one definition for every interactive element */
+html body :is(button,a,select,input,textarea,summary,[role="button"],.btn,.btn-icon,.ux-icon-btn,.hm-search,.ct-sh,.ux-chip,.bottom-tab-item,.pill):focus-visible{
+  outline:2px solid var(--fx-focus) !important; outline-offset:2px !important; box-shadow:none !important;
+}
+
+/* 6) Typography outliers & small controls */
+html body #tabContent .dash-stat-num{ color:var(--c-ink,#000); }
+html body #tabContent .dash-stat-num{ font-variant-numeric:tabular-nums; }
+.atelier-modal .small, .atelier-modal p, .atelier-modal .hint{ font-size:12px; color:var(--c-steel,#666); }
+.management-period-pills{ display:flex; flex-wrap:wrap; gap:6px; }
+.qe-amt{ min-height:44px; font-size:30px; font-weight:800; }
+.atelier-modal input, .atelier-modal select, .atelier-modal textarea{ margin-bottom:8px; }
+/* semantic colour: danger stays red in every theme */
+.fx-danger, [data-danger="1"]{ color:var(--fx-danger) !important; }
+
+/* 5b) Make the unified button metrics win over legacy !important/inline rules */
+html body .btn-red, html body .btn-black, html body .btn-outline, html body button.btn:not(.btn-sm):not(.btn-icon){
+  border-radius:var(--fx-radius) !important; min-height:var(--fx-btn-h) !important; font-size:13px !important;
+}
+html body label:has(> input[type="checkbox"]), html body label:has(> input[type="radio"]){ min-height:40px; }
+.row-flex:has(> label.small){ align-items:flex-end; }
+
+/* 5c) Remaining outliers: unstyled buttons, pills, header icon buttons */
+html body button{ font-family:inherit; }
+html body .pill, html body .mode-toggle .btn{ border-radius:var(--fx-radius) !important; font-size:12px !important; min-height:36px; }
+html body #headerMenuBtn, html body #uxSearchBtn, html body .ux-icon-btn{ border-radius:var(--fx-radius); min-width:40px; min-height:40px; }
+html body #tabContent button:not(.btn):not(.pill):not(.btn-icon):not(.qe-key):not([class*="dash"]):not([class*="home"]){ font-size:14px; }
+
+/* 6b) .small must really be small on phones (was rendering 16px in several cards) */
+html body #app .small{ font-size:12.5px; line-height:1.7; }
+html body #app .small[style*="font-weight:700"]{ font-size:13px; color:var(--c-ink,#000); }
+</style>
 </body>
 </html>
