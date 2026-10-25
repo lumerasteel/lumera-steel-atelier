@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-AYy1d/8MjWj+X+ECtUHEPuS0iZmZJ+FWtZKk7bJqqfI=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-BvKvmfwy2OhcRYGxwUHiaF28V3o9FhFpyHJcCObb0oY=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
 <meta name="author" content="فرشاد شهرت">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
@@ -270,7 +270,7 @@
   .a4-cell-label{font-size:9.5px;color:var(--a4-muted);font-weight:500;white-space:nowrap;}
   .a4-cell-value{font-size:11.5px;color:var(--a4-ink);font-weight:600;white-space:nowrap;overflow:hidden;}
   .a4-note{font-size:9.5px;color:var(--a4-muted);margin-bottom:4px;}
-  .a4-table{width:100%;border-collapse:separate;border-spacing:0;margin-bottom:4px;}
+  .a4-table{width:100%;border-collapse:separate;border-spacing:0;margin-bottom:5px;border-radius:8px;overflow:hidden;}
   .a4-table thead tr{background:var(--a4-head-bg);}
   .a4-table thead th{padding:9px 10px;font-size:10.5px;font-weight:600;color:#fff;text-align:center;white-space:nowrap;}
   .a4-table thead th:first-child{border-radius:0 8px 0 0;}
@@ -291,7 +291,13 @@
   .a4-terms-title{font-size:10.5px;font-weight:700;color:var(--a4-ink);margin-bottom:8px;padding-bottom:5px;border-bottom:1.5px solid var(--a4-accent);display:inline-block;}
   .a4-terms-subtitle{font-size:9.5px;font-weight:700;color:var(--a4-muted);margin:8px 0 4px;}
   .a4-terms-subtitle:first-of-type{margin-top:0;}
-  .a4-group-row td{background:#F0F0F0;font-size:9.5px;font-weight:700;color:var(--a4-ink);padding:4px 8px;text-align:right;}
+  .a4-group-row th{background:var(--a4-head-bg);color:#fff;font-size:12px;font-weight:700;padding:5px 8px;text-align:center;border:0;line-height:1.35;border-radius:8px 8px 0 0;}
+  .a4-table tbody tr.a4-group-columns{background:var(--a4-head-bg);}
+  .a4-table tbody tr.a4-group-columns th{background:var(--a4-head-bg);color:#fff;padding:6px 6px;font-size:9.5px;font-weight:600;text-align:center;white-space:normal;border:0;line-height:1.3;}
+  .a4-style-classic .a4-group-row th,.a4-style-classic .a4-table tbody tr.a4-group-columns th{background:var(--a4-head-bg);color:#fff;border:0;}
+  .a4-style-accent .a4-group-row th,.a4-style-accent .a4-table tbody tr.a4-group-columns th{background:var(--a4-accent);color:#fff;border:0;}
+  .a4-style-minimal .a4-group-row th{background:#fff;color:var(--a4-ink);border:0;border-bottom:1px solid #E0E0E0;border-radius:4px 4px 0 0;}
+  .a4-style-minimal .a4-table tbody tr.a4-group-columns th{background:#fff;color:var(--a4-ink);border:0;border-bottom:2px solid var(--a4-accent);}
   .a4-terms-list{list-style:none;display:flex;flex-direction:column;gap:5px;padding:0;margin:0;}
   .a4-terms-list li{font-size:9.5px;color:var(--a4-muted);line-height:1.65;padding-right:10px;position:relative;}
   .a4-terms-list li::before{content:'';position:absolute;right:0;top:6px;width:3.5px;height:3.5px;background:#C0C0C0;border-radius:50%;}
@@ -323,7 +329,7 @@
   .a4-style-minimal .a4-table thead th{color:var(--a4-ink);border-bottom:2px solid var(--a4-accent);}
   .a4-style-minimal .a4-cell,.a4-style-minimal .a4-terms-box,.a4-style-minimal .a4-summary-card,.a4-style-minimal .a4-payment-card{background:#fff;}
   .a4-style-minimal .a4-terms-box,.a4-style-minimal .a4-summary-card,.a4-style-minimal .a4-payment-card{border:1px solid #E0E0E0;}
-  .a4-style-minimal .a4-group-row td{background:#fff;border-bottom:1px solid #E0E0E0;}
+  /* تم مینیمال در قواعد اختصاصی سربرگ گروه و ستون‌ها تعریف شده است. */
 
 
   /* ---- صفحه‌بندی A4 (هر برگه دقیقاً یک صفحه) ---- */
@@ -357,7 +363,7 @@
   .a4-ultra-compact .a4-table{margin-bottom:2px!important;}
   .a4-ultra-compact .a4-table thead th{padding:4px 5px!important;font-size:9px!important;}
   .a4-ultra-compact .a4-table tbody td{height:20px!important;padding:2px 5px!important;font-size:9px!important;line-height:1.25!important;}
-  .a4-ultra-compact .a4-group-row td{padding:2px 5px!important;font-size:8px!important;}
+  .a4-ultra-compact .a4-group-row th{padding:3px 5px!important;font-size:10px!important;}.a4-ultra-compact .a4-group-columns th{padding:2px 4px!important;font-size:8px!important;}
   .a4-ultra-compact .a4-bottom-grid{gap:5px!important;margin-top:5px!important;}
   .a4-ultra-compact .a4-terms-box,.a4-ultra-compact .a4-summary-card,.a4-ultra-compact .a4-payment-card{padding:6px 8px!important;}
   .a4-ultra-compact .a4-terms-title{font-size:9px!important;margin-bottom:4px!important;padding-bottom:3px!important;}
@@ -440,6 +446,32 @@ body{background:linear-gradient(180deg,#f7f8f9 0,#f2f3f5 260px);}.wrap{max-width
 /* UX pass: گروه‌ها واضح‌تر، مسیرها کوتاه‌تر، دکمه‌ها قابل لمس‌تر */
 .sheet-title{padding:10px 16px 4px;font-size:14px}.sheet-grid{grid-template-columns:repeat(2,1fr);gap:8px;padding:8px 14px 16px}.nav-leaf{min-height:72px;padding:11px 6px;font-size:12px}.mobile-nav-bar .card{font-size:13px}.home-card{min-height:96px}.home-card b{font-size:13px}.home-card span{line-height:1.7}.natural-tools-grid{grid-template-columns:repeat(2,1fr)}
 @media (max-width:360px){.sheet-grid,.natural-tools-grid{grid-template-columns:1fr}.home-grid{grid-template-columns:1fr 1fr}.home-card{padding:11px 9px}}
+</style><style>
+.project-hub-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 12px}
+.project-hub-tab{min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 5px;border:1px solid var(--c-line);border-radius:14px;background:var(--c-panel);color:var(--c-ink-soft);font:inherit;font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--sh-flat);transition:background .15s,border-color .15s,color .15s}
+.project-hub-tab-icon svg{width:27px;height:27px;display:block;stroke-width:1.9}
+.project-hub-tab.is-active{background:var(--c-accent-soft);border-color:var(--c-accent);color:var(--c-accent)}
+.project-hub-tab-icon,.project-hub-empty-icon,.home-card-icon{color:var(--c-accent)}
+.project-hub-tab-icon svg,.project-hub-empty-icon svg,.home-card-icon svg{stroke:currentColor;fill:none}
+.project-customer-doc-tab.is-active{background:var(--c-accent-soft);border-color:var(--c-accent);color:var(--c-accent)}
+.project-hub-actions .btn svg,.invoice-card-primary-actions .btn svg,#tabContent [id^="invOps"] svg{width:18px;height:18px;stroke:currentColor;flex-shrink:0;vertical-align:middle}
+.project-hub-actions .btn,#tabContent [id^="invOps"]{color:var(--c-ink-soft)}
+.project-hub-actions .btn:focus-visible,.project-hub-tab:focus-visible,.project-customer-doc-tab:focus-visible{outline:2px solid var(--c-accent);outline-offset:2px}
+.project-hub-empty{min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:var(--c-steel);border:1px dashed var(--c-line);border-radius:16px;padding:18px;margin:10px 0}
+.project-hub-empty b{color:var(--c-ink);font-size:14px}.project-hub-empty span{font-size:12px}
+.project-hub-empty-icon svg{width:32px;height:32px;stroke:var(--c-accent)}
+.project-hub-search{display:block;width:100%;margin:0 0 10px;border:1.5px solid var(--c-line);background:var(--c-panel)}
+.project-customer-card{padding:14px;margin-bottom:10px}
+.project-customer-meta{display:grid;grid-template-columns:1fr 1.4fr;gap:10px 12px;margin-bottom:12px}
+.project-customer-meta>div{min-width:0;display:flex;flex-direction:column;gap:3px}.project-customer-meta small{font-size:10.5px;color:var(--c-steel)}.project-customer-meta b{font-size:13px;line-height:1.65;overflow-wrap:anywhere}.project-customer-service{grid-column:1/-1;padding-top:8px;border-top:1px dashed var(--c-line)}
+.project-customer-open{width:100%;min-height:44px;justify-content:space-between;padding-inline:14px}
+.project-customer-doc-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}
+.project-customer-doc-tab{min-height:46px;border:1px solid var(--c-line);border-radius:11px;background:var(--c-panel);color:var(--c-ink-soft);font:inherit;font-weight:700;font-size:12.5px;cursor:pointer}
+.project-customer-doc-tab.is-active{background:var(--c-ink);border-color:var(--c-ink);color:#fff}
+.project-customer-file-head{border-color:var(--c-accent-soft)}.project-hub-doc-card{padding:12px;margin-bottom:9px}
+.project-hub-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px}.project-hub-actions .btn{font-size:12px;padding:8px 6px;min-width:0}
+.home-card{position:relative;padding-top:48px}.home-card .home-card-icon{position:absolute;top:12px;right:13px;width:28px;height:28px;color:var(--c-accent)}.home-card .home-card-icon svg{width:28px;height:28px;stroke-width:1.8}
+@media(max-width:360px){.project-hub-tab{font-size:11px;min-height:72px}.project-hub-tab-icon svg{width:24px;height:24px}.project-customer-meta{gap:8px}.project-hub-actions{gap:5px}.project-hub-actions .btn{font-size:11px}}
 </style><style>.a4-address-cell{grid-column:1/-1;min-height:42px}.delivery-receipt{border-color:#c9d5df}</style><style>.natural-tools{margin-top:12px;border-color:#d9dee3}.natural-tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.natural-tools-grid .btn{font-size:12px;min-height:38px}</style><style>.contract-natural-tools{margin-top:12px;border-color:#c9d5df}.contract-natural-tools .natural-tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}</style><style>.brand-header .brand-text{flex:1}</style><style>.inv-sec-toggle::before{content:'▸ '}.inv-sec-toggle[data-open="1"]::before{content:'▾ '}.inv-sec-toggle{padding:10px 0;border-bottom:1px solid var(--c-line)}</style><style>#invBackBtn,#tplBackBtn,#custBackBtn,#suppBackBtn,#stBack,#bkCancelBtn,#rtCancel{display:none!important}</style><style>
 .bottom-tab-bar{align-items:stretch!important;transition:transform .25s ease;padding-top:4px!important}
 .bottom-tab-item{justify-content:center;min-width:0;gap:3px!important;font-size:10.5px;line-height:1}
@@ -876,6 +908,15 @@ body.is-home .mobile-nav-bar,body.is-home #uxSearchBtn{display:none}
 #sigPadOv canvas{min-height:0;flex:1 1 auto}
 #sigPadOv .sp-bar .btn{min-height:44px}
 #ctSteps,#invSteps{scroll-margin-top:12px}
+/* فرم‌های مرحله‌ای در موبایل: کنترل‌ها نباید از عرض صفحه بیرون بزنند. */
+#ctSteps select,#invSteps select,#ctSteps input,#invSteps input,#ctSteps textarea,#invSteps textarea{box-sizing:border-box;min-width:0;max-width:100%}
+#ctSteps .row-flex>*,#invSteps .row-flex>*{min-width:0}
+#ctSteps .atelier-date-picker select,#invSteps .atelier-date-picker select{width:100%;min-width:0}
+@media(max-width:480px){
+ #sigPadOv .sp-bar{gap:6px;padding-inline:8px}
+ #sigPadOv .sp-bar .btn{padding-inline:8px;font-size:13px}
+ #ctSteps .ct-sh,#invSteps .ct-sh{min-height:54px}
+}
 </style>
 <style id="atelier-signature-output-fix">
 /* امضاها در خروجی چاپی: فضای بزرگ در حد نمونه‌ی علامت‌گذاری‌شده */
@@ -883,7 +924,7 @@ body.is-home .mobile-nav-bar,body.is-home #uxSearchBtn{display:none}
 .a4-sign-row{align-items:stretch;gap:14px}
 .a4-sign-box{min-height:300px!important;box-sizing:border-box;padding:12px 14px;gap:8px}
 .a4-sign-line{height:238px;min-height:238px;flex:1 1 auto;display:flex;align-items:center;justify-content:center;padding:5px 0 0;overflow:hidden}
-.a4-sign-line .atelier-sign-img{width:100%!important;height:230px!important;max-height:230px!important;max-width:100%!important;object-fit:fill}
+.a4-sign-line .atelier-sign-img{width:100%!important;height:230px!important;max-height:230px!important;max-width:100%!important;object-fit:contain}
 .ct-sig-box img{max-height:124px}
 @media print{
  .a4-sign-row{break-inside:avoid;page-break-inside:avoid;align-items:stretch;gap:14px}
@@ -1229,6 +1270,71 @@ button, input, select, textarea { font-family: inherit; }
   }
 }
 </style>
+
+<style id="atelier-ui-modal-action-layout-fix">
+/* Root fix: modal action buttons must wrap instead of compressing into one overflowing row. */
+#uiModal .atelier-modal { box-sizing:border-box; }
+#uiModal .ui-modal-actions {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:8px !important;
+  min-width:0;
+}
+#uiModal .ui-modal-actions > .btn {
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  height:auto;
+  padding:9px 8px;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  text-align:center;
+  line-height:1.55;
+  flex:none !important;
+}
+@media (min-width:600px) {
+  #uiModal .ui-modal-actions { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:340px) {
+  #uiModal .ui-modal-actions { grid-template-columns:minmax(0,1fr); }
+}
+</style>
+
+<style id="stage9-theme-and-a4-fixes">
+/* Stage 9: icons added for Projects / post-finalization actions follow the active theme. */
+#tabContent .project-hub-tab svg,#tabContent .project-hub-empty-icon svg,#tabContent .project-hub-actions svg,#tabContent [id^="invOps"] svg{color:inherit;stroke:currentColor;fill:none}
+#tabContent .project-hub-tab.is-active{background:var(--c-accent-soft)!important;border-color:var(--c-accent)!important;color:var(--c-accent)!important}
+#tabContent .project-customer-doc-tab.is-active{background:var(--c-accent-soft)!important;border-color:var(--c-accent)!important;color:var(--c-accent)!important}
+#tabContent .project-hub-actions .btn-black,#tabContent #invOpsJpg{background:var(--c-accent)!important;border-color:var(--c-accent)!important;color:#fff!important}
+.a4-wrap .a4-cell-value:empty{display:none!important}
+.a4-wrap .a4-cell:has(.a4-cell-value:empty){display:none!important}
+.a4-wrap .a4-address-cell{grid-column:1/-1}
+/* آدرس مشتری می‌تواند طولانی باشد؛ متن باید درون کادر بشکند، نه اینکه بریده شود. */
+.a4-wrap .a4-address-cell .a4-cell-value,
+.a4-sheet .a4-address-cell .a4-cell-value{white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.55}
+</style>
+<style id="icon-unify">
+/* معیار: صفحه‌ی «داخلی» — آیکن ۲۸ پیکسل، ضخامت خط ۲، رنگ تأکیدی */
+.hm-big svg{width:28px;height:28px}
+.hm-alert svg{width:20px;height:20px}
+.project-hub-tab-icon svg,.project-hub-empty-icon svg{width:28px;height:28px;stroke-width:2}
+.home-card .home-card-icon,.home-card .home-card-icon svg{width:28px;height:28px}
+.home-card .home-card-icon svg{stroke-width:2}
+@media(max-width:360px){.project-hub-tab-icon svg{width:28px;height:28px}}
+</style>
+<style id="fin-hub-style">
+.int-grid.fin-hub-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.int-grid.fin-hub-grid .int-btn{height:128px;font-size:15px;gap:10px;border-radius:18px}
+.int-grid.fin-hub-grid .int-btn svg{width:40px;height:40px}
+.fin-hub-report .r-row{padding:7px 0}
+.fin-hub-sep{border-top:1px dashed var(--c-line);margin:8px 0}
+</style>
 </head>
 <!-- © حق نشر این برنامه محفوظ است — طراحی و توسعه: فرشاد شهرت 09142030904 -->
 <body>
@@ -1561,7 +1667,7 @@ let bookingResources = loadJSON(STORE_KEYS.bookingResources, [{id:'res-studio', 
 
 /* ===== کارکنان، تجهیزات و تعرفه ===== */
 const STAFF_ROLES = ['عکاس','تصویربردار','ادیتور','دستیار','طراح آلبوم','هلی‌شات‌کار','گریمور','سایر'];
-const STAFF_PAY = { fixed:'مبلغ ثابت هر پروژه', hour:'ساعتی', shot:'هر شات', percent:'درصد از فاکتور' };
+const STAFF_PAY = { fixed:'مبلغ ثابت هر پروژه', hour:'ساعتی', shot:'هر شات', session:'هر جلسه آفیش', percent:'درصد از فاکتور' };
 const EQUIP_STATUS = { ready:'آماده', repair:'در تعمیر', lent:'اجاره / قرض داده شده', out:'خارج از سرویس' };
 const TARIFF_UNITS = { hour:'ساعت', shot:'شات', frame:'فریم / عکس', minute:'دقیقه فیلم', session:'جلسه', piece:'عدد' };
 function blankStaff(){ return { id:'st-'+Date.now().toString()+Math.random().toString(36).slice(2,6), name:'', phone:'', emergencyPhone:'', accountNumber:'', nationalId:'', startDate:todayStr(), roles:[], type:'project', payType:'fixed', rate:'', salary:'', payDay:'', active:true, note:'' }; }
@@ -1636,7 +1742,8 @@ function clearCalc(){
 }
 
 /* ---------- INVOICE STATE ---------- */
-let invTab = 'list'; // 'list' | 'edit'
+let invTab = 'list'; // 'list' | 'edit' | 'operations'
+let invOperationId = null;
 let editingInvId = null;
 function blankInvoiceLine(){ return {id: Date.now().toString()+Math.random().toString(36).slice(2), productId:'', qty:1, customName:'', customPrice:'', customCost:'', lineDiscount:'', activityType: invActiveWorkspace}; }
 function blankInvoice(){
@@ -2143,6 +2250,14 @@ function invoiceActivityTypesUsed(inv){
   const set = new Set(inv.lines.map(l=>l.activityType || inv.activityType || 'photo'));
   return order.filter(t=>set.has(t));
 }
+/* اگر دستمزد آفیش برای همان همکار و آفیش ثبت شده باشد، هزینه کادرِ تکراریِ فاکتور را کنار می‌گذاریم؛
+   دستمزد اصلی در تاریخ آفیش و از رکورد sessionGenerated محاسبه می‌شود. */
+function isSessionWageJobCost(inv,c){
+  if(!inv || !c || c.kind!=='crew' || !c.staffId) return false;
+  return bookings.some(b=>b.invoiceId===inv.id &&
+    staffFinance.some(r=>r && r.sessionGenerated===true && r.type==='receivable' &&
+      r.staffId===c.staffId && r.bookingId===b.id));
+}
 function computeInvoiceTotals(inv){
   const linesTotal = inv.lines.reduce((s,l)=>{
     const qty = parseQty(l.qty);
@@ -2156,7 +2271,7 @@ function computeInvoiceTotals(inv){
     return s + unitCost*qty;
   },0);
   const rentalCost = rentalCostForInvoice(inv.id);
-  const jobCostTotal = (inv.jobCosts||[]).reduce((s,c)=> s + (parseFloat(c.amount)||0), 0) + rentalCost;
+  const jobCostTotal = (inv.jobCosts||[]).filter(c=>!isSessionWageJobCost(inv,c)).reduce((s,c)=> s + (parseFloat(c.amount)||0), 0) + rentalCost;
   let discountRequested = 0;
   if(parseFloat(inv.discountPct)>0) discountRequested += linesTotal*(parseFloat(inv.discountPct)/100);
   if(parseFloat(inv.discountAmount)>0) discountRequested += parseFloat(inv.discountAmount);
@@ -2311,7 +2426,7 @@ function snapshotInvoiceCosts(inv){
 }
 function saveInvoiceDraft(targetStatus){
   if(!invDraft.customerName.trim() && invDraft.lines.every(l=>!invLineName(l))){
-    alert('حداقل نام مشتری یا یک ردیف کالا را وارد کنید'); return;
+    alert('حداقل نام مشتری یا یک ردیف کالا را وارد کنید'); return false;
   }
   // اگه تخفیف (چه از فیلد تخفیف، چه از فی توافقی هر ردیف) از سود این فاکتور بیشتر باشه، یعنی داره وارد قیمت
   // تمام‌شده (ضرر) میشه — اجازه ثبت نمی‌دیم
@@ -2321,13 +2436,13 @@ function saveInvoiceDraft(targetStatus){
       ? 'تخفیف واردشده: ' + fmt(tCheck.discount) + ' تومان'
       : 'یکی از ردیف‌ها با تخفیف ردیف، پایین‌تر از قیمت تمام‌شده ثبت شده';
     alert('این فاکتور زیر قیمت تمام‌شده حساب می‌شه و ضرر داره.\nسود این فاکتور قبل از تخفیف: ' + fmt(tCheck.profitBeforeDiscount) + ' تومان\n' + reason + '\nبرای ثبت، تخفیف رو اصلاح کن.');
-    return;
+    return false;
   }
   { const _cur=invoices.find(i=>i.id===editingInvId); if(_cur&&_cur.fileArchive) invDraft.fileArchive=_cur.fileArchive; }
-  if(invDraft.number!=null && invoices.some(i=>i.number===invDraft.number && i.id!==editingInvId)){ alert('شماره‌ی فاکتور تکراری است'); return; }
-  if((invDraft.payments||[]).some(p=>(parseFloat(p.amount)||0)<0)){ alert('مبلغ واریزی نمی‌تواند منفی باشد'); return; }
-  if((targetStatus==='final'||targetStatus==='paid') && !invDraft.lines.some(l=>invLineName(l)&&invLineUnitPrice(l)>0)){ alert('برای صدور فاکتور حداقل یک ردیف قیمت‌دار لازم است'); return; }
-  if((targetStatus==='final'||targetStatus==='paid') && invDraft.lines.some(l=>!l.productId&&invLineName(l)&&!((parseFloat(l.customCost)||0)>0)) && !confirm('بعضی ردیف‌های دلخواه قیمت تمام‌شده ندارند و کل مبلغشان سود حساب می‌شود. ادامه؟')) return;
+  if(invDraft.number!=null && invoices.some(i=>i.number===invDraft.number && i.id!==editingInvId)){ alert('شماره‌ی فاکتور تکراری است'); return false; }
+  if((invDraft.payments||[]).some(p=>(parseFloat(p.amount)||0)<0)){ alert('مبلغ واریزی نمی‌تواند منفی باشد'); return false; }
+  if((targetStatus==='final'||targetStatus==='paid') && !invDraft.lines.some(l=>invLineName(l)&&invLineUnitPrice(l)>0)){ alert('برای صدور فاکتور حداقل یک ردیف قیمت‌دار لازم است'); return false; }
+  if((targetStatus==='final'||targetStatus==='paid') && invDraft.lines.some(l=>!l.productId&&invLineName(l)&&!((parseFloat(l.customCost)||0)>0)) && !confirm('بعضی ردیف‌های دلخواه قیمت تمام‌شده ندارند و کل مبلغشان سود حساب می‌شود. ادامه؟')) return false;
   if(!invDraft.validTo){
     invDraft.validFrom = invDraft.date;
     invDraft.validTo = addMonths(invDraft.date, 1);
@@ -2361,9 +2476,14 @@ function saveInvoiceDraft(targetStatus){
   { const savedInv = invoices.find(i=>i.id===editingInvId); if(savedInv) syncContractFinancialsFromInvoice(savedInv); }
   { const savedInv = invoices.find(i=>i.id===editingInvId); if(savedInv && invDraft.shoot && invDraft.shoot.date) syncShootBooking(savedInv, invDraft.shoot); }
   saveJSON(STORE_KEYS.invoices, invoices);
-  invTab = 'list';
-  if(navBackStack[navBackStack.length-1]==='project'){ navBackStack.pop(); tab = 'project'; projectId = editingInvId; }
+  if(targetStatus==='final' || targetStatus==='paid'){
+    invTab = 'operations'; invOperationId = editingInvId;
+  } else {
+    invTab = 'list'; invOperationId = null;
+  }
+  if(navBackStack[navBackStack.length-1]==='project' && invTab!=='operations'){ navBackStack.pop(); tab = 'project'; projectId = editingInvId; }
   render();
+  return true;
 }
 function syncShootBooking(inv, shoot){
   const data = { date: shoot.date, start: shoot.start||'10:00', end: shoot.end||'12:00', place: shoot.place||'studio', placeNote: shoot.placeNote||'' };
@@ -2385,7 +2505,8 @@ function ensureSavedInvoice(){
   const isSaved = editingInvId && invoices.some(i=>i.id===editingInvId);
   if(!isSaved && !confirm('فاکتور اول به‌صورت پیش‌فاکتور ذخیره می‌شود و بعد ادامه می‌دهیم. ادامه؟')) return null;
   saveJSON(STORE_KEYS.invoices, invoices);
-  saveInvoiceDraft(isSaved && (invDraft.status==='final' || invDraft.status==='paid') ? invDraft.status : (isSaved ? invDraft.status : 'draft'));
+  const saved = saveInvoiceDraft(isSaved && (invDraft.status==='final' || invDraft.status==='paid') ? invDraft.status : (isSaved ? invDraft.status : 'draft'));
+  if(saved!==true) return null;
   return invoices.find(i=>i.id===editingInvId) || null;
 }
 function deleteInvoice(id){
@@ -2412,6 +2533,12 @@ function cycleInvoiceStatusInList(id){
 /* ---------- INVOICE TAB RENDER ---------- */
 let invSearchQuery = '';
 let invSearchDebounceTimer = null;
+// نمای یکپارچه پروژه‌ها: هیچ زیر‌بخشی در ورود اولیه فعال نیست.
+let projectHubSection = null; // null | 'invoice' | 'contracts' | 'customers'
+let projectHubCustomerId = null;
+let projectHubDocType = null; // null | 'contracts' | 'bookings' | 'invoice'
+let projectHubSearch = '';
+let projectHubReturnContext = false;
 // تعداد فاکتورهایی که فعلاً توی لیست نشون داده می‌شن — برای اینکه لیست فاکتورهای زیاد (بعد از ماه‌ها کارکردن)
 // کل صفحه رو کند نکنه؛ با دکمه‌ی «نمایش بیشتر» زیاد می‌شه
 let invListVisibleCount = 30;
@@ -2818,21 +2945,10 @@ function renderInvoiceListTab(){
         </div>
         ${totalLine}
         ${costLine}
-        <div class="row-flex" style="margin-top:8px">
-          <button class="btn btn-black" data-open-project="${inv.id}" style="flex:1;font-size:12px">📁 پرونده</button>
-          <button class="btn btn-outline inv-edit" data-id="${inv.id}" style="flex:1;font-size:12px">ویرایش</button>
-          <button class="btn btn-black inv-jpg" data-id="${inv.id}" style="flex:1;font-size:12px">خروجی JPG</button>
-          <button class="btn btn-outline inv-duplicate" data-id="${inv.id}" style="flex:1;font-size:12px">⧉ کپی</button>
-          <button class="btn-icon inv-delete" data-id="${inv.id}">×</button>
+        <div class="row-flex invoice-card-primary-actions" style="margin-top:8px;gap:8px">
+          <button class="btn btn-outline inv-edit" data-id="${inv.id}" style="flex:1;font-size:13px">ویرایش</button>
+          <button class="btn btn-outline inv-preview" data-id="${inv.id}" style="flex:1;font-size:13px">👁 پیش‌نمایش</button>
         </div>
-        <div class="row-flex" style="margin-top:6px">
-          ${typeof navigator!=='undefined' && navigator.share ? `<button class="btn btn-outline inv-share" data-id="${inv.id}" style="flex:1;font-size:12px">↗ اشتراک‌گذاری</button>` : ''}
-          <button class="btn btn-outline inv-preview" data-id="${inv.id}" style="flex:1;font-size:12px">👁 پیش‌نمایش</button>
-          <button class="btn btn-outline inv-print" data-id="${inv.id}" style="flex:1;font-size:12px">چاپ</button>
-        </div>
-        ${t.balance>0 && inv.status!=='draft' && inv.status!=='cancelled' ? `
-        <button class="btn btn-outline inv-quick-settle" data-id="${inv.id}" style="width:100%;margin-top:6px;font-size:12px;color:#1A7A3A">✓ ثبت پرداخت کامل (${fmt(t.balance)} ت)</button>
-        ` : ''}
       </div>`;
     }).join('')}
     ${filtered.length>visible.length? `<button id="invLoadMoreBtn" class="btn btn-outline" style="width:100%;margin-top:6px">نمایش ۳۰ فاکتور بعدی (${filtered.length-visible.length} فاکتور دیگر مونده)</button>` : ''}
@@ -3450,7 +3566,7 @@ function jobKindLabel(k){ const x = JOB_COST_KINDS.find(a=>a[0]===k); return x ?
 function invoiceCostBreakdown(inv){
   const t = computeInvoiceTotals(inv);
   const byKind = {};
-  (inv.jobCosts||[]).forEach(c=>{ const a = parseFloat(c.amount)||0; if(a>0) byKind[c.kind] = (byKind[c.kind]||0) + a; });
+  (inv.jobCosts||[]).forEach(c=>{ const a = parseFloat(c.amount)||0; if(a>0 && !isSessionWageJobCost(inv,c)) byKind[c.kind] = (byKind[c.kind]||0) + a; });
   { const rc = rentalCostForInvoice(inv.id); if(rc>0) byKind.rental = (byKind.rental||0) + rc; }
   const revenue = t.netTotal, itemCost = t.costTotal, jobTotal = t.jobCostTotal, profit = t.profitAfterDiscount;
   return { revenue, itemCost, jobTotal, byKind, profit, margin: revenue>0 ? profit/revenue*100 : 0, totalCost: itemCost + jobTotal };
@@ -3476,7 +3592,7 @@ function invoiceJobCostRows(){
     if(inv.status!=='final' && inv.status!=='paid') return;
     (inv.jobCosts||[]).forEach(c=>{
       const a = parseFloat(c.amount)||0;
-      if(a>0) rows.push({ id:'jc-'+inv.id+'-'+c.id, isJob:true, invId:inv.id, invNumber:inv.number, customer:inv.customerName||'', kind:c.kind,
+      if(a>0 && !isSessionWageJobCost(inv,c)) rows.push({ id:'jc-'+inv.id+'-'+c.id, isJob:true, invId:inv.id, invNumber:inv.number, customer:inv.customerName||'', kind:c.kind,
         categoryName: c.title || jobKindLabel(c.kind), date: inv.date, tag:'business', amount:a, note:'' });
     });
     rentals.filter(r=>r.invoiceId===inv.id && r.status!=='cancelled' && numOf(r.price)>0).forEach(r=>{
@@ -3489,7 +3605,7 @@ function monthInvoiceCosts(){
   const ms = jalaliMonthStartISO(), td = todayStr(), byKind = {}; let total = 0;
   invoices.forEach(inv=>{
     if((inv.status!=='final' && inv.status!=='paid') || inv.date<ms || inv.date>td) return;
-    (inv.jobCosts||[]).forEach(c=>{ const a = parseFloat(c.amount)||0; if(a>0){ byKind[c.kind] = (byKind[c.kind]||0)+a; total += a; } });
+    (inv.jobCosts||[]).forEach(c=>{ const a = parseFloat(c.amount)||0; if(a>0 && !isSessionWageJobCost(inv,c)){ byKind[c.kind] = (byKind[c.kind]||0)+a; total += a; } });
     const rc = rentalCostForInvoice(inv.id); if(rc>0){ byKind.rental = (byKind.rental||0)+rc; total += rc; }
   });
   return { total, byKind };
@@ -3499,8 +3615,9 @@ function monthProfitSummary(){
   const counted = invoices.filter(inv=> (inv.status==='final'||inv.status==='paid') && inv.date>=ms && inv.date<=td);
   let revenue=0, itemCost=0, jobCost=0, gross=0;
   counted.forEach(inv=>{ const bd = invoiceCostBreakdown(inv); revenue += bd.revenue; itemCost += bd.itemCost; jobCost += bd.jobTotal; gross += bd.profit; });
-  const general = expenses.filter(e=> e.tag==='business' && e.date>=ms && e.date<=td).reduce((a,e)=>a+Math.max(0,parseFloat(e.amount)||0),0);
-  return { revenue, itemCost, jobCost, general, gross, net: gross - general, count: counted.length };
+  const general = businessOperatingExpensesInRange(ms,td);
+  const sessionWages = sessionWageCostsInRange(ms,td);
+  return { revenue, itemCost, jobCost, general, sessionWages, gross, net: gross - general - sessionWages, count: counted.length };
 }
 function expJobRowHTML(e){
   return `<div class="card" data-row-id="${e.id}">
@@ -3540,7 +3657,8 @@ function ctClone(o){ return JSON.parse(JSON.stringify(o)); }
 const ctUid = ()=> Date.now().toString() + Math.random().toString(36).slice(2,6);
 let contracts = loadJSON(STORE_KEYS.contracts, []);
 let contractTpl = (()=>{ const t = loadJSON(STORE_KEYS.contractTpl, null); return (t && Array.isArray(t.clauses)) ? t : ctClone(DEFAULT_CONTRACT_TEMPLATE); })();
-let ctView = 'list'; // list | edit | tpl
+let ctView = 'list'; // list | edit | tpl | operations
+let ctOperationId = null;
 let ctDraft = null, ctEditingId = null, ctTplDraft = null, ctLastField = null;
 function nextContractNumber(){ return contracts.reduce((m,c)=>Math.max(m, parseInt(c.number)||0), 99) + 1; }
 function blankContract(){
@@ -3627,7 +3745,7 @@ function buildA4ContractHTML(ct){
       <div class="a4-preamble">${escapeAttr(fillTemplate(contractTpl.preamble, vars))}</div>
       <div class="a4-note">جدول خدمات — اعداد به تومان</div>
       <table class="a4-table">
-        <thead><tr><th class="a4-col-num">#</th><th style="width:46%">شرح خدمات</th><th class="a4-col-qty">تعداد</th><th class="a4-col-unit">قیمت واحد</th><th class="a4-col-total">جمع</th></tr></thead>
+        <thead><tr><th class="a4-col-num">ردیف</th><th style="width:46%">شرح خدمات</th><th class="a4-col-qty">تعداد</th><th class="a4-col-unit">قیمت واحد</th><th class="a4-col-total">جمع</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="a4-bottom-grid">
@@ -3729,7 +3847,26 @@ function contractToBooking(ct){
   editingBookingId = null; bkView = 'form'; bkReturnTab = 'contracts'; navBackStack.push('contracts'); tab = 'bookings'; render();
 }
 
+function renderContractOperations(){
+  const c=contracts.find(x=>x.id===ctOperationId);
+  if(!c){ctView='list';ctOperationId=null;return renderContractsTab();}
+  const t=contractTotals(c), inv=invoices.find(x=>x.id===c.invoiceId||x.contractId===c.id);
+  const booking=bookings.find(b=>b.invoiceId===(inv?.id||c.invoiceId));
+  return `<button type="button" class="btn btn-outline" id="ctOpsBack" style="width:100%;margin-bottom:12px">← بازگشت به قراردادها</button><div class="card"><div class="card-title"><span>عملیات قرارداد ثبت‌شده</span><span class="badge-activity">${escapeAttr(CT_STATUS[c.status]||'ثبت‌شده')}</span></div><div class="card-sub">قرارداد #${invNumStr(c.number)} · ${escapeAttr(c.customerName||'بدون نام')} · ${jalaliStr(c.date)}</div><div class="r-row"><span>مبلغ کل قرارداد</span><b>${fmt(t.grand)} تومان</b></div><div class="grid2" style="margin-top:12px;gap:8px"><button class="btn btn-outline" id="ctOpsPreview">پیش‌نمایش</button><button class="btn btn-black" id="ctOpsJpg">خروجی تصویر JPG</button><button class="btn btn-outline" id="ctOpsPrint">چاپ</button><button class="btn btn-outline" id="ctOpsShare">اشتراک‌گذاری</button><button class="btn btn-outline" id="ctOpsEdit">ویرایش قرارداد</button><button class="btn btn-outline" id="ctOpsInvoice">${inv?'ویرایش فاکتور مرتبط':'ساخت فاکتور از قرارداد'}</button><button class="btn btn-outline" id="ctOpsBooking">${booking?'مشاهده آفیش':'ثبت آفیش از قرارداد'}</button></div></div>`;
+}
+function bindContractOperationsEvents(){
+  const c=contracts.find(x=>x.id===ctOperationId); if(!c)return;
+  document.getElementById('ctOpsBack')?.addEventListener('click',()=>{ctView='list';ctOperationId=null;render();});
+  document.getElementById('ctOpsPreview')?.addEventListener('click',()=>previewContract(c));
+  document.getElementById('ctOpsJpg')?.addEventListener('click',e=>exportContractJPG(c,e.currentTarget));
+  document.getElementById('ctOpsPrint')?.addEventListener('click',()=>printContract(c));
+  document.getElementById('ctOpsShare')?.addEventListener('click',e=>shareContractJPG(c,e.currentTarget));
+  document.getElementById('ctOpsEdit')?.addEventListener('click',()=>{ctDraft=ctClone(c);if(ctDraft.status==='signed')ctDraft.status='draft';ctEditingId=c.id;ctView='edit';render();});
+  document.getElementById('ctOpsInvoice')?.addEventListener('click',()=>{const inv=invoices.find(x=>x.id===c.invoiceId||x.contractId===c.id);if(inv){loadInvoiceForEdit(inv.id);invTab='edit';tab='invoice';}else contractToInvoice(c);render();});
+  document.getElementById('ctOpsBooking')?.addEventListener('click',()=>{const b=bookings.find(x=>x.invoiceId===c.invoiceId||(c.invoiceId&&x.invoiceId===c.invoiceId));if(b){editingBookingId=b.id;bkDraft=ctClone(b);bkView='form';}else{if(!c.eventDate){alert('برای ثبت آفیش ابتدا تاریخ مراسم را در قرارداد وارد کنید.');return;}contractToBooking(c);return;}bkReturnTab='contracts';tab='bookings';render();});
+}
 function renderContractsTab(){
+  if(ctView==='operations') return renderContractOperations();
   if(ctView==='edit' && ctDraft) return renderContractEditor();
   if(ctView==='tpl' && ctTplDraft && typeof auIsManager==='function' && auIsManager()) return renderContractTplEditor();
   if(ctView==='tpl' && !auIsManager()) { ctView='list'; ctTplDraft=null; }
@@ -3750,9 +3887,6 @@ function renderContractsTab(){
         </div>
         <div class="row-flex" style="margin-top:6px;gap:6px">
           <button class="btn btn-outline ct-preview" data-id="${c.id}" style="flex:1;font-size:12px">👁 پیش‌نمایش</button>
-          <button class="btn btn-black ct-jpg" data-id="${c.id}" style="flex:1;font-size:12px">JPG</button>
-          <button class="btn btn-outline ct-print" data-id="${c.id}" style="flex:1;font-size:12px">چاپ</button>
-          ${inv ? `<button class="btn btn-outline ct-open-inv" data-id="${inv.id}" style="flex:1;font-size:12px">فاکتور</button>` : ''}
         </div>
       </div>`;
     }).join('')}`;
@@ -3814,10 +3948,7 @@ function renderContractEditor(){
     ${(contractTpl.fields||[]).length ? `<h2 class="sec">مقادیر قالب قرارداد</h2><div class="box-gray" style="margin-bottom:12px">${contractTpl.fields.map((f,i)=>`<label class="small" style="display:block;margin:${i?'8px':'0'} 0 3px">${escapeAttr(f.key)}</label><input class="ct-field" data-key="${escapeAttr(f.key)}" placeholder="${escapeAttr(f.value)}" value="${escapeAttr((c.fieldValues||{})[f.key]||'')}">`).join('')}</div>` : ''}
     <h2 class="sec">توضیحات و توافق‌های تکمیلی</h2>
     <textarea id="ctExtra" rows="3" placeholder="هر توافق اضافه‌ای که باید زیر بندهای قرارداد بیاید (هر خط یک بند)" style="width:100%;margin-bottom:12px;font-family:inherit">${escapeAttr(c.extraNote)}</textarea>
-    <button id="ctSave" class="btn btn-red" style="width:100%;margin-bottom:8px">${ctEditingId ? 'ذخیره تغییرات' : 'ذخیره قرارداد'}</button>
-    <div class="row-flex" style="gap:6px;margin-bottom:8px"><button id="ctPreview" class="btn btn-outline" style="flex:1;font-size:12px">👁 پیش‌نمایش</button><button id="ctJpg" class="btn btn-black" style="flex:1;font-size:12px">JPG</button><button id="ctPrint" class="btn btn-outline" style="flex:1;font-size:12px">چاپ</button></div>
-    <button id="ctToInvoice" class="btn btn-outline" style="width:100%;margin-bottom:8px">🧾 ساخت فاکتور از روی این قرارداد</button>
-    <button id="ctToBooking" class="btn btn-outline" style="width:100%;margin-bottom:8px">📅 ثبت آفیش از روی این قرارداد</button>`;
+    <button id="ctSave" class="btn btn-red" style="width:100%;margin-bottom:8px">${ctEditingId ? 'ذخیره تغییرات و ادامه' : 'ثبت قرارداد و ادامه'}</button>`;
 }
 function renderContractTplEditor(){
   const d = ctTplDraft;
@@ -3869,6 +4000,7 @@ function saveContractDraft(){
   return true;
 }
 function bindContractsEvents(){
+  if(ctView==='operations'){ bindContractOperationsEvents(); return; }
   const open = id=>{ const c = contracts.find(x=>x.id===id); if(c){ ctOpenStep=0; if(c.status==='signed'&&!confirm('این قرارداد امضا شده و قفل است. برای ویرایش به «پیش‌نویس» برگردد؟ (امضاها حفظ می‌شود)')) return; ctDraft = ctClone(c); if(ctDraft.status==='signed') ctDraft.status='draft'; ctEditingId = c.id; ctView = 'edit'; render(); } };
   document.getElementById('ctNewBtn')?.addEventListener('click', ()=>{ ctOpenStep=0; ctDraft = blankContract(); ctEditingId = null; ctView = 'edit'; render(); });
   document.getElementById('ctTplBtn')?.addEventListener('click', ()=>{ if(!auIsManager()){alert('ویرایش قالب قرارداد فقط برای مدیر مجاز است.');return;} ctTplDraft = ctClone(contractTpl); ctView = 'tpl'; render(); });
@@ -3883,7 +4015,7 @@ function bindContractsEvents(){
   if(ctView!=='edit' || !ctDraft) return;
   const c = ctDraft, upd = ()=>{ const el = document.getElementById('ctTotals'); if(el) el.innerHTML = ctTotalsHTML(c); };
   const num = v => toLatinDigits(v);
-  document.getElementById('ctBackBtn')?.addEventListener('click', ()=>{ if(!confirm('تغییرات ذخیره‌نشده کنار گذاشته شوند و از فرم قرارداد خارج شوی؟')) return; ctView='list'; ctDraft=null; ctEditingId=null; ctOpenStep=0; render(); });
+  document.getElementById('ctBackBtn')?.addEventListener('click', ()=>{ if(!confirm('تغییرات ذخیره‌نشده کنار گذاشته شوند و از فرم قرارداد خارج شوی؟')) return; ctView='list'; ctDraft=null; ctEditingId=null; ctOpenStep=0; if(projectHubReturnContext){tab='invoice';projectHubReturnContext=false;navBackStack=[];} render(); });
   document.getElementById('ctInvFill')?.addEventListener('click', ()=>{ const inv = invoices.find(i=>i.id===document.getElementById('ctInvPick').value); if(!inv){ alert('اول یک فاکتور انتخاب کن'); return; } ctFillFromInvoice(c, inv); render(); });
   document.getElementById('ctCustPick')?.addEventListener('change', e=>{ const x = customers.find(q=>q.id===e.target.value); if(x){ c.customerName = x.name||''; c.customerPhone = x.phone||''; render(); } });
   [['ctCustName','customerName'],['ctCustPhone','customerPhone'],['ctCustNid','customerNationalId'],['ctCustAddr','customerAddress'],['ctTitle','title'],['ctPlace','place'],['ctExtra','extraNote']]
@@ -3917,12 +4049,7 @@ function bindContractsEvents(){
   document.querySelectorAll('.ctp-trigger').forEach(el=> el.addEventListener('change', e=>{ c.plan[+e.target.dataset.idx].trigger = e.target.value; render(); }));
   document.querySelectorAll('.ctp-remove').forEach(el=> el.addEventListener('click', e=>{ c.plan.splice(+e.currentTarget.dataset.idx,1); render(); }));
   document.querySelectorAll('.ct-field').forEach(el=> el.addEventListener('input', e=>{ c.fieldValues = c.fieldValues || {}; c.fieldValues[e.target.dataset.key] = e.target.value; }));
-  document.getElementById('ctSave')?.addEventListener('click', ()=>{ if(saveContractDraft()){ ctView='list'; ctDraft=null; ctEditingId=null; render(); } });
-  document.getElementById('ctPreview')?.addEventListener('click', ()=> previewContract(c));
-  document.getElementById('ctJpg')?.addEventListener('click', e=> exportContractJPG(c, e.currentTarget));
-  document.getElementById('ctPrint')?.addEventListener('click', ()=> printContract(c));
-  document.getElementById('ctToInvoice')?.addEventListener('click', ()=>{ if(!saveContractDraft()) return; contractToInvoice(contracts.find(x=>x.id===ctEditingId)); });
-  document.getElementById('ctToBooking')?.addEventListener('click', ()=>{ if(!c.eventDate){ alert('اول تاریخ مراسم را وارد کن'); return; } if(!saveContractDraft()) return; contractToBooking(contracts.find(x=>x.id===ctEditingId)); });
+  document.getElementById('ctSave')?.addEventListener('click', ()=>{ if(saveContractDraft()){ ctOperationId=ctEditingId; ctView='operations'; ctDraft=null; ctEditingId=null; if(projectHubReturnContext){tab='contracts';projectHubReturnContext=false;} render(); } });
 }
 function bindContractTplEvents(){
   const d = ctTplDraft;
@@ -3957,7 +4084,8 @@ let qeState = (()=>{ const d = { scope:'personal', last:{ personal:'', business:
 let qe = null;
 function qeSaveState(){ saveJSON(STORE_KEYS.quickExp, qeState); }
 function qeChips(scope){
-  if(scope==='invoice') return JOB_COST_KINDS.filter(k=>!['depreciation','rental'].includes(k[0])).map(k=>({ key:k[0], label:k[1] }));
+  // ثبت هزینه نیروی انسانی از مسیر داخلی کادر انجام می‌شود تا ورودی‌های موازی ساخته نشود.
+  if(scope==='invoice') return JOB_COST_KINDS.filter(k=>!['depreciation','rental','crew','editing','heli'].includes(k[0])).map(k=>({ key:k[0], label:k[1] }));
   const tag = scope==='personal' ? 'personal' : 'business';
   const cnt = {}; expenses.filter(e=>e.tag===tag).forEach(e=>{ cnt[e.categoryName] = (cnt[e.categoryName]||0)+1; });
   const hist = Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
@@ -4135,7 +4263,7 @@ function staffLinkedJobCosts(id){
   const out = [];
   invoices.forEach(inv=>{
     if(inv.status!=='final' && inv.status!=='paid') return;
-    (inv.jobCosts||[]).forEach(c=>{ if(c.staffId===id && (parseFloat(c.amount)||0)>0) out.push({ ...c, invDate:inv.date, invNumber:inv.number, invId:inv.id, customer:inv.customerName||'' }); });
+    (inv.jobCosts||[]).forEach(c=>{ if(c.staffId===id && (parseFloat(c.amount)||0)>0 && !isSessionWageJobCost(inv,c)) out.push({ ...c, invDate:inv.date, invNumber:inv.number, invId:inv.id, customer:inv.customerName||'' }); });
   });
   return out.sort((a,b)=>(b.invDate||'').localeCompare(a.invDate||''));
 }
@@ -4147,7 +4275,72 @@ function staffPayText(s){
   if(s.type==='monthly') return 'حقوق ماهانه: ' + fmt(s.salary||0) + ' ت' + (s.payDay ? ' — روز ' + toPersianDigits(s.payDay) : '');
   const r = ctNum(s.rate);
   if(!r) return 'نرخ همکاری تعیین نشده';
-  return ({ fixed:'مبلغ ثابت: '+fmt(r)+' ت', hour:'ساعتی: '+fmt(r)+' ت', shot:'هر شات: '+fmt(r)+' ت', percent:'سهم: '+toPersianDigits(r)+'٪ از فاکتور' })[s.payType||'fixed'];
+  return ({ fixed:'مبلغ ثابت: '+fmt(r)+' ت', hour:'ساعتی: '+fmt(r)+' ت', shot:'هر شات: '+fmt(r)+' ت', session:'هر جلسه آفیش: '+fmt(r)+' ت', percent:'سهم: '+toPersianDigits(r)+'٪ از فاکتور' })[s.payType||'fixed'];
+}
+function staffBookingSessionsHTML(person){
+  const assigned=[];
+  bookings.filter(b=>!['cancelled','canceled'].includes(b.status)).forEach(b=>{
+    (b.crew||[]).forEach(m=>{ if(m.staffId===person.id) assigned.push({b,m}); });
+  });
+  assigned.sort((a,b)=>(b.b.date||'').localeCompare(a.b.date||''));
+  if(!assigned.length) return '<div class="note" style="margin-top:8px">هنوز آفیشی به این همکار اختصاص داده نشده است.</div>';
+  return `<div style="margin-top:10px;padding-top:9px;border-top:1px dashed var(--c-line,#ddd)"><b style="font-size:13px">جلسات آفیش و حضور</b><div class="small" style="margin:3px 0 7px">فقط آفیش‌هایی نمایش داده می‌شوند که این همکار واقعاً به آن‌ها اختصاص یافته است. ثبت حضور، طلب جلسه را در حساب کادر ایجاد می‌کند.</div>${assigned.map(({b,m})=>{
+    const crewKey=m.id||m.staffId;
+    const ledger=staffFinance.find(r=>r.staffId===person.id && r.sessionGenerated && r.bookingId===b.id && r.bookingCrewId===crewKey);
+    const attended=!!m.attended || !!ledger;
+    const canMark=person.payType==='session' && ctNum(person.rate)>0;
+    return `<div class="r-row" style="align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--c-line,#eee)"><div style="flex:1;min-width:0"><b style="font-size:12.5px">${escapeAttr(b.title||b.customerName||'آفیش')}</b><div class="small">${jalaliStr(b.date)} · ${toPersianDigits(b.start||'')} تا ${toPersianDigits(b.end||'')}</div>${m.role?`<div class="small">نقش: ${escapeAttr(m.role)}</div>`:''}${ledger?`<div class="small" style="color:var(--green,#187747);font-weight:700">طلب ثبت‌شده: ${fmt(ledger.amount)} تومان</div>`:''}</div><label style="display:flex;align-items:center;gap:5px;flex:0 0 auto;font-size:12px;max-width:130px"><input type="checkbox" class="st-session-attendance" data-staff="${escapeAttr(person.id)}" data-booking="${escapeAttr(b.id)}" data-crew="${escapeAttr(crewKey)}" ${attended?'checked':''} ${ledger?'disabled':''} ${!canMark?'disabled':''} style="width:auto"><span>${ledger?'طلب ثبت شد':attended?'حاضر بوده':'ثبت حضور'}</span></label></div>`;
+  }).join('')}</div>`;
+}
+function openStaffProjectCost(staffId, invoiceId='', costId=''){
+  const person = staff.find(x=>x.id===staffId);
+  if(!person) return;
+  const existingInvoice = invoices.find(x=>x.id===invoiceId);
+  const existingCost = existingInvoice && (existingInvoice.jobCosts||[]).find(x=>x.id===costId);
+  const eligibleInvoices = invoices.filter(x=>['final','paid'].includes(x.status) || x.id===invoiceId)
+    .sort((a,b)=>(b.number||0)-(a.number||0));
+  if(!eligibleInvoices.length){ alert('ابتدا فاکتور پروژه را ثبت قطعی کنید؛ سپس کارکرد کادر را به آن وصل کنید.'); return; }
+  const guessKind = (person.roles||[]).some(r=>/ادیت|تدوین/i.test(r)) ? 'editing' : ((person.roles||[]).some(r=>/هلی/i.test(r)) ? 'heli' : 'crew');
+  const ov=document.createElement('div'); ov.id='staffJobCostOverlay';
+  ov.innerHTML=`<div class="atelier-overlay"><div class="atelier-modal" role="dialog" aria-modal="true" aria-label="کارکرد پروژه کادر">
+    <div class="atelier-modal-head"><b>${existingCost?'ویرایش کارکرد':'ثبت کارکرد پروژه'} — ${escapeAttr(person.name)}</b><button type="button" id="sjcClose" class="btn-icon" aria-label="بستن">×</button></div>
+    <div class="box-gray">
+      <label class="small" style="display:block;margin-bottom:5px">پروژه / فاکتور</label>
+      <select id="sjcInvoice" style="width:100%;margin-bottom:9px">${eligibleInvoices.map(i=>`<option value="${i.id}" ${i.id===(invoiceId||eligibleInvoices[0].id)?'selected':''}>فاکتور #${invNumStr(i.number)} — ${escapeAttr(i.customerName||'بدون نام')}</option>`).join('')}</select>
+      <label class="small" style="display:block;margin-bottom:5px">نوع کارکرد</label>
+      <select id="sjcKind" style="width:100%;margin-bottom:9px">${[['crew','عوامل / کادر'],['editing','ادیت و تدوین'],['heli','هلی‌شات']].map(([k,l])=>`<option value="${k}" ${(existingCost?.kind||guessKind)===k?'selected':''}>${l}</option>`).join('')}</select>
+      <label class="small" style="display:block;margin-bottom:5px">شرح (اختیاری)</label>
+      <input id="sjcTitle" value="${escapeAttr(existingCost?.title||person.name)}" placeholder="شرح کارکرد" style="width:100%;margin-bottom:9px">
+      <label class="small" style="display:block;margin-bottom:5px">مبلغ به تومان</label>
+      <input id="sjcAmount" inputmode="decimal" value="${escapeAttr(existingCost?.amount||'')}" placeholder="مثلاً ۱.۰۰۰.۰۰۰" style="width:100%;margin-bottom:9px">
+      <label class="row-flex" style="align-items:center;gap:8px"><input id="sjcPaid" type="checkbox" ${existingCost?.paid?'checked':''} style="width:auto"><span>این مبلغ پرداخت شده است</span></label>
+    </div>
+    <button type="button" id="sjcSave" class="btn btn-red" style="width:100%;margin-top:10px">${existingCost?'ذخیره تغییرات':'ثبت کارکرد'}</button>
+  </div></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove();
+  ov.querySelector('#sjcClose').onclick=close;
+  ov.addEventListener('click',e=>{ if(e.target===ov.firstElementChild) close(); });
+  ov.querySelector('#sjcSave').onclick=()=>{
+    const targetId=ov.querySelector('#sjcInvoice').value;
+    const inv=invoices.find(x=>x.id===targetId);
+    const amount=ctNum(ov.querySelector('#sjcAmount').value);
+    if(!inv){ alert('فاکتور انتخاب‌شده پیدا نشد.'); return; }
+    if(!(amount>0)){ alert('مبلغ کارکرد باید بیشتر از صفر باشد.'); return; }
+    if(existingCost && targetId!==invoiceId){ alert('برای جلوگیری از جابه‌جایی ناخواسته سوابق مالی، فاکتور یک کارکرد موجود را نمی‌توان تغییر داد. ابتدا آن را از فاکتور اصلی اصلاح کنید.'); return; }
+    if(!Array.isArray(inv.jobCosts)) inv.jobCosts=[];
+    if(existingCost){
+      existingCost.kind=ov.querySelector('#sjcKind').value;
+      existingCost.title=ov.querySelector('#sjcTitle').value.trim()||person.name;
+      existingCost.amount=String(amount);
+      existingCost.staffId=staffId;
+      existingCost.paid=ov.querySelector('#sjcPaid').checked;
+    } else {
+      inv.jobCosts.push({id:ctUid(),kind:ov.querySelector('#sjcKind').value,title:ov.querySelector('#sjcTitle').value.trim()||person.name,amount:String(amount),vendorId:'',paid:ov.querySelector('#sjcPaid').checked,staffId});
+    }
+    saveJSON(STORE_KEYS.invoices,invoices);
+    close(); render();
+  };
 }
 function renderStaffForm(){
   const d = staffDraft, monthly = d.type==='monthly';
@@ -4163,7 +4356,7 @@ function renderStaffForm(){
       ${monthly ? `
         <div class="row-flex" style="margin-bottom:8px"><input id="stSalary" inputmode="decimal" placeholder="حقوق ماهانه (تومان)" value="${escapeAttr(d.salary)}" style="flex:2"><input id="stPayDay" inputmode="numeric" placeholder="روز پرداخت" value="${escapeAttr(d.payDay)}" style="flex:1"></div>`
       : `
-        <div class="row-flex" style="margin-bottom:8px"><select id="stPayType" style="flex:1">${Object.keys(STAFF_PAY).map(k=>`<option value="${k}" ${(d.payType||'fixed')===k?'selected':''}>${STAFF_PAY[k]}</option>`).join('')}</select><input id="stRate" inputmode="decimal" placeholder="${d.payType==='percent'?'درصد':'مبلغ (تومان)'}" value="${escapeAttr(d.rate)}" style="flex:1"></div>`}
+        <div class="row-flex" style="margin-bottom:8px"><select id="stPayType" style="flex:1">${Object.keys(STAFF_PAY).map(k=>`<option value="${k}" ${(d.payType||'fixed')===k?'selected':''}>${STAFF_PAY[k]}</option>`).join('')}</select><input id="stRate" inputmode="decimal" placeholder="${d.payType==='percent'?'درصد':d.payType==='session'?'مبلغ هر جلسه (تومان)':'مبلغ (تومان)'}" value="${escapeAttr(d.rate)}" style="flex:1"></div>`}
       ${(d.roles||[]).includes('ادیتور') ? `<input id="stMaxLoad" inputmode="numeric" placeholder="حداکثر پروژه هم‌زمان در دست (پیش‌فرض ۳)" value="${escapeAttr(d.maxLoad||'')}" style="margin-bottom:8px">` : ''}
       <input id="stNote" placeholder="یادداشت (اختیاری)" value="${escapeAttr(d.note)}" style="margin-bottom:8px">
       <label class="row-flex" style="align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="stActive" ${d.active!==false?'checked':''} style="width:auto"><span class="small">فعال (در آفیش‌ها و فاکتورها قابل انتخاب باشد)</span></label>
@@ -4188,7 +4381,7 @@ function renderStaffTab(){
         <div class="card-sub">${(s.roles||[]).map(escapeAttr).join(' • ') || 'نقش تعیین نشده'}${s.phone? ' — '+escapeAttr(s.phone):''}</div>
         <div class="card-sub">${staffPayText(s)}</div>
         ${s.type==='monthly' ? `<div class="r-row" style="align-items:center;margin-top:4px"><span style="font-size:12.5px">${staffPaidThisMonth(s)?'✅ حقوق این ماه پرداخت شد':(staffPaidAmount(s)>0?'◐ بخشی پرداخت شده — مانده '+fmt(staffRemaining(s))+' ت':'⬜ حقوق این ماه پرداخت نشده')}</span>${staffPaidThisMonth(s)?'':`<button class="btn btn-outline st-pay" data-id="${s.id}" style="font-size:11.5px;padding:3px 10px;min-height:28px">ثبت پرداخت</button>`}</div>`
-          : `<div class="card-sub" style="${owed>0?'color:var(--red);font-weight:700':''}">${linked.length ? 'کارکرد ثبت‌شده: '+toPersianDigits(linked.length)+' مورد' : 'کارکردی روی فاکتورها ثبت نشده'}${owed>0 ? ' — مانده طلب: '+fmt(owed)+' ت' : ''}</div>`}
+          : `<div class="card-sub" style="${owed>0?'color:var(--red);font-weight:700':''}">${linked.length ? 'کارکرد ثبت‌شده: '+toPersianDigits(linked.length)+' مورد' : 'کارکردی روی فاکتورها ثبت نشده'}${owed>0 ? ' — مانده طلب: '+fmt(owed)+' ت' : ''}</div><button class="btn btn-outline st-add-jobcost" data-id="${s.id}" style="width:100%;margin-top:7px">＋ ثبت کارکرد پروژه برای این همکار</button>`}
         ${((s.roles||[]).includes('ادیتور') || editorLoad(s.id)>0) ? `<div class="r-row" style="align-items:center;margin-top:4px"><span style="font-size:12.5px;${editorLoad(s.id)>=editorMax(s)?'color:var(--red);font-weight:700':''}">${editorLoad(s.id)>=editorMax(s)?'⚠ ':''}ادیت: ${toPersianDigits(editorLoad(s.id))} از ${toPersianDigits(editorMax(s))} پروژه</span><button class="btn btn-outline st-load" data-id="${s.id}" style="font-size:11.5px;padding:3px 10px;min-height:28px">پروژه‌ها</button></div>` : ''}
         <div class="row-flex" style="margin-top:8px;gap:6px">
           <button class="btn btn-outline st-open" data-id="${s.id}" style="flex:1;font-size:12px">${open?'بستن ریز':'ریز'}</button><button class="btn btn-outline st-payslip" data-id="${s.id}" style="flex:1;font-size:12px">فیش حساب</button>
@@ -4196,8 +4389,9 @@ function renderStaffTab(){
           <button class="btn-icon st-del" data-id="${s.id}">×</button>
         </div>
         ${open ? `<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #E5E5E5">
-          ${s.type==='project' ? (linked.length ? linked.map(c=>`<div class="r-row" style="align-items:center;padding:3px 0;font-size:12.5px"><span>فاکتور #${invNumStr(c.invNumber)} ${escapeAttr(c.customer)} — ${jobKindLabel(c.kind)}<br><b>${fmt(c.amount)} ت</b></span><button class="btn ${c.paid?'btn-outline':'btn-black'} st-toggle-paid" data-inv="${c.invId}" data-id="${c.id}" style="font-size:11px;padding:3px 8px;min-height:28px">${c.paid?'پرداخت شد ✓':'ثبت پرداخت'}</button></div>`).join('') : '')
+          ${s.type==='project' ? (linked.length ? linked.map(c=>`<div class="r-row" style="align-items:center;padding:5px 0;font-size:12.5px;gap:6px"><span style="flex:1;min-width:0">فاکتور #${invNumStr(c.invNumber)} ${escapeAttr(c.customer)} — ${jobKindLabel(c.kind)}<br><b>${fmt(c.amount)} ت</b></span><button class="btn btn-outline st-edit-jobcost" data-staff="${s.id}" data-inv="${c.invId}" data-id="${c.id}" style="font-size:11px;padding:3px 8px;min-height:28px">ویرایش</button><button class="btn ${c.paid?'btn-outline':'btn-black'} st-toggle-paid" data-inv="${c.invId}" data-id="${c.id}" style="font-size:11px;padding:3px 8px;min-height:28px">${c.paid?'پرداخت شد ✓':'ثبت پرداخت'}</button></div>`).join('') : '')
           : (paidList.length ? paidList.map(e=>`<div class="r-row" style="padding:3px 0;font-size:12.5px"><span>${jalaliStr(e.date)}</span><span>${fmt(e.amount)} ت</span></div>`).join('') : '<p class="note" style="margin:0">هنوز پرداختی ثبت نشده.</p>')}
+          ${s.type==='project' && s.payType==='session' ? staffBookingSessionsHTML(s) : ''}
         </div>` : ''}
       </div>`;
     }).join('')}`;
@@ -4209,7 +4403,9 @@ function bindStaffEvents(){
   document.querySelectorAll('.st-edit').forEach(el=> el.addEventListener('click', e=>{ const x = staff.find(q=>q.id===e.currentTarget.dataset.id); if(x){ staffDraft = JSON.parse(JSON.stringify(x)); staffEditingId = x.id; staffView = 'form'; render(); } }));
   document.querySelectorAll('.st-payslip').forEach(el=> el.addEventListener('click', e=> openStaffPayslip(e.currentTarget.dataset.id)));
   document.querySelectorAll('.st-load').forEach(el=> el.addEventListener('click', e=>{ editFilter = e.currentTarget.dataset.id; navBackStack.push('staff'); tab = 'editing'; render(); }));
-  document.querySelectorAll('.st-pay').forEach(el=> el.addEventListener('click', e=>{ const x = staff.find(q=>q.id===e.currentTarget.dataset.id); if(x) openQuickExpense({ scope:'business', title:'حقوق ' + x.name, amount: staffRemaining(x), staffId: x.id }); }));
+  document.querySelectorAll('.st-pay').forEach(el=> el.addEventListener('click', e=>{ const x = staff.find(q=>q.id===e.currentTarget.dataset.id); if(x) openStaffFinance(x.id,'','salary',staffRemaining(x)); }));
+  document.querySelectorAll('.st-add-jobcost').forEach(el=>el.addEventListener('click',e=>openStaffProjectCost(e.currentTarget.dataset.id)));
+  document.querySelectorAll('.st-edit-jobcost').forEach(el=>el.addEventListener('click',e=>openStaffProjectCost(e.currentTarget.dataset.staff,e.currentTarget.dataset.inv,e.currentTarget.dataset.id)));
   document.querySelectorAll('.st-toggle-paid').forEach(el=> el.addEventListener('click', e=>{
     const inv = invoices.find(i=>i.id===e.currentTarget.dataset.inv); const c = inv && (inv.jobCosts||[]).find(x=>x.id===e.currentTarget.dataset.id);
     if(!c) return; c.paid = !c.paid; saveJSON(STORE_KEYS.invoices, invoices); render();
@@ -4220,6 +4416,24 @@ function bindStaffEvents(){
     if(used){ if(!confirm('این فرد در فاکتورها، آفیش‌ها یا پرداخت‌ها استفاده شده و حذفش تاریخچه را خراب می‌کند. به‌جای حذف «غیرفعال» شود؟')) return; const x = staff.find(q=>q.id===id); if(x) x.active = false; }
     else { if(!confirm('این فرد حذف شود؟')) return; staff = staff.filter(q=>q.id!==id); }
     saveJSON(STORE_KEYS.staff, staff); syncResources(); render();
+  }));
+  document.querySelectorAll('.st-session-attendance').forEach(el=>el.addEventListener('change',e=>{
+    const input=e.currentTarget, staffId=input.dataset.staff, bookingId=input.dataset.booking, crewKey=input.dataset.crew;
+    const person=staff.find(x=>x.id===staffId), booking=bookings.find(x=>x.id===bookingId);
+    const member=booking && (booking.crew||[]).find(m=>(m.id||m.staffId)===crewKey && m.staffId===staffId);
+    if(!person||!booking||!member){alert('رابطه همکار و آفیش پیدا نشد؛ اطلاعات تغییری نکرد.');render();return;}
+    const existing=staffFinance.find(r=>r.staffId===staffId && r.sessionGenerated && r.bookingId===bookingId && r.bookingCrewId===crewKey);
+    if(input.checked){
+      if(existing){member.attended=true;saveBookings();render();return;}
+      const rate=ctNum(person.rate);
+      if(person.type!=='project'||person.payType!=='session'||!(rate>0)){alert('ابتدا نوع پرداخت همکار را «هر جلسه آفیش» و مبلغ هر جلسه را در پرونده کادر تعیین کنید.');render();return;}
+      member.attended=true;
+      staffFinance.push({id:ctUid(),staffId,type:'receivable',amount:String(rate),date:booking.date||todayStr(),time:booking.start||'',note:'حق‌الزحمه جلسه آفیش — '+(booking.title||booking.customerName||'آفیش'),bookingId,bookingCrewId:crewKey,sessionGenerated:true,rateSnapshot:String(rate)});
+      saveBookings();saveJSON(STAFF_FINANCE_KEY,staffFinance);render();
+    } else {
+      if(existing){alert('برای حفظ سابقه مالی، حضور دارای طلب ثبت‌شده را از اینجا نمی‌توان لغو کرد. ابتدا رکورد طلب را از حساب و پرداخت بررسی کنید.');render();return;}
+      member.attended=false;saveBookings();render();
+    }
   }));
   if(staffView!=='form' || !staffDraft) return;
   const d = staffDraft;
@@ -4382,7 +4596,7 @@ function subnavHTML(){
   let items = null;
   if(['ops','editing','suppliers','rentals'].includes(tab)) items = ops;
   else if(tab==='bookings' && bkView!=='form') items = ops;
-  else if(tab==='invoice' && invTab!=='edit') items = proj;
+  else if(tab==='invoice' && invTab!=='edit') items = null;
   else if(tab==='contracts' && ctView==='list') items = proj;
   if(!items) return '';
   return `<div class="mode-toggle" style="margin-bottom:12px">${items.map(([k,l])=>`<button class="btn ${tab===k?'btn-black':'btn-outline'} subnav-btn" data-tab="${k}" style="flex:1;font-size:12.5px;padding:8px 4px">${l}</button>`).join('')}</div>`;
@@ -4503,7 +4717,7 @@ function renderProjectTab(){
       ${(inv.payments||[]).length ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed #E5E5E5">${inv.payments.map(p=>`<div class="r-row" style="padding:3px 0;font-size:12.5px"><span>${jalaliStr(p.date)}${p.kind&&PAY_KINDS[p.kind]?' — '+PAY_KINDS[p.kind]:''}</span><span>${fmt(p.amount)} ت</span></div>`).join('')}</div>` : ''}`)}
 
     ${sec('📊 هزینه‌ها و سود', `
-      ${(inv.jobCosts||[]).length ? `<div style="margin:6px 0">${inv.jobCosts.map(c=>`<div class="r-row" style="padding:3px 0;font-size:12.5px"><span>${jobKindLabel(c.kind)}${c.title? ' — '+escapeAttr(c.title):''}${c.staffId? ' ('+escapeAttr(staffName(c.staffId))+')':''}</span><span>${fmt(c.amount)} ت ${c.paid?'✓':''}</span></div>`).join('')}</div>` : ''}
+      ${(inv.jobCosts||[]).filter(c=>!isSessionWageJobCost(inv,c)).length ? `<div style="margin:6px 0">${(inv.jobCosts||[]).filter(c=>!isSessionWageJobCost(inv,c)).map(c=>`<div class="r-row" style="padding:3px 0;font-size:12.5px"><span>${jobKindLabel(c.kind)}${c.title? ' — '+escapeAttr(c.title):''}${c.staffId? ' ('+escapeAttr(staffName(c.staffId))+')':''}</span><span>${fmt(c.amount)} ت ${c.paid?'✓':''}</span></div>`).join('')}</div>` : ''}
       ${renderInvoiceCostPanel(inv)}
       <button id="prjCostAdd" class="btn btn-outline" style="width:100%">💸 ثبت هزینه برای این پروژه</button>`)}
 
@@ -4785,10 +4999,14 @@ function bindClubEvents(){
 }
 
 function renderJobCostRow(c, idx){
+  // هزینه‌های وابسته به کادر فقط از پرونده کادر مدیریت می‌شوند؛ رکوردهای قدیمی قابل مشاهده می‌مانند.
+  const staffKinds = ['crew','editing','heli'];
+  const isStaffLinked = !!c.staffId;
   return `<div class="card" style="margin-bottom:6px" data-jobcost="${idx}">
+    ${isStaffLinked ? `<div class="note" style="margin-bottom:6px">این کارکرد به پرونده کادر متصل است و فقط از بخش داخلی کادر ویرایش می‌شود.</div>` : ''}
     <div class="row-flex" style="margin-bottom:6px">
-      <select class="jc-kind" data-idx="${idx}" style="flex:1">${JOB_COST_KINDS.filter(k=>k[0]!=='rental' || c.kind==='rental').map(k=>`<option value="${k[0]}" ${c.kind===k[0]?'selected':''}>${k[1]}</option>`).join('')}</select>
-      <button class="btn-icon jc-remove" data-idx="${idx}">×</button>
+      <select class="jc-kind" data-idx="${idx}" style="flex:1" ${isStaffLinked?'disabled':''}>${JOB_COST_KINDS.filter(k=>(k[0]!=='rental' || c.kind==='rental') && (!staffKinds.includes(k[0]) || c.kind===k[0])).map(k=>`<option value="${k[0]}" ${c.kind===k[0]?'selected':''}>${k[1]}</option>`).join('')}</select>
+      ${isStaffLinked ? '' : `<button class="btn-icon jc-remove" data-idx="${idx}">×</button>`}
     </div>
     ${c.kind==='depreciation' ? (()=>{ const e = equipment.find(x=>x.id===c.equipmentId); return `
       <div class="row-flex" style="margin-bottom:6px">
@@ -4796,21 +5014,21 @@ function renderJobCostRow(c, idx){
         <input class="jc-qty" data-idx="${idx}" inputmode="decimal" placeholder="${e?('تعداد '+EQUIP_UNITS[e.lifeUnit]):'مقدار'}" value="${escapeAttr(c.qty||'')}" style="flex:1">
       </div>
       <div class="card-sub jc-dep-amount" data-idx="${idx}">هزینه استهلاک: ${fmt(parseFloat(c.amount)||0)} تومان${equipment.length===0?' — اول تجهیزات را در تب «تجهیزات و استهلاک» ثبت کن':''}</div>`; })() : `
-    <input class="jc-title" data-idx="${idx}" placeholder="شرح (مثلا سونی A7S III، هلی‌شات، آقای رضایی)" value="${escapeAttr(c.title)}" style="margin-bottom:6px">
+    <input class="jc-title" data-idx="${idx}" placeholder="شرح (مثلا سونی A7S III، هلی‌شات، آقای رضایی)" value="${escapeAttr(c.title)}" style="margin-bottom:6px" ${isStaffLinked?'readonly':''}>
     ${['crew','editing','heli'].includes(c.kind) ? (()=>{ const st = staff.find(x=>x.id===c.staffId); const needQty = st && (st.payType==='hour' || st.payType==='shot') && st.type!=='monthly';
       return `<div class="row-flex" style="margin-bottom:6px">
-        <select class="jc-staff" data-idx="${idx}" style="flex:2"><option value="">— انتخاب فرد از کارکنان (اختیاری) —</option>${staff.filter(x=>x.active!==false || x.id===c.staffId).map(x=>`<option value="${x.id}" ${c.staffId===x.id?'selected':''}>${escapeAttr(x.name)}${x.roles && x.roles.length ? ' — '+escapeAttr(x.roles[0]) : ''}</option>`).join('')}</select>
-        ${needQty ? `<input class="jc-sqty" data-idx="${idx}" inputmode="decimal" placeholder="تعداد ${st.payType==='hour'?'ساعت':'شات'}" value="${escapeAttr(c.sqty||'')}" style="flex:1">` : ''}
+        <select class="jc-staff" data-idx="${idx}" style="flex:2" ${isStaffLinked?'disabled':''}><option value="">— انتخاب فرد از کارکنان (اختیاری) —</option>${staff.filter(x=>x.active!==false || x.id===c.staffId).map(x=>`<option value="${x.id}" ${c.staffId===x.id?'selected':''}>${escapeAttr(x.name)}${x.roles && x.roles.length ? ' — '+escapeAttr(x.roles[0]) : ''}</option>`).join('')}</select>
+        ${needQty ? `<input class="jc-sqty" data-idx="${idx}" ${isStaffLinked?'readonly':''} inputmode="decimal" placeholder="تعداد ${st.payType==='hour'?'ساعت':'شات'}" value="${escapeAttr(c.sqty||'')}" style="flex:1">` : ''}
       </div>`; })() : ''}
     <div class="row-flex" style="margin-bottom:6px">
-      <input inputmode="decimal" class="jc-amount" data-idx="${idx}" placeholder="هزینه (تومان)" value="${escapeAttr(c.amount)}" style="flex:1">
-      <select class="jc-vendor" data-idx="${idx}" style="flex:1">
+      <input inputmode="decimal" class="jc-amount" data-idx="${idx}" placeholder="هزینه (تومان)" value="${escapeAttr(c.amount)}" style="flex:1" ${isStaffLinked?'readonly':''}>
+      <select class="jc-vendor" data-idx="${idx}" style="flex:1" ${isStaffLinked?'disabled':''}>
         <option value="">— بدون اجاره‌دهنده —</option>
         ${suppliers.map(sp=>`<option value="${sp.id}" ${c.vendorId===sp.id?'selected':''}>${escapeAttr(sp.name)}</option>`).join('')}
       </select>
     </div>
     <label class="row-flex" style="align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" class="jc-paid" data-idx="${idx}" ${c.paid?'checked':''} style="width:auto">
+      <input type="checkbox" class="jc-paid" data-idx="${idx}" ${c.paid?'checked':''} ${isStaffLinked?'disabled':''} style="width:auto">
       <span class="small">پرداخت شده</span>
     </label>`}
   </div>`;
@@ -5082,7 +5300,159 @@ function renderInvoiceEditTab(){
   `;
 }
 function renderInvoiceTab(){
-  return invTab==='edit' ? renderInvoiceEditTab() : renderInvoiceListTab();
+  if(invTab==='edit') return renderInvoiceEditTab();
+  if(invTab==='operations') return renderInvoiceOperations();
+  return renderProjectHub();
+}
+function renderInvoiceOperations(){
+  const inv=invoices.find(x=>x.id===invOperationId);
+  if(!inv){ invTab='list'; invOperationId=null; return renderProjectHub(); }
+  const t=computeInvoiceTotals(inv);
+  const booking=bookings.find(b=>b.invoiceId===inv.id || b.id===inv.shootBookingId);
+  const contract=contracts.find(c=>c.id===inv.contractId || c.invoiceId===inv.id);
+  return `<button type="button" class="btn btn-outline" id="invOpsBack" style="width:100%;margin-bottom:12px">← بازگشت به پرونده‌ها</button>
+    <div class="card"><div class="card-title"><span>عملیات فاکتور ثبت‌شده</span><span class="badge-activity">${escapeAttr(STATUS_LABELS[inv.status]||inv.status)}</span></div>
+    <div class="card-sub">فاکتور #${invNumStr(inv.number)} · ${escapeAttr(inv.customerName||'بدون نام')} · ${jalaliStr(inv.date)}</div>
+    <div class="r-row"><span>مبلغ کل</span><b>${fmt(t.grandTotal)} تومان</b></div>
+    <div class="grid2" style="margin-top:12px;gap:8px"><button class="btn btn-outline" id="invOpsPreview">پیش‌نمایش</button><button class="btn btn-black" id="invOpsJpg">خروجی تصویر JPG</button><button class="btn btn-outline" id="invOpsPrint">چاپ</button><button class="btn btn-outline" id="invOpsShare">اشتراک‌گذاری</button><button class="btn btn-outline" id="invOpsEdit">ویرایش فاکتور</button><button class="btn btn-outline" id="invOpsContract">${contract?'ویرایش قرارداد مرتبط':'ساخت قرارداد از فاکتور'}</button>${booking?'<button class="btn btn-outline" id="invOpsBooking">مشاهده آفیش</button>':''}</div></div>`;
+}
+function bindInvoiceOperationsEvents(){
+  const inv=invoices.find(x=>x.id===invOperationId); if(!inv) return;
+  document.getElementById('invOpsBack')?.addEventListener('click',()=>{invTab='list';invOperationId=null;projectHubSection=null;projectHubCustomerId=null;projectHubDocType=null;render();});
+  document.getElementById('invOpsPreview')?.addEventListener('click',()=>previewInvoice(inv));
+  document.getElementById('invOpsJpg')?.addEventListener('click',e=>exportInvoiceJPG(inv,e.currentTarget));
+  document.getElementById('invOpsPrint')?.addEventListener('click',()=>printInvoice(inv));
+  document.getElementById('invOpsShare')?.addEventListener('click',e=>shareInvoiceJPG(inv,e.currentTarget));
+  document.getElementById('invOpsEdit')?.addEventListener('click',()=>{loadInvoiceForEdit(inv.id);invTab='edit';render();});
+  document.getElementById('invOpsContract')?.addEventListener('click',()=>{const c=contracts.find(x=>x.id===inv.contractId||x.invoiceId===inv.id);if(c){ctDraft=ctClone(c);ctEditingId=c.id;ctView='edit';}else contractFromInvoice(inv);tab='contracts';render();});
+  document.getElementById('invOpsBooking')?.addEventListener('click',()=>{const b=bookings.find(x=>x.invoiceId===inv.id||x.id===inv.shootBookingId);if(!b)return;editingBookingId=b.id;bkDraft=ctClone(b);bkView='form';bkReturnTab='invoice';tab='bookings';render();});
+}
+function projectHubNormalize(v){ return String(v||'').trim().replace(/\s+/g,' ').toLocaleLowerCase('fa'); }
+function projectHubGroups(){
+  const groups=[];
+  const byCustomerId=new Map();
+  const byIdentity=new Map();
+  const addGroup=(customer, inv=null)=>{
+    const id=customer?.id || '';
+    const name=(customer?.name || inv?.customerName || 'بدون نام').trim();
+    const phone=(customer?.phone || inv?.customerPhone || '').trim();
+    const identity=projectHubNormalize(name)+'|'+toLatinDigits(phone);
+    let g=(id && byCustomerId.get(id)) || byIdentity.get(identity);
+    if(!g){
+      g={key:id || ('identity:'+identity), customer:customer||{id:'',name,phone}, name, phone, invoices:[], contracts:[], bookings:[]};
+      groups.push(g); byIdentity.set(identity,g); if(id) byCustomerId.set(id,g);
+    } else {
+      if(!g.customer?.id && id){ g.customer=customer; g.key=id; byCustomerId.set(id,g); }
+      if(!g.name || g.name==='بدون نام') g.name=name;
+      if(!g.phone) g.phone=phone;
+      if(id) byCustomerId.set(id,g);
+      byIdentity.set(identity,g);
+    }
+    if(inv && !g.invoices.some(x=>x.id===inv.id)) g.invoices.push(inv);
+    return g;
+  };
+  customers.forEach(c=>addGroup(c));
+  invoices.forEach(inv=>{
+    let g=inv.customerId ? byCustomerId.get(inv.customerId) : null;
+    if(!g){
+      const nm=projectHubNormalize(inv.customerName), ph=toLatinDigits(String(inv.customerPhone||''));
+      g=groups.find(x=>projectHubNormalize(x.name)===nm && (!ph || !x.phone || toLatinDigits(x.phone)===ph));
+    }
+    if(!g) g=addGroup(null,inv); else if(!g.invoices.some(x=>x.id===inv.id)) g.invoices.push(inv);
+    if(inv.customerId){ g.key=inv.customerId; byCustomerId.set(inv.customerId,g); }
+  });
+  const matchesGroup=(name,phone,cid)=>{
+    if(cid && byCustomerId.has(cid)) return byCustomerId.get(cid);
+    const nm=projectHubNormalize(name), ph=toLatinDigits(String(phone||''));
+    return groups.find(x=>nm && projectHubNormalize(x.name)===nm && (!ph || !x.phone || toLatinDigits(x.phone)===ph));
+  };
+  contracts.forEach(ct=>{
+    const inv= invoices.find(i=>i.id===ct.invoiceId);
+    let g=inv ? matchesGroup(inv.customerName,inv.customerPhone,inv.customerId) : matchesGroup(ct.customerName,ct.customerPhone,ct.customerId);
+    if(!g && ct.customerName) g=addGroup({id:ct.customerId||'',name:ct.customerName,phone:ct.customerPhone||''},null);
+    if(g && !g.contracts.some(x=>x.id===ct.id)) g.contracts.push(ct);
+  });
+  bookings.forEach(b=>{
+    const inv=invoices.find(i=>i.id===b.invoiceId);
+    let g=inv ? matchesGroup(inv.customerName,inv.customerPhone,inv.customerId) : matchesGroup(b.customerName,'',b.customerId);
+    if(!g && b.customerName) g=addGroup({id:b.customerId||'',name:b.customerName,phone:''},null);
+    if(g && !g.bookings.some(x=>x.id===b.id)) g.bookings.push(b);
+  });
+  return groups.filter(g=>g.name && g.name!=='بدون نام' || g.invoices.length || g.contracts.length || g.bookings.length)
+    .map((g,index)=>{
+      g.invoices.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      g.contracts.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      g.bookings.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      const dates=[...g.invoices.map(x=>x.date),...g.contracts.map(x=>x.date),...g.bookings.map(x=>x.date)].filter(Boolean).sort();
+      const activities=[...new Set(g.invoices.map(invoiceActivityLabelCombined).filter(Boolean))];
+      if(!activities.length) activities.push(...new Set(g.contracts.map(x=>x.title).filter(Boolean)));
+      const primaryInv=g.invoices.slice().sort((a,b)=>(a.number||0)-(b.number||0))[0];
+      g.displayNumber=g.customer?.fileNumber || g.customer?.fileNo || g.customer?.number || (primaryInv ? primaryInv.number : (index+1));
+      g.displayDate=dates.length?dates[dates.length-1]:'';
+      g.services=activities.slice(0,3).join('، ') || (g.invoices.length||g.contracts.length||g.bookings.length ? 'خدمت ثبت‌شده' : 'هنوز خدمتی ثبت نشده');
+      return g;
+    });
+}
+function projectHubCustomerByKey(key){ return projectHubGroups().find(g=>String(g.key)===String(key)); }
+function renderProjectHub(){
+  const sections=[['invoice','invoice','فاکتورها'],['contracts','contracts','قراردادها'],['customers','customers','پرونده مشتریان']];
+  const nav=`<div class="project-hub-nav" role="group" aria-label="بخش‌های پروژه">${sections.map(([key,ic,label])=>`<button type="button" class="project-hub-tab ${projectHubSection===key?'is-active':''}" data-project-section="${key}" aria-pressed="${projectHubSection===key?'true':'false'}"><span class="project-hub-tab-icon">${navIcon(NAV_ICONS[ic])}</span><span>${label}</span></button>`).join('')}</div>`;
+  if(!projectHubSection) return `${nav}<div class="project-hub-empty"><div class="project-hub-empty-icon">${navIcon(NAV_ICONS.invoice)}</div><b>بخش موردنظر را انتخاب کنید</b><span>فاکتورها، قراردادها یا پرونده مشتریان</span></div>`;
+  if(projectHubSection==='invoice') return `${nav}${renderInvoiceListTab()}`;
+  if(projectHubSection==='contracts') return `${nav}${renderProjectHubContracts()}`;
+  if(projectHubSection==='customers') return `${nav}${renderProjectHubCustomers()}`;
+  return nav;
+}
+function renderProjectHubContracts(){
+  const q=projectHubNormalize(projectHubSearch);
+  const list=contracts.slice().sort((a,b)=>(b.number||0)-(a.number||0)).filter(c=>!q || [c.customerName,c.title,c.number,c.date,c.customerPhone].some(v=>projectHubNormalize(v).includes(q)));
+  return `<input id="projectHubSearch" type="search" value="${escapeAttr(projectHubSearch)}" placeholder="جست‌وجوی شماره قرارداد، نام مشتری یا خدمت" class="project-hub-search"><button id="ctNewBtn" class="btn btn-red" style="width:100%;margin-bottom:10px">＋ قرارداد جدید</button>${list.length?list.map(c=>{const t=contractTotals(c),inv=invoices.find(i=>i.id===c.invoiceId);return `<div class="card project-hub-doc-card"><div class="card-title"><span>قرارداد #${invNumStr(c.number)} — ${escapeAttr(c.customerName||'بدون نام')}</span><span class="badge-activity">${escapeAttr(CT_STATUS[c.status]||'ثبت‌شده')}</span></div><div class="card-sub">${jalaliStr(c.date)}${c.title?' · '+escapeAttr(c.title):''}</div><div class="r-row"><span>مبلغ قرارداد</span><b>${fmt(t.grand)} تومان</b></div><div class="project-hub-actions"><button class="btn btn-outline ct-edit" data-id="${c.id}">ویرایش</button><button class="btn btn-outline ct-preview" data-id="${c.id}">پیش‌نمایش</button><button class="btn btn-outline ct-print" data-id="${c.id}">چاپ</button><button class="btn btn-black ct-jpg" data-id="${c.id}">خروجی JPG</button>${inv?`<button class="btn btn-outline ct-open-inv" data-id="${inv.id}">فاکتور مرتبط</button>`:''}</div></div>`}).join(''):'<p class="empty">قراردادی با این مشخصات پیدا نشد.</p>'}`;
+}
+function renderProjectHubCustomers(){
+  if(projectHubCustomerId){
+    const g=projectHubCustomerByKey(projectHubCustomerId);
+    if(!g){ projectHubCustomerId=null; projectHubDocType=null; }
+    else return renderProjectHubCustomerFile(g);
+  }
+  const q=projectHubNormalize(projectHubSearch);
+  const groups=projectHubGroups().filter(g=>!q || [g.displayNumber,g.name,g.phone,g.displayDate,g.services].some(v=>projectHubNormalize(v).includes(q))).sort((a,b)=>(b.displayDate||'').localeCompare(a.displayDate||''));
+  return `<input id="projectHubSearch" type="search" value="${escapeAttr(projectHubSearch)}" placeholder="جست‌وجوی شماره پرونده، نام مشتری، تاریخ یا خدمت" class="project-hub-search">${groups.length?groups.map(g=>`<div class="card project-customer-card"><div class="project-customer-meta"><div><small>شماره پرونده</small><b>#${toPersianDigits(g.displayNumber)}</b></div><div><small>نام و نام خانوادگی</small><b>${escapeAttr(g.name)}</b></div><div><small>تاریخ</small><b>${g.displayDate?jalaliStr(g.displayDate):'ثبت نشده'}</b></div><div class="project-customer-service"><small>خدمات</small><b>${escapeAttr(g.services)}</b></div></div><button type="button" class="btn btn-black project-customer-open" data-customer-key="${escapeAttr(g.key)}">پرونده <span aria-hidden="true">←</span></button></div>`).join(''):'<p class="empty">پرونده‌ای با این مشخصات پیدا نشد.</p>'}`;
+}
+function renderProjectHubCustomerFile(g){
+  const tabs=[['contracts','قرارداد'],['bookings','آفیش'],['invoice','فاکتور']];
+  let rows='';
+  if(projectHubDocType==='contracts'){
+    rows=g.contracts.length?g.contracts.map(c=>`<div class="card project-hub-doc-card"><div class="card-title"><span>قرارداد #${invNumStr(c.number)}</span><span class="badge-activity">${escapeAttr(CT_STATUS[c.status]||'ثبت‌شده')}</span></div><div class="card-sub">${jalaliStr(c.date)}${c.title?' · '+escapeAttr(c.title):''}</div><div class="project-hub-actions"><button class="btn btn-outline hub-ct-edit" data-id="${c.id}">ویرایش</button><button class="btn btn-outline hub-ct-preview" data-id="${c.id}">پیش‌نمایش</button></div></div>`).join(''):'<p class="empty">قراردادی برای این مشتری ثبت نشده است.</p>';
+  } else if(projectHubDocType==='bookings'){
+    rows=g.bookings.length?g.bookings.map(b=>`<div class="card project-hub-doc-card"><div class="card-title"><span>${escapeAttr(b.title||b.customerName||'آفیش')}</span><span class="badge-activity">${escapeAttr((typeof BK_STATUS!=='undefined'&&BK_STATUS[b.status])||b.status||'ثبت‌شده')}</span></div><div class="card-sub">${jalaliStr(b.date)} · ${bkTimeStr(b)} · ${escapeAttr(BOOKING_PLACES[b.place]||'')}</div><button class="btn btn-outline hub-bk-edit" data-id="${b.id}" style="width:100%;margin-top:8px">ویرایش آفیش</button></div>`).join(''):'<p class="empty">آفیشی برای این مشتری ثبت نشده است.</p>';
+  } else if(projectHubDocType==='invoice'){
+    rows=g.invoices.length?g.invoices.map(inv=>{const t=computeInvoiceTotals(inv);return `<div class="card project-hub-doc-card"><div class="card-title"><span>فاکتور #${invNumStr(inv.number)}</span><span class="badge-activity">${escapeAttr(STATUS_LABELS[inv.status]||inv.status)}</span></div><div class="card-sub">${jalaliStr(inv.date)} · ${escapeAttr(invoiceActivityLabelCombined(inv)||'خدمات')}</div><div class="r-row"><span>مبلغ کل</span><b>${fmt(t.grandTotal)} تومان</b></div><div class="project-hub-actions"><button class="btn btn-outline hub-inv-edit" data-id="${inv.id}">ویرایش</button><button class="btn btn-outline hub-inv-preview" data-id="${inv.id}">پیش‌نمایش</button></div></div>`}).join(''):'<p class="empty">فاکتوری برای این مشتری ثبت نشده است.</p>';
+  }
+  return `<button type="button" class="btn btn-outline" id="projectHubBackCustomers" style="width:100%;margin-bottom:10px">← بازگشت به پرونده مشتریان</button><div class="card project-customer-file-head"><div class="card-title"><span>${escapeAttr(g.name)}</span><span class="badge-activity">پرونده #${toPersianDigits(g.displayNumber)}</span></div><div class="card-sub">${g.phone?'تلفن: '+escapeAttr(g.phone)+' · ':''}${g.displayDate?jalaliStr(g.displayDate):'بدون تاریخ ثبت'}</div><div class="card-sub" style="margin-top:5px">${escapeAttr(g.services)}</div></div><div class="project-customer-doc-tabs">${tabs.map(([k,l])=>`<button type="button" class="project-customer-doc-tab ${projectHubDocType===k?'is-active':''}" data-project-doc="${k}" aria-pressed="${projectHubDocType===k?'true':'false'}">${l}</button>`).join('')}</div>${projectHubDocType?rows:'<div class="project-hub-empty"><b>نوع سند را انتخاب کنید</b><span>قرارداد، آفیش یا فاکتور</span></div>'}`;
+}
+function bindProjectHubEvents(){
+  document.querySelectorAll('[data-project-section]').forEach(el=>el.addEventListener('click',()=>{projectHubSection=el.dataset.projectSection;projectHubCustomerId=null;projectHubDocType=null;projectHubSearch='';invQuickFilter=null;render();}));
+  const search=document.getElementById('projectHubSearch');
+  search?.addEventListener('input',e=>{const val=e.target.value,pos=e.target.selectionStart;clearTimeout(invSearchDebounceTimer);invSearchDebounceTimer=setTimeout(()=>{projectHubSearch=val;render();const again=document.getElementById('projectHubSearch');if(again){again.focus();again.setSelectionRange(pos,pos);}},130);});
+  document.querySelectorAll('.project-customer-open').forEach(el=>el.addEventListener('click',()=>{projectHubCustomerId=el.dataset.customerKey;projectHubDocType=null;render();}));
+  document.getElementById('projectHubBackCustomers')?.addEventListener('click',()=>{projectHubCustomerId=null;projectHubDocType=null;render();});
+  document.querySelectorAll('[data-project-doc]').forEach(el=>el.addEventListener('click',()=>{projectHubDocType=el.dataset.projectDoc;render();}));
+  document.getElementById('ctNewBtn')?.addEventListener('click',()=>{projectHubReturnContext=true;tab='contracts';ctOpenStep=0;ctDraft=blankContract();ctEditingId=null;ctView='edit';navBackStack.push('invoice');render();});
+  document.querySelectorAll('.ct-edit').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(!c)return;projectHubReturnContext=true;tab='contracts';if(c.status==='signed'&&!confirm('این قرارداد امضا شده و قفل است. برای ویرایش به پیش‌نویس برگردد؟')){projectHubReturnContext=false;return;}ctDraft=ctClone(c);if(ctDraft.status==='signed')ctDraft.status='draft';ctEditingId=c.id;ctView='edit';navBackStack.push('invoice');render();}));
+  document.querySelectorAll('.ct-preview').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(c)previewContract(c);}));
+  document.querySelectorAll('.ct-print').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(c)printContract(c);}));
+  document.querySelectorAll('.ct-jpg').forEach(el=>el.addEventListener('click',e=>{const c=contracts.find(x=>x.id===el.currentTarget.dataset.id);if(c)exportContractJPG(c,e.currentTarget);}));
+  document.querySelectorAll('.ct-open-inv').forEach(el=>el.addEventListener('click',()=>{projectHubSection='invoice';projectHubCustomerId=null;projectHubDocType=null;const id=el.dataset.id;render();openProject(id);}));
+  document.querySelectorAll('.hub-ct-edit').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(!c)return;projectHubReturnContext=true;tab='contracts';if(c.status==='signed'&&!confirm('این قرارداد امضا شده و قفل است. برای ویرایش به پیش‌نویس برگردد؟')){projectHubReturnContext=false;return;}ctDraft=ctClone(c);if(ctDraft.status==='signed')ctDraft.status='draft';ctEditingId=c.id;ctView='edit';navBackStack.push('invoice');render();}));
+  document.querySelectorAll('.hub-ct-preview').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(c)previewContract(c);}));
+  document.querySelectorAll('.hub-ct-print').forEach(el=>el.addEventListener('click',()=>{const c=contracts.find(x=>x.id===el.dataset.id);if(c)printContract(c);}));
+  document.querySelectorAll('.hub-ct-jpg').forEach(el=>el.addEventListener('click',e=>{const c=contracts.find(x=>x.id===el.currentTarget.dataset.id);if(c)exportContractJPG(c,e.currentTarget);}));
+  document.querySelectorAll('.hub-bk-edit').forEach(el=>el.addEventListener('click',()=>{const b=bookings.find(x=>x.id===el.dataset.id);if(!b)return;bkDraft=bkNormalize(JSON.parse(JSON.stringify(b)));editingBookingId=b.id;bkView='form';bkReturnTab='invoice';navBackStack.push('invoice');tab='bookings';render();}));
+  document.querySelectorAll('.hub-inv-edit').forEach(el=>el.addEventListener('click',()=>{const inv=invoices.find(x=>x.id===el.dataset.id);if(!inv)return;navBackStack.push('invoice');loadInvoiceForEdit(inv.id);render();}));
+  document.querySelectorAll('.hub-inv-preview').forEach(el=>el.addEventListener('click',()=>{const inv=invoices.find(x=>x.id===el.dataset.id);if(inv)previewInvoice(inv);}));
+  document.querySelectorAll('.hub-inv-print').forEach(el=>el.addEventListener('click',()=>{const inv=invoices.find(x=>x.id===el.dataset.id);if(inv)printInvoice(inv);}));
+  document.querySelectorAll('.hub-inv-jpg').forEach(el=>el.addEventListener('click',e=>{const inv=invoices.find(x=>x.id===el.currentTarget.dataset.id);if(inv)exportInvoiceJPG(inv,e.currentTarget);}));
+  document.querySelectorAll('.hub-inv-share').forEach(el=>el.addEventListener('click',e=>{const inv=invoices.find(x=>x.id===el.currentTarget.dataset.id);if(inv)shareInvoiceJPG(inv,e.currentTarget);}));
 }
 function bindInvoiceListEvents(){
   document.getElementById('newInvBtn')?.addEventListener('click', ()=>{ newInvoiceFromDraft(); render(); });
@@ -5397,13 +5767,13 @@ function buildA4InvoiceHTML(inv){
   const prevBal = invoicePrevBalanceFinal(inv);
   const logoSrc = brandLogoSrc();
   const typesUsed = invoiceActivityTypesUsed(inv);
-  const multiType = typesUsed.length>1;
-  // ردیف‌ها رو بر اساس فضای کاری گروه‌بندی می‌کنیم (نه ترتیب ورود) تا توی فاکتور چاپی قاطی نشن؛
-  // اگه بیشتر از یک نوع فعالیت وجود داشته باشه، قبل از هر گروه یک ردیف عنوان اضافه می‌شه
+  // هر عنوان انتخاب‌شده، سربرگ مستقل دارد و عنوان و ستون‌ها برای هر گروه تکرار می‌شوند.
+  // ترتیب اقلام، شماره‌گذاری پیوسته و داده‌های مالی دست‌نخورده باقی می‌مانند.
   let rowNum = 0;
   const rows = typesUsed.map(type=>{
     const linesOfType = inv.lines.filter(l=>(l.activityType||inv.activityType||'photo')===type);
-    const header = multiType ? `<tr class="a4-group-row"><td colspan="6">${ACTIVITY_LABELS[type]||''}</td></tr>` : '';
+    const groupTitle = `<tr class="a4-group-row"><th colspan="6">${escapeAttr(ACTIVITY_LABELS[type]||type||'')}</th></tr>`;
+    const groupColumns = `<tr class="a4-group-columns"><th class="a4-col-num">ردیف</th><th class="a4-col-desc">شرح کالا/خدمات</th><th class="a4-col-mat">نوع فعالیت</th><th class="a4-col-qty">تعداد</th><th class="a4-col-unit">قیمت واحد</th><th class="a4-col-total">جمع</th></tr>`;
     const body = linesOfType.map(l=>{
       const name = invLineName(l) || '—';
       const unit = invLineUnitPrice(l);
@@ -5418,7 +5788,7 @@ function buildA4InvoiceHTML(inv){
         <td class="a4-col-total">${fmt(unit*qty)}</td>
       </tr>`;
     }).join('');
-    return header + body;
+    return groupTitle + groupColumns + body;
   }).join('');
   return `
   <div class="a4-wrap ${invoiceThemeAttrs().cls}" style="${invoiceThemeAttrs().style}">
@@ -5449,10 +5819,6 @@ function buildA4InvoiceHTML(inv){
       </div>
       <div class="a4-note">اعداد به تومان</div>
       <table class="a4-table">
-        <thead><tr>
-          <th class="a4-col-num">#</th><th class="a4-col-desc">شرح کالا/خدمات</th><th class="a4-col-mat">نوع فعالیت</th>
-          <th class="a4-col-qty">تعداد</th><th class="a4-col-unit">قیمت واحد</th><th class="a4-col-total">جمع</th>
-        </tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <div class="a4-bottom-grid">
@@ -7142,7 +7508,7 @@ function renderExpAddView(){
         <option value="">— خرج عمومی آتلیه (اجاره محل، برق، قهوه...) —</option>
         ${invoices.filter(i=>i.status!=='cancelled').sort((a,b)=>(b.number||0)-(a.number||0)).map(i=>`<option value="${i.id}" ${expenseDraft.invoiceId===i.id?'selected':''}>برای فاکتور #${invNumStr(i.number)} — ${escapeAttr(i.customerName||'بدون نام')}</option>`).join('')}
       </select>
-      ${expenseDraft.invoiceId ? `<select id="expJobKind" style="margin-bottom:8px">${JOB_COST_KINDS.filter(k=>!['depreciation','rental'].includes(k[0])).map(k=>`<option value="${k[0]}" ${(expenseDraft.jobKind||'other')===k[0]?'selected':''}>${k[1]}</option>`).join('')}</select>
+      ${expenseDraft.invoiceId ? `<select id="expJobKind" style="margin-bottom:8px">${JOB_COST_KINDS.filter(k=>!['depreciation','rental','crew','editing','heli'].includes(k[0])).map(k=>`<option value="${k[0]}" ${(expenseDraft.jobKind||'other')===k[0]?'selected':''}>${k[1]}</option>`).join('')}</select>
       ` : ''}`}
       <div class="row-flex" style="margin-bottom:8px">
         ${renderJalaliDateInput('expDate', expenseDraft.date, 'flex:1')}
@@ -7474,6 +7840,36 @@ function invoiceRevenueByActivity(inv){
   });
   return result;
 }
+/* هزینه‌های جاری کسب‌وکار؛ پرداخت همکار جلسه‌ای که دستمزد آفیشش قبلاً تعهد شده دوباره هزینه نیست.
+   حقوق ماهانه و هزینه‌های کادر بدون دستمزد آفیش ثبت‌شده همچنان هزینه دوره محسوب می‌شوند. */
+function businessOperatingExpenseIncluded(e){
+  if(!e || e.tag!=='business') return false;
+  if(!e.staffId) return true;
+  const person=staff.find(x=>x.id===e.staffId);
+  const hasAccruedSessionWage=staffFinance.some(r=>r && r.staffId===e.staffId && r.sessionGenerated===true && r.type==='receivable');
+  return !(person && person.type==='project' && person.payType==='session' && hasAccruedSessionWage);
+}
+function businessOperatingExpensesInRange(start,end){
+  return expenses.filter(e=>businessOperatingExpenseIncluded(e) && e.date>=start && e.date<=end)
+    .reduce((sum,e)=>sum+(parseFloat(e.amount)||0),0);
+}
+/* هزینه دستمزد آفیش بر مبنای تاریخ انجام جلسه؛ پرداخت طلب در این جمع نقشی ندارد. */
+function sessionWageCostsInRange(start,end){
+  return staffFinance.filter(r=>r && r.sessionGenerated===true && r.type==='receivable' &&
+    r.date>=start && r.date<=end && (parseFloat(r.amount)||0)>0)
+    .reduce((sum,r)=>sum+(parseFloat(r.amount)||0),0);
+}
+function sessionWageRowsInRange(start,end){
+  return staffFinance.filter(r=>r && r.sessionGenerated===true && r.type==='receivable' &&
+    r.date>=start && r.date<=end && (parseFloat(r.amount)||0)>0)
+    .map(r=>{
+      const person=staff.find(x=>x.id===r.staffId);
+      const booking=bookings.find(x=>x.id===r.bookingId);
+      return {id:r.id, date:r.date, amount:parseFloat(r.amount)||0,
+        title:(person?.name||'همکار')+' — '+(booking?.title||booking?.customerName||r.note||'دستمزد آفیش'),
+        note:r.note||'', staffId:r.staffId, bookingId:r.bookingId};
+    });
+}
 function reportData(period){
   const {start, end} = periodRange(period);
   const counted = invoices.filter(inv=> (inv.status==='final' || inv.status==='paid') && inv.date>=start && inv.date<=end);
@@ -7485,9 +7881,9 @@ function reportData(period){
     grossProfit += computeInvoiceTotals(inv).profitAfterDiscount;
   });
   // فقط هزینه‌های «کسب‌وکار» از سود کم می‌شن، نه هزینه‌های شخصی — چون هزینه شخصی ربطی به سودآوری کار نداره
-  const businessExpenses = expenses.filter(e=> e.tag==='business' && e.date>=start && e.date<=end)
-    .reduce((s,e)=>s+(parseFloat(e.amount)||0), 0);
-  const netProfit = grossProfit - businessExpenses;
+  const businessExpenses = businessOperatingExpensesInRange(start,end);
+  const sessionWages = sessionWageCostsInRange(start,end);
+  const netProfit = grossProfit - businessExpenses - sessionWages;
   // دریافتی‌ها (نقدی) بر اساس نوع، با تاریخ خود واریزی
   const cash = { deposit:0, installment:0, final:0, extra:0, unknown:0 };
   invoices.filter(i=> i.status==='final' || i.status==='paid').forEach(inv=>{
@@ -7500,7 +7896,7 @@ function reportData(period){
   counted.forEach(inv=> (inv.jobCosts||[]).forEach(c=>{ if(c.kind==='depreciation') depreciation += parseFloat(c.amount)||0; }));
   let itemCost = 0, jobCosts = 0; const jobByKind = {};
   counted.forEach(inv=>{ const bd = invoiceCostBreakdown(inv); itemCost += bd.itemCost; jobCosts += bd.jobTotal; Object.entries(bd.byKind).forEach(([k,v])=>{ jobByKind[k] = (jobByKind[k]||0)+v; }); });
-  return { cash, vatCollected, depreciation, itemCost, jobCosts, jobByKind, ...ws, total: WORKSPACES.reduce((a,w)=>a+ws[w.key],0), count: counted.length, start, end, grossProfit, businessExpenses, netProfit };
+  return { cash, vatCollected, depreciation, itemCost, jobCosts, jobByKind, ...ws, total: WORKSPACES.reduce((a,w)=>a+ws[w.key],0), count: counted.length, start, end, grossProfit, businessExpenses, sessionWages, netProfit };
 }
 
 const REPORT_PERIOD_LABELS = { week:'هفتگی', month:'ماهانه', q3:'سه‌ماهه', q6:'شش‌ماهه', year:'سالانه' };
@@ -7673,17 +8069,18 @@ function renderHomeTab(){
   const unpaid=staff.filter(x=>x.active!==false).filter(x=>staffPaymentEntries(x.id).some(e=>!e.paid)).length;
   return `<div class="home-hero"><div class="home-kicker">استودیو، از همین‌جا شروع کن</div><h2>مرکز مدیریت آتلیه</h2><p>فاکتور، قرارداد، آفیش و حساب کادر را از یک صفحه جمع‌وجور کنترل کن.</p></div>
   <div class="home-grid">
-    <button class="home-card home-primary" data-home="invoice"><b>فاکتور و قرارداد</b><span>ثبت سفارش، مالیات و امضا</span></button>
-    <button class="home-card" data-home="bookings"><b>آفیش‌ها</b><span>${toPersianDigits(pending)} برنامه پیش‌رو</span></button>
-    <button class="home-card" data-home="staff"><b>کادر و فیش حساب</b><span>${toPersianDigits(unpaid)} مورد نیاز به پیگیری</span></button>
-    <button class="home-card" data-home="customers"><b>پرونده مشتری</b><span>یادداشت، پرداخت و تاریخچه</span></button>
-    <button class="home-card" data-home="expenses"><b>مالی و هزینه‌ها</b><span>هزینه‌های جاری و گزارش</span></button>
-    <button class="home-card" data-home="equipment"><b>تجهیزات</b><span>سرویس و نگهداری</span></button>
+    <button class="home-card home-primary" data-home="invoice"><span class="home-card-icon">${navIcon(NAV_ICONS.invoice)}</span><b>فاکتور و قرارداد</b><span>ثبت سفارش، مالیات و امضا</span></button>
+    <button class="home-card" data-home="bookings"><span class="home-card-icon">${navIcon(NAV_ICONS.bookings)}</span><b>آفیش‌ها</b><span>${toPersianDigits(pending)} برنامه پیش‌رو</span></button>
+    <button class="home-card" data-home="staff"><span class="home-card-icon">${navIcon(NAV_ICONS.staff)}</span><b>کادر و فیش حساب</b><span>${toPersianDigits(unpaid)} مورد نیاز به پیگیری</span></button>
+    <button class="home-card" data-home="customers"><span class="home-card-icon">${navIcon(NAV_ICONS.customers)}</span><b>پرونده مشتری</b><span>یادداشت، پرداخت و تاریخچه</span></button>
+    <button class="home-card" data-home="expenses"><span class="home-card-icon">${navIcon(NAV_ICONS.financial)}</span><b>مالی و هزینه‌ها</b><span>هزینه‌های جاری و گزارش</span></button>
+    <button class="home-card" data-home="equipment"><span class="home-card-icon">${navIcon(NAV_ICONS.equipment)}</span><b>تجهیزات</b><span>سرویس و نگهداری</span></button>
   </div><div class="home-strip"><span>پروژه‌های ثبت‌شده</span><b>${toPersianDigits(active)}</b><button id="homeQuickInv" class="btn btn-red">+ فاکتور جدید</button></div>`;
 }
 function staffPaymentEntries(id){
   const x=staff.find(s=>s.id===id); if(!x) return [];
   const rows=expenses.filter(e=>e.staffId===id).map(e=>({date:e.date,time:e.time||'',amount:+e.amount||0,note:e.note||e.categoryName,paid:true,source:'پرداخت حقوق'}));
+  staffFinance.filter(r=>r.staffId===id && r.type==='salary').forEach(r=>rows.push({date:r.date,time:r.time||'',amount:+r.amount||0,note:r.note||'پرداخت حقوق',paid:true,source:'پرداخت حقوق'}));
   staffLinkedJobCosts(id).forEach(e=>rows.push({date:e.invDate,time:e.time||'',amount:+e.amount||0,note:e.title||'کارکرد پروژه',paid:!!e.paid,source:'کارکرد پروژه'}));
   return rows.sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
 }
@@ -7711,8 +8108,9 @@ function managementTimelineBuckets(period){
       revenue += WORKSPACES.reduce((sum,w)=>sum+(breakdown[w.key]||0),0);
       profit += computeInvoiceTotals(inv).profitAfterDiscount;
     });
-    const businessExpenses=expenses.filter(e=>e.tag==='business'&&e.date>=from&&e.date<=to).reduce((sum,e)=>sum+(parseFloat(e.amount)||0),0);
+    const businessExpenses=businessOperatingExpensesInRange(from,to);
     profit-=businessExpenses;
+    profit-=sessionWageCostsInRange(from,to);
     const startJ=jalaliStr(from).split('/');
     const label=period==='week' ? startJ[2] : (period==='year' || period==='q6') ? startJ[1] : `${startJ[1]}/${startJ[2]}`;
     out.push({start:from,end:to,label,revenue,profit,invoiceCount:invs.length});
@@ -7745,16 +8143,16 @@ function managementTrendChartHTML(period){
 function renderManagementReport(){
   const d=reportData(reportPeriod);
   const paid=Object.values(d.cash).reduce((a,b)=>a+b,0);
-  const costs=d.itemCost+d.jobCosts+d.businessExpenses;
+  const costs=d.itemCost+d.jobCosts+d.businessExpenses+d.sessionWages;
   return `<section class="management-report-section" id="managementReportSection">
     <div class="management-report-head"><div><h2>خلاصه مالی دوره</h2><p>${jalaliStr(d.start)} تا ${jalaliStr(d.end)} · ${toPersianDigits(d.count)} فاکتور قطعی</p></div></div>
     <div class="management-period-pills">${Object.keys(REPORT_PERIOD_LABELS).map(k=>`<button class="pill report-period-btn ${reportPeriod===k?'pill-active':''}" data-period="${k}">${REPORT_PERIOD_LABELS[k]}</button>`).join('')}</div>
     <div class="management-report-date"><label for="dashboardReportEndDate">پایان بازه:</label>${renderJalaliDateInput('dashboardReportEndDate',reportStartDate,'flex:1')}</div>
     <div class="management-kpis">
       <button class="management-kpi" data-dash-report-detail="revenue"><span>فروش بدون مالیات</span><strong>${fmt(d.total)}</strong><small>فاکتورهای قطعی</small></button>
-      <button class="management-kpi" data-dash-report-detail="profit"><span>سود خالص</span><strong style="color:${d.netProfit>=0?'var(--c-success)':'var(--c-accent)'}">${d.netProfit<0?'−':''}${fmt(Math.abs(d.netProfit))}</strong><small>پس از هزینه‌های عمومی</small></button>
+      <button class="management-kpi" data-dash-report-detail="profit"><span>سود خالص</span><strong style="color:${d.netProfit>=0?'var(--c-success)':'var(--c-accent)'}">${d.netProfit<0?'−':''}${fmt(Math.abs(d.netProfit))}</strong><small>پس از هزینه‌های عمومی و دستمزد آفیش</small></button>
       <button class="management-kpi" data-dash-report-detail="payments"><span>دریافتی ثبت‌شده</span><strong>${fmt(paid)}</strong><small>بر اساس تاریخ واریزی</small></button>
-      <button class="management-kpi" data-dash-report-detail="costs"><span>هزینه‌های محاسبه‌شده</span><strong>${fmt(costs)}</strong><small>اقلام، اجرا و هزینه عمومی</small></button>
+      <button class="management-kpi" data-dash-report-detail="costs"><span>هزینه‌های محاسبه‌شده</span><strong>${fmt(costs)}</strong><small>اقلام، اجرا، هزینه عمومی و دستمزد آفیش</small></button>
     </div>
     <div class="management-report-subcard" style="padding:10px;margin-top:8px"><div class="card-title"><span>روند فروش و سود خالص</span><span class="card-sub">${REPORT_PERIOD_LABELS[reportPeriod]}</span></div>${managementTrendChartHTML(reportPeriod)}</div>
     <div class="management-report-columns">
@@ -7766,18 +8164,20 @@ function renderManagementReport(){
 function openManagementPeriodDetail(start,end,kind){
   const inRange=inv=>inv.date>=start&&inv.date<=end;
   const periodInvoices=invoices.filter(inv=>(inv.status==='final'||inv.status==='paid')&&inRange(inv)).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
-  const periodExpenses=expenses.filter(e=>e.tag==='business'&&e.date>=start&&e.date<=end).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  const periodExpenses=expenses.filter(e=>e.tag==='business'&&e.date>=start&&e.date<=end&&businessOperatingExpenseIncluded(e)).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
   const realRevenue=periodInvoices.reduce((sum,inv)=>{const r=invoiceRevenueByActivity(inv);return sum+WORKSPACES.reduce((a,w)=>a+(r[w.key]||0),0);},0);
   const invoiceProfit=periodInvoices.reduce((sum,inv)=>sum+computeInvoiceTotals(inv).profitAfterDiscount,0);
   const itemCostTotal=periodInvoices.reduce((sum,inv)=>sum+computeInvoiceTotals(inv).costTotal,0);
   const jobCostTotal=periodInvoices.reduce((sum,inv)=>sum+computeInvoiceTotals(inv).jobCostTotal,0);
   const generalExpenses=periodExpenses.reduce((sum,e)=>sum+(parseFloat(e.amount)||0),0);
-  const net=invoiceProfit-generalExpenses;
+  const sessionWages=sessionWageCostsInRange(start,end);
+  const sessionWageRows=sessionWageRowsInRange(start,end);
+  const net=invoiceProfit-generalExpenses-sessionWages;
   const label=kind==='revenue'?'فروش':kind==='profit'?'سود خالص':kind==='payments'?'دریافتی‌ها':kind==='costs'?'هزینه‌ها':'ریز بازه';
   const overlay=document.createElement('div'); overlay.className='atelier-overlay management-modal-overlay';
   const invoiceRows=periodInvoices.map(inv=>{const t=computeInvoiceTotals(inv);return `<div class="management-detail-row"><div><button type="button" class="management-detail-invoice" data-invoice-id="${escapeAttr(inv.id)}">#${inv.number||'-'} — ${escapeAttr(inv.customerName||'بدون نام')}</button><small>${jalaliStr(inv.date)} · ${escapeAttr(STATUS_LABELS[inv.status]||inv.status)}</small><small>هزینه اقلام ${fmt(t.costTotal)} · هزینه اجرا ${fmt(t.jobCostTotal)} · سود فاکتور ${fmt(t.profitAfterDiscount)} تومان</small></div><strong>${fmt(t.netTotal)} ت</strong></div>`;}).join('');
   const expenseRows=periodExpenses.map(e=>`<div class="management-detail-row"><div><span>${escapeAttr(e.title||e.categoryName||e.note||'هزینه عمومی')}</span><small>${jalaliStr(e.date)}${e.categoryName?' · '+escapeAttr(e.categoryName):''}</small></div><strong>${fmt(parseFloat(e.amount)||0)} ت</strong></div>`).join('');
-  overlay.innerHTML=`<div class="atelier-modal management-report-modal" role="dialog" aria-modal="true" aria-labelledby="managementDetailTitle"><div class="atelier-modal-head"><b id="managementDetailTitle">${label} · ${jalaliStr(start)} تا ${jalaliStr(end)}</b><button type="button" class="btn-icon" id="managementDetailClose" aria-label="بستن پنجره">×</button></div><div class="management-detail-summary"><div class="management-detail-stat"><span>فروش بدون مالیات</span><strong>${fmt(realRevenue)} تومان</strong></div><div class="management-detail-stat"><span>سود خالص محاسباتی</span><strong style="color:${net>=0?'var(--c-success)':'var(--c-accent)'}">${net<0?'−':''}${fmt(Math.abs(net))} تومان</strong></div><div class="management-detail-stat"><span>تعداد فاکتور</span><strong>${toPersianDigits(periodInvoices.length)}</strong></div><div class="management-detail-stat"><span>هزینه عمومی</span><strong>${fmt(generalExpenses)} تومان</strong></div><div class="management-detail-stat"><span>هزینه تمام‌شده اقلام</span><strong>${fmt(itemCostTotal)} تومان</strong></div><div class="management-detail-stat"><span>هزینه اجرای فاکتورها</span><strong>${fmt(jobCostTotal)} تومان</strong></div></div><div class="management-detail-heading">فاکتورهای این بازه</div><div class="management-detail-list">${invoiceRows||'<div class="management-detail-empty">در این بازه فاکتور قطعی ثبت نشده است.</div>'}</div><div class="management-detail-heading">هزینه‌های عمومی ثبت‌شده</div><div class="management-detail-list">${expenseRows||'<div class="management-detail-empty">هزینه عمومی ثبت‌شده‌ای در این بازه نیست.</div>'}</div><p class="management-report-note">سود خالص در این پنجره مطابق منطق گزارش فعلی برنامه محاسبه شده است. برای مشاهده پرونده هر فاکتور، روی شماره یا نام مشتری بزنید.</p></div>`;
+  overlay.innerHTML=`<div class="atelier-modal management-report-modal" role="dialog" aria-modal="true" aria-labelledby="managementDetailTitle"><div class="atelier-modal-head"><b id="managementDetailTitle">${label} · ${jalaliStr(start)} تا ${jalaliStr(end)}</b><button type="button" class="btn-icon" id="managementDetailClose" aria-label="بستن پنجره">×</button></div><div class="management-detail-summary"><div class="management-detail-stat"><span>فروش بدون مالیات</span><strong>${fmt(realRevenue)} تومان</strong></div><div class="management-detail-stat"><span>سود خالص محاسباتی</span><strong style="color:${net>=0?'var(--c-success)':'var(--c-accent)'}">${net<0?'−':''}${fmt(Math.abs(net))} تومان</strong></div><div class="management-detail-stat"><span>تعداد فاکتور</span><strong>${toPersianDigits(periodInvoices.length)}</strong></div><div class="management-detail-stat"><span>هزینه عمومی</span><strong>${fmt(generalExpenses)} تومان</strong></div><div class="management-detail-stat"><span>دستمزد آفیش تأییدشده</span><strong>${fmt(sessionWages)} تومان</strong></div><div class="management-detail-stat"><span>هزینه تمام‌شده اقلام</span><strong>${fmt(itemCostTotal)} تومان</strong></div><div class="management-detail-stat"><span>هزینه اجرای فاکتورها</span><strong>${fmt(jobCostTotal)} تومان</strong></div></div><div class="management-detail-heading">فاکتورهای این بازه</div><div class="management-detail-list">${invoiceRows||'<div class="management-detail-empty">در این بازه فاکتور قطعی ثبت نشده است.</div>'}</div><div class="management-detail-heading">هزینه‌های عمومی ثبت‌شده</div><div class="management-detail-list">${expenseRows||'<div class="management-detail-empty">هزینه عمومی ثبت‌شده‌ای در این بازه نیست.</div>'}</div><div class="management-detail-heading">دستمزد آفیش‌های تأییدشده</div><div class="management-detail-list">${sessionWageRows.map(r=>`<div class="management-detail-row"><div><span>${escapeAttr(r.title)}</span><small>${jalaliStr(r.date)} · طلب ثبت‌شده در حساب کادر</small></div><strong>${fmt(r.amount)} تومان</strong></div>`).join('')||'<div class="management-detail-empty">دستمزد آفیش ثبت‌شده‌ای در این بازه نیست.</div>'}</div><p class="management-report-note">سود خالص بر اساس سود فاکتورها منهای هزینه‌های عمومی و دستمزد آفیش تأییدشده محاسبه شده است. برای مشاهده پرونده هر فاکتور، روی شماره یا نام مشتری بزنید.</p></div>`;
   const close=()=>{overlay.remove();document.removeEventListener('keydown',onKey);};
   const onKey=e=>{if(e.key==='Escape')close();};
   overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
@@ -7956,7 +8356,7 @@ function renderBottomTabBar(){
         ${navIcon(NAV_ICONS.home)}<span>خانه</span>
       </button>
       <button class="bottom-tab-item ${active==='invoice'?'active':''}" data-nav-tab="invoice">
-        ${navIcon(NAV_ICONS.invoice)}<span>فاکتور</span>
+        ${navIcon(NAV_ICONS.invoice)}<span>پروژه‌ها</span>
       </button>
       <div class="bottom-tab-fab-wrap">
         <button class="bottom-tab-fab" id="bottomFabBtn" title="فاکتور جدید یا ثبت هزینه">
@@ -8002,7 +8402,7 @@ function render(){
       </div>
     </div>
     <div id="tabContent">
-      ${subnavHTML()}${tab==='home'?renderHomeTab(): tab==='internal'?renderInternalTab():tab==='rentals'?renderRentalsTab(): tab==='club'?renderClubTab(): tab==='project'?renderProjectTab(): tab==='ops'?renderOpsTab(): tab==='settings'?renderSettingsTab(): tab==='editing'?renderEditingTab(): tab==='staff'?renderStaffTab(): tab==='tariff'?renderTariffTab(): tab==='contracts'?renderContractsTab(): tab==='equipment'?renderEquipmentTab(): tab==='bookings'?renderBookingsTab(): tab==='calc'?renderCalcTab(): tab==='invoice'?renderInvoiceTab(): tab==='customers'?renderCustomersTab(): tab==='suppliers'?renderSuppliersTab(): tab==='materials'?renderMaterialsTab(): tab==='products'?renderProductsTab(): tab==='report'?renderDashboardTab(): tab==='dashboard'?renderDashboardTab(): tab==='expenses'?renderExpensesTab(): tab==='cheques'?renderChequesTab(): renderHistoryTab()}
+      ${subnavHTML()}${tab==='home'?renderHomeTab(): tab==='internal'?renderInternalTab():(tab==='opsHub'||tab==='finHub')?renderHubTab():tab==='rentals'?renderRentalsTab(): tab==='club'?renderClubTab(): tab==='project'?renderProjectTab(): tab==='ops'?renderOpsTab(): tab==='settings'?renderSettingsTab(): tab==='editing'?renderEditingTab(): tab==='staff'?renderStaffTab(): tab==='tariff'?renderTariffTab(): tab==='contracts'?renderContractsTab(): tab==='equipment'?renderEquipmentTab(): tab==='bookings'?renderBookingsTab(): tab==='calc'?renderCalcTab(): tab==='invoice'?renderInvoiceTab(): tab==='customers'?renderCustomersTab(): tab==='suppliers'?renderSuppliersTab(): tab==='materials'?renderMaterialsTab(): tab==='products'?renderProductsTab(): tab==='report'?renderDashboardTab(): tab==='dashboard'?renderDashboardTab(): tab==='expenses'?renderExpensesTab(): tab==='cheques'?renderChequesTab(): renderHistoryTab()}
     </div>
     ${tab==='home' ? `<section class="card home-backup-card" style="margin-top:14px;text-align:right">
       <div class="card-title">پشتیبان‌گیری</div>
@@ -8052,7 +8452,7 @@ function render(){
   document.querySelectorAll('[data-nav-tab]').forEach(el=>{
     el.addEventListener('click', ()=>{
       tab = el.dataset.navTab;
-      if(tab==='customers') custView='list'; if(tab==='expenses') expView='summary'; if(tab==='invoice') invTab = 'list'; // همیشه لیست فاکتورها، نه ادامه‌ی حالت ویرایش قبلی
+      if(tab==='customers') custView='list'; if(tab==='expenses') expView='summary'; if(tab==='invoice'){ invTab='list'; invOperationId=null; projectHubSection=null; projectHubCustomerId=null; projectHubDocType=null; projectHubSearch=''; } // ورود به پروژه‌ها بدون انتخاب پیش‌فرض
       navBackStack = []; // ناوبری مستقیم از نوار پایین، مثل منوی قبلی نیازی به دکمه‌ی بازگشت نداره
       render();
     });
@@ -8063,7 +8463,7 @@ function render(){
   document.querySelectorAll('.subnav-btn').forEach(el=>{
     el.addEventListener('click', e=>{
       tab = e.currentTarget.dataset.tab;
-      if(tab==='invoice') invTab = 'list';
+      if(tab==='invoice'){ invTab='list'; invOperationId=null; projectHubSection=null; projectHubCustomerId=null; projectHubDocType=null; projectHubSearch=''; }
       if(tab==='contracts') ctView = 'list';
       if(tab==='bookings') bkView = 'list';
       navBackStack = [];
@@ -8091,7 +8491,7 @@ function render(){
   if(tab==='equipment') bindEquipmentEvents();
   if(tab==='bookings') bindBookingsEvents();
   if(tab==='calc') bindCalcEvents();
-  if(tab==='invoice') (invTab==='edit' ? bindInvoiceEditEvents() : bindInvoiceListEvents());
+  if(tab==='invoice') { if(invTab==='edit') bindInvoiceEditEvents(); else if(invTab==='operations') bindInvoiceOperationsEvents(); else { bindProjectHubEvents(); if(projectHubSection==='invoice') bindInvoiceListEvents(); } }
   if(tab==='customers') bindCustomersEvents();
   if(tab==='suppliers') bindSuppliersEvents();
   if(tab==='materials') bindMaterialsEvents();
@@ -8472,7 +8872,63 @@ function atelierMountButton(){ const h=document.querySelector('.brand-header'); 
 const _atelierBuildContract=buildA4ContractHTML; buildA4ContractHTML=function(ct){ let html=_atelierBuildContract(ct); const first=html.indexOf('<div class="a4-clause"'); if(first>0) html=html.slice(0,first)+'<div class="a4-page-break"></div>'+html.slice(first); if(ct.signatureAtelier||ct.signatureClient){html=html.replace('<div class="a4-sign-line">امضا و مهر</div>','<div class="a4-sign-line">'+(ct.signatureAtelier?'<img class="atelier-sign-img" src="'+ct.signatureAtelier+'">':'امضا و مهر')+'</div>').replace('<div class="a4-sign-line">امضا</div>','<div class="a4-sign-line">'+(ct.signatureClient?'<img class="atelier-sign-img" src="'+ct.signatureClient+'">':'امضا')+'</div>');} return html; };
 /* ===== UX pass: calm home, bottom navigation, staff finance, useful loyalty ===== */
 function goHome(){navBackStack=[];tab='home';bottomSheetOpen=null;render();}
-function openStaffFinance(id){ document.getElementById('staffFinanceOverlay')?.remove(); const x=staff.find(s=>s.id===id); if(!x)return; const rows=staffFinance.filter(r=>r.staffId===id).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time)); const ov=document.createElement('div');ov.id='staffFinanceOverlay';ov.innerHTML=`<div class="atelier-overlay"><div class="atelier-modal"><div class="atelier-modal-head"><b>حساب‌های متفرقه: ${escapeAttr(x.name)}</b><button id="sfClose" class="btn-icon">×</button></div><div class="sf-tabs"><button class="btn btn-black" data-sf="add">ثبت مساعده / طلب</button><button class="btn btn-outline" data-sf="list">ریز حساب</button></div><div id="sfBody"><div class="card"><select id="sfType"><option value="advance">مساعده پرداخت‌شده به کادر</option><option value="receivable">طلب کادر از آتلیه</option><option value="refund">بازپرداخت به آتلیه</option></select><input id="sfAmount" inputmode="decimal" placeholder="مبلغ تومان"><div class="small">تاریخ</div>${atelierPicker('sfDate',todayStr())}<input id="sfTime" dir="ltr" inputmode="numeric" maxlength="5" placeholder="12:00" value="12:00"><input id="sfNote" placeholder="شرح / شماره رسید"><button id="sfSave" class="btn btn-red" style="width:100%;margin-top:8px">ثبت مورد</button></div></div></div></div>`; document.body.appendChild(ov); const close=()=>ov.remove();ov.querySelector('#sfClose').onclick=close; const body=()=>ov.querySelector('#sfBody'); const listHTML=()=>`<div class="card"><div class="card-title">ریز مساعده و طلب</div>${rows.map(r=>`<div class="r-row" style="padding:6px 0;border-bottom:1px solid #eee"><span>${jalaliStr(r.date)} ${toPersianDigits(r.time||'')}<br><span class="small">${escapeAttr(r.note||'')}</span></span><b>${r.type==='advance'?'-':'+'}${fmt(r.amount)} ت</b></div>`).join('')||'<p class="empty">موردی ثبت نشده</p>'}</div>`; ov.querySelectorAll('[data-sf]').forEach(b=>b.onclick=()=>{body().innerHTML=b.dataset.sf==='list'?listHTML():`<div class="card"><select id="sfType"><option value="advance">مساعده پرداخت‌شده به کادر</option><option value="receivable">طلب کادر از آتلیه</option><option value="refund">بازپرداخت به آتلیه</option></select><input id="sfAmount" inputmode="decimal" placeholder="مبلغ تومان"><div class="small">تاریخ</div>${atelierPicker('sfDate',todayStr())}<input id="sfTime" dir="ltr" inputmode="numeric" maxlength="5" placeholder="12:00" value="12:00"><input id="sfNote" placeholder="شرح / شماره رسید"><button id="sfSave" class="btn btn-red" style="width:100%;margin-top:8px">ثبت مورد</button></div>`; bindSave();}); function bindSave(){ov.querySelector('#sfSave')?.addEventListener('click',()=>{const amount=ctNum(ov.querySelector('#sfAmount').value),date=atelierPickerISO('sfDate');if(!amount||!date)return alert('مبلغ و تاریخ را وارد کنید');staffFinance.push({id:ctUid(),staffId:id,type:ov.querySelector('#sfType').value,amount,date,time:ov.querySelector('#sfTime').value,note:ov.querySelector('#sfNote').value.trim()});saveJSON(STAFF_FINANCE_KEY,staffFinance);openStaffFinance(id);});} bindSave(); }
+function openStaffFinance(id, editRowId='', newType='advance', prefillAmount=''){
+  document.getElementById('staffFinanceOverlay')?.remove();
+  const x=staff.find(s=>s.id===id); if(!x)return;
+  const rows=staffFinance.filter(r=>r.staffId===id).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
+  let currentEditing=rows.find(r=>r.id===editRowId)||null;
+  const ov=document.createElement('div'); ov.id='staffFinanceOverlay';
+  const formHTML=(r=null)=>`<div class="card">
+    <div class="card-title">${r?'ویرایش مورد حساب':(newType==='salary'?'ثبت پرداخت حقوق':'ثبت مساعده / طلب')}</div>
+    <select id="sfType" style="margin-bottom:8px" ${r?.sessionGenerated?'disabled aria-label="نوع این رکورد بر اساس حضور آفیش ثابت است"':''}>
+      <option value="advance" ${(r?.type||newType)==='advance'?'selected':''}>مساعده پرداخت‌شده به کادر</option>
+      <option value="salary" ${(r?.type||newType)==='salary'?'selected':''}>پرداخت حقوق</option>
+      <option value="receivable" ${(r?.type||newType)==='receivable'?'selected':''}>طلب کادر از آتلیه</option>
+      <option value="refund" ${r?.type==='refund'?'selected':''}>بازپرداخت به آتلیه</option>
+    </select>
+    <input id="sfAmount" inputmode="decimal" placeholder="مبلغ تومان" value="${escapeAttr(r?.amount||prefillAmount||'')}" style="margin-bottom:8px">
+    ${r?.sessionGenerated ? `<div class="small" style="margin:4px 0 8px">تاریخ آفیش: ${jalaliStr((bookings.find(b=>b.id===r.bookingId)||{}).date||r.date)} — تاریخ هزینه از آفیش گرفته می‌شود و قابل تغییر نیست.</div>` : `<div class="small">تاریخ</div>${atelierPicker('sfDate',r?.date||todayStr())}`}
+    <input id="sfTime" dir="ltr" inputmode="numeric" maxlength="5" placeholder="12:00" value="${escapeAttr(r?.time||'12:00')}" style="margin:8px 0">
+    <input id="sfNote" placeholder="شرح / شماره رسید" value="${escapeAttr(r?.note||'')}">
+    <button id="sfSave" class="btn btn-red" style="width:100%;margin-top:8px">${r?'ذخیره تغییرات':(newType==='salary'?'ثبت پرداخت حقوق':'ثبت مورد')}</button>
+    ${r?'<button id="sfCancelEdit" class="btn btn-outline" style="width:100%;margin-top:6px">انصراف از ویرایش</button>':''}
+  </div>`;
+  ov.innerHTML=`<div class="atelier-overlay"><div class="atelier-modal">
+    <div class="atelier-modal-head"><b>حساب و پرداخت: ${escapeAttr(x.name)}</b><button id="sfClose" class="btn-icon">×</button></div>
+    <div class="sf-tabs"><button class="btn ${currentEditing?'btn-outline':'btn-black'}" data-sf="add">ثبت مساعده / طلب</button><button class="btn btn-outline" data-sf="list">ریز حساب</button></div>
+    <div id="sfBody">${formHTML(currentEditing)}</div>
+  </div></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove(), body=()=>ov.querySelector('#sfBody');
+  ov.querySelector('#sfClose').onclick=close;
+  const listHTML=()=>`<div class="card"><div class="card-title">ریز مساعده و طلب</div>${rows.map(r=>`<div class="r-row" style="padding:6px 0;border-bottom:1px solid #eee;gap:8px">
+    <span style="flex:1">${jalaliStr(r.date)} ${toPersianDigits(r.time||'')}<br><span class="small">${escapeAttr(r.note||'')} · ${{advance:'مساعده',salary:'پرداخت حقوق',receivable:'طلب کادر',refund:'بازپرداخت'}[r.type]||'حساب'}</span></span>
+    <b>${['advance','salary'].includes(r.type)?'-':'+'}${fmt(r.amount)} ت</b>
+    <button class="btn btn-outline sf-edit-row" data-id="${r.id}" style="font-size:11px;padding:3px 8px;min-height:28px">ویرایش</button>
+  </div>`).join('')||'<p class="empty">موردی ثبت نشده</p>'}</div>`;
+  const bindForm=()=>{
+    ov.querySelector('#sfSave')?.addEventListener('click',()=>{
+      const amount=ctNum(ov.querySelector('#sfAmount')?.value);
+      const date=currentEditing?.sessionGenerated ? ((bookings.find(b=>b.id===currentEditing.bookingId)||{}).date||currentEditing.date) : atelierPickerISO('sfDate');
+      if(!(amount>0)||!date){ alert('مبلغ و تاریخ معتبر را وارد کنید.'); return; }
+      const data={staffId:id,type:currentEditing?.sessionGenerated?'receivable':ov.querySelector('#sfType').value,amount,date,time:(ov.querySelector('#sfTime').value||'').trim(),note:ov.querySelector('#sfNote').value.trim()};
+      if(currentEditing){ const at=staffFinance.findIndex(r=>r.id===currentEditing.id); if(at>=0) staffFinance[at]={...staffFinance[at],...data}; }
+      else staffFinance.push({id:ctUid(),...data});
+      saveJSON(STAFF_FINANCE_KEY,staffFinance); openStaffFinance(id);
+    });
+    ov.querySelector('#sfCancelEdit')?.addEventListener('click',()=>openStaffFinance(id));
+  };
+  bindForm();
+  ov.querySelectorAll('[data-sf]').forEach(b=>b.addEventListener('click',()=>{
+    const view=b.dataset.sf;
+    if(view!=='list') currentEditing=null;
+    if(view!=='list') newType='advance';
+    body().innerHTML=view==='list'?listHTML():formHTML(null);
+    bindForm();
+    body().querySelectorAll('.sf-edit-row').forEach(btn=>btn.addEventListener('click',()=>openStaffFinance(id,btn.dataset.id)));
+  }));
+  body().querySelectorAll('.sf-edit-row').forEach(btn=>btn.addEventListener('click',()=>openStaffFinance(id,btn.dataset.id)));
+}
 function renderLoyaltyAction(){return `<div class="card loyalty-action"><div class="card-title"><span>باشگاه مشتریان، اینجا کاربردی می‌شود</span></div><div class="row-flex"><input id="loyaltyOffer" placeholder="نام آفر / جشنواره" style="flex:2"><input id="loyaltyMin" inputmode="numeric" placeholder="حداقل امتیاز" style="flex:1"></div><button id="loyaltyAudience" class="btn btn-outline" style="width:100%;margin-top:8px">محاسبه مشتریان مشمول</button><div id="loyaltyResult" class="small" style="margin-top:8px"></div></div>`;}
 
 const _oldBindClub=bindClubEvents; bindClubEvents=function(){_oldBindClub();document.getElementById('loyaltyAudience')?.addEventListener('click',()=>{const min=ctNum(document.getElementById('loyaltyMin').value), names=customers.filter(c=>clubInvoices(c.id).length&&clubSpend(c.id)>=min).map(c=>c.name);document.getElementById('loyaltyResult').textContent=names.length?`مشمول‌ها: ${names.join('، ')}`:'مشتری مشمولی پیدا نشد';});};
@@ -8760,7 +9216,7 @@ function ctGroupSteps(){
   const root=document.getElementById('tabContent'), c=ctDraft; if(!root||!c||document.getElementById('ctSteps')) return;
   const map=[['فاکتور مرتبط',0],['مشخصات مشتری',0],['پروژه',1],['خدمات و قیمت',2],['برنامه پرداخت',3],['کنترل مالی',3],['مقادیر قالب',4],['توضیحات',4],['امضای',4],['یادداشت',4]];
   const steps=[[],[],[],[],[]]; let cur=-1;
-  [...root.children].forEach(k=>{ if(k.matches('h2.sec')){ const t=k.textContent.trim(), m=map.find(x=>t.startsWith(x[0])); if(m) cur=m[1]; } if(k.id==='ctSave') cur=-2; if(cur>=0) steps[cur].push(k); });
+  [...root.children].forEach(k=>{ if(k.matches('h2.sec')){ const t=k.textContent.trim(), m=map.find(x=>t.startsWith(x[0])); if(m) cur=m[1]; } if(k.id==='ctSave') cur=4; if(cur>=0) steps[cur].push(k); });
   if(!steps[0].length) return;
   const names=['مشتری','مراسم','خدمات و مبلغ','پرداخت و کنترل مالی','توافق و امضا'], col=['#3A6EA5','#9B7ED9','#E6A11E','#1A7A3A','#E61E32'];
   const wrap=document.createElement('div'); wrap.id='ctSteps';
@@ -8896,11 +9352,24 @@ const _bindProd=bindProductsEvents;
 bindProductsEvents=function(){ _bindProd(); bindHistoryEvents(); accWire(document.getElementById('prodHistAcc'),histAcc); };
 function cleanA4(html){
   const tp=document.createElement('template'); tp.innerHTML=html;
-  const R=tp.content, blank=x=>['','-','—'].includes((x||'').trim());
+  const R=tp.content, blank=x=>['','-','—','–','−','نامشخص'].includes(String(x||'').replace(/[\u200c\u200f\u200e\s]/g,'').trim());
   R.querySelectorAll('.a4-meta-grid,.a4-customer-grid,.a4-contract-meta').forEach(g=>{
-    g.querySelectorAll('.a4-cell').forEach(c=>{ const v=c.querySelector('.a4-cell-value'); if(v&&blank(v.textContent)) c.remove(); });
-    const n=[...g.children].filter(c=>!c.classList.contains('a4-address-cell')).length;
-    if(!g.children.length) g.remove(); else g.style.gridTemplateColumns='repeat('+Math.max(1,n)+',1fr)';
+    g.querySelectorAll('.a4-cell').forEach(c=>{
+      const v=c.querySelector('.a4-cell-value');
+      if(v && blank(v.textContent)) c.remove();
+      else if(!v && blank(c.textContent)) c.remove();
+    });
+    /* آدرس باید بعد از فیلدهای کوتاه قرار بگیرد؛ در غیر این صورت، چون تمام عرض را می‌گیرد،
+       فیلد تاریخ به ردیف بعد می‌افتد و خانه‌های خالیِ پس‌زمینه‌ی گرید دیده می‌شوند. */
+    const addressCells=[...g.querySelectorAll(':scope > .a4-address-cell')];
+    addressCells.forEach(c=>g.appendChild(c));
+    const visible=[...g.children].filter(c=>!c.classList.contains('a4-address-cell'));
+    const n=visible.length;
+    if(!g.children.length) g.remove();
+    else {
+      g.style.gridTemplateColumns='repeat('+Math.max(1,n)+',minmax(0,1fr))';
+      addressCells.forEach(c=>{ c.style.gridColumn='1 / -1'; });
+    }
   });
   R.querySelectorAll('.a4-summary-row').forEach(r=>{ const l=r.querySelector('.a4-sr-label'), v=r.querySelector('.a4-sr-value'); if(l&&v&&/میزان تخفیف/.test(l.textContent)&&/^[0۰]+$/.test(v.textContent.trim())) r.remove(); });
   R.querySelectorAll('.a4-table').forEach(tb=>{
@@ -8982,7 +9451,7 @@ setTimeout(()=>{
 /* ===== بک‌آپ رمزگذاری‌شده با رمز جدا، اعتبارسنجی و ادغام امن ===== */
 function uiModal(title,body,btns){ return new Promise(res=>{
   document.getElementById('uiModal')?.remove(); const ov=document.createElement('div'); ov.id='uiModal';
-  ov.innerHTML=`<div class="atelier-overlay" style="z-index:100003"><div class="atelier-modal" role="dialog" aria-modal="true"><div class="atelier-modal-head"><b>${title}</b></div><div>${body}</div><div class="row-flex" style="gap:8px;margin-top:12px">${btns.map((b,i)=>`<button class="btn ${b.c||'btn-outline'}" data-i="${i}" style="flex:1">${b.t}</button>`).join('')}</div></div></div>`;
+  ov.innerHTML=`<div class="atelier-overlay" style="z-index:100003"><div class="atelier-modal" role="dialog" aria-modal="true"><div class="atelier-modal-head"><b>${title}</b></div><div>${body}</div><div class="row-flex ui-modal-actions" style="gap:8px;margin-top:12px">${btns.map((b,i)=>`<button type="button" class="btn ${b.c||'btn-outline'}" data-i="${i}">${b.t}</button>`).join('')}</div></div></div>`;
   document.body.appendChild(ov);
   const kd=e=>{ if(e.key==='Escape') done(-1); if(e.key==='Enter'&&e.target.tagName==='INPUT') done(0); };
   const done=i=>{ const v=[...ov.querySelectorAll('input,select,textarea')].map(x=>x.value); ov.remove(); document.removeEventListener('keydown',kd,true); res({i,v}); };
@@ -9081,12 +9550,12 @@ function jMonthStart(ref,back){ let [y,m]=toJalali(...ref.split('-').map(Number)
 periodRange=function(period,ref){ const end=ref||reportStartDate; return { start: period==='week'?bkAddDays(end,-7):jMonthStart(end,{month:0,q3:2,q6:5,year:11}[period]), end }; };
 suggestOverheadPercent=function(n){ n=n||3; const t=todayStr(), ratios=[];
   for(let i=0;i<n;i++){ const st=jMonthStart(t,i), en=i===0?t:bkAddDays(jMonthStart(t,i-1),-1);
-    const ex=expenses.filter(e=>e.tag==='business'&&e.date>=st&&e.date<=en).reduce((a,e)=>a+Math.max(0,parseFloat(e.amount)||0),0);
+    const ex=businessOperatingExpensesInRange(st,en);
     const rc=records.filter(r=>r.date>=st&&r.date<=en).reduce((a,r)=>a+Math.max(0,parseFloat(r.totalCost)||0),0);
     if(ex>0&&rc>0) ratios.push(ex/rc*100); }
   if(!ratios.length) return null; return { percent: Math.round(ratios.reduce((a,b)=>a+b,0)/ratios.length*10)/10, monthsUsed: ratios.length }; };
 (function(){ let ch=false; invoices.forEach(i=>{ if((!Array.isArray(i.payments)||!i.payments.length)&&parseFloat(i.paidAmount)>0){ i.payments=[{id:'legacy-'+i.id,date:i.date,amount:i.paidAmount,kind:'',note:'پرداخت ثبت‌شده قبل از ریز واریزی‌ها'}]; i.paidAmount=''; ch=true; } }); if(ch) saveJSON(STORE_KEYS.invoices,invoices); })();
-function staffPaidAmount(s){ const ms=jalaliMonthStartISO(), td=todayStr(); return expenses.filter(e=>e.staffId===s.id&&e.date>=ms&&e.date<=td).reduce((a,e)=>a+(parseFloat(e.amount)||0),0); }
+function staffPaidAmount(s){ const ms=jalaliMonthStartISO(), td=todayStr(); const legacy=expenses.filter(e=>e.staffId===s.id&&e.date>=ms&&e.date<=td).reduce((a,e)=>a+(parseFloat(e.amount)||0),0); const centralized=staffFinance.filter(r=>r.staffId===s.id&&r.type==='salary'&&r.date>=ms&&r.date<=td).reduce((a,r)=>a+(parseFloat(r.amount)||0),0); return legacy+centralized; }
 function staffRemaining(s){ return Math.max(0,ctNum(s.salary)-staffPaidAmount(s)); }
 staffPaidThisMonth=function(s){ const p=staffPaidAmount(s), sal=ctNum(s.salary); return sal>0?p>=sal:p>0; };
 const _sbal=supplierBalance; supplierBalance=function(id){ const b=_sbal(id); b.credit=Math.max(0,b.totalPaid-b.totalAmount); return b; };
@@ -9206,7 +9675,7 @@ subnavHTML=function(){
   return `<div class="mode-toggle" style="margin-bottom:12px">${items.map(([k,l])=>`<button class="btn ${tab===k?'btn-black':'btn-outline'} subnav-btn" data-tab="${k}" style="flex:1;font-size:12.5px;padding:8px 4px">${l}</button>`).join('')}</div>`;
 };
 function intBind(){
-  document.querySelectorAll('.int-btn').forEach(b=>b.onclick=()=>{ const k=b.dataset.t; navBackStack=[]; tab=k; if(k==='customers') custView='list'; if(k==='staff') staffView='list'; render(); });
+  document.querySelectorAll('.int-btn').forEach(b=>b.onclick=()=>{ const k=b.dataset.t; navBackStack=[]; tab=k; if(k==='customers') custView='list'; if(k==='staff') staffView='list'; if(k==='bookings') bkView='list'; if(k==='rentals') rentalView='list'; if(k==='expenses') expView='summary'; render(); });
   document.getElementById('eqMaintBtn')?.addEventListener('click',()=>atelierOpenPanel('maint'));
 }
 const _ust=uxSectionTools; uxSectionTools=function(){ _ust(); intBind(); };
@@ -9217,6 +9686,8 @@ TAB_LABELS.materials='مواد مصرفی';
 INT_TABS.forEach(x=>{ if(x[0]==='materials') x[1]='مواد مصرفی'; });
 function secOf(t){
   if(t==='home') return 'خانه';
+  if(t==='opsHub') return 'عملیات';
+  if(t==='finHub') return 'مالی';
   if(['ops','bookings','editing','suppliers','rentals'].includes(t)) return 'عملیات';
   if(['invoice','contracts','project'].includes(t)) return 'پروژه‌ها';
   if(['expenses','cheques'].includes(t)) return 'مالی';
@@ -9226,26 +9697,82 @@ function secOf(t){
   return TAB_LABELS[t]||'';
 }
 uxSectionLabel=function(){ return secOf(tab); };
-function secSub(){ if(tab==='calc') return 'فرمول قیمت‌گذاری'; if(tab==='project') return 'پرونده'; const x=INT_TABS.find(q=>q[0]===tab); return x?x[1]:''; }
+function secSub(){ const hs=HUB_ITEMS.flatMap(h=>h.items).find(q=>q[0]===tab); if(hs&&!['opsHub','finHub'].includes(tab)) return hs[1]; if(tab==='calc') return 'فرمول قیمت‌گذاری'; if(tab==='project') return 'پرونده'; const x=INT_TABS.find(q=>q[0]===tab); return x?x[1]:''; }
 bottomBarActiveKey=function(){
   if(tab==='home') return 'home';
-  if(['ops','bookings','editing','suppliers','rentals'].includes(tab)) return 'ops';
+  if(['opsHub','ops','bookings','editing','suppliers','rentals'].includes(tab)) return 'ops';
   if(['invoice','contracts','project'].includes(tab)) return 'invoice';
-  if(['expenses','cheques'].includes(tab)) return 'financial';
+  if(['finHub','expenses','cheques'].includes(tab)) return 'financial';
   if(tab==='internal'||tab==='calc'||INT_TABS.some(x=>x[0]===tab)) return 'internal';
   return '';
 };
 renderBottomTabBar=function(){
   const a=bottomBarActiveKey(), it=(k,ic,l,t)=>`<button class="bottom-tab-item ${a===k?'active':''}" data-nav-tab="${t}">${navIcon(NAV_ICONS[ic]||'')}<span>${l}</span></button>`;
-  return `<div class="bottom-tab-bar">${it('home','home','خانه','home')}${it('invoice','invoice','پروژه‌ها','invoice')}${it('ops','ops','عملیات','ops')}${it('financial','financial','مالی','expenses')}${it('internal','lists','داخلی','internal')}</div>`;
+  return `<div class="bottom-tab-bar">${it('home','home','خانه','home')}${it('invoice','invoice','پروژه‌ها','invoice')}${it('ops','ops','عملیات','opsHub')}${it('financial','financial','مالی','finHub')}${it('internal','lists','داخلی','internal')}</div>`;
 };
 const _sn4=subnavHTML;
 subnavHTML=function(){ if(INT_TABS.some(x=>x[0]===tab)) return ''; return _sn4(); };
 const _sb4=smartBack;
 smartBack=function(){
+  const hubOf=k=>HUB_ITEMS.find(h=>h.items.some(x=>x[0]===k));
+  const hub=hubOf(tab);
+  if(hub && !navBackStack.length){
+    const sub=(tab==='bookings'&&bkView!=='list')||(tab==='rentals'&&rentalView!=='list')||(tab==='expenses'&&expView!=='summary')||(tab==='suppliers'&&suppView!=='list');
+    if(!sub){ tab=hub.key; return render(); }
+  }
+  if(tab==='suppliers' && suppView==='list' && !navBackStack.length){ tab='opsHub'; return render(); }
   const sub=(tab==='customers'&&custView!=='list')||(tab==='staff'&&staffView==='form');
   if(INT_TABS.some(x=>x[0]===tab)&&!sub&&!navBackStack.length){ tab='internal'; return render(); }
   return _sb4();
+};
+
+/* ===== صفحه‌ی ورودی عملیات و مالی: بدون گزینه‌ی از پیش‌انتخاب‌شده، هم‌سبک «داخلی» ===== */
+NAV_ICONS.today='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+NAV_ICONS.rentals='<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>';
+NAV_ICONS.contracts='<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/>';
+NAV_ICONS.opsHub=NAV_ICONS.ops; NAV_ICONS.finHub=NAV_ICONS.financial;
+TAB_LABELS.opsHub='عملیات'; TAB_LABELS.finHub='مالی';
+const HUB_ITEMS=[
+  { key:'opsHub', items:[['ops','امروز','today'],['bookings','آفیش‌ها','bookings'],['editing','ادیتور','editing'],['rentals','اجاره و همکاران','rentals']] },
+  { key:'finHub', items:[['expenses','هزینه‌ها','expenses'],['cheques','چک‌ها','cheques']] }
+];
+function finHubReportHTML(){
+  try{
+    const r=reportData('month'), P=toPersianDigits, todayS=todayStr();
+    const spent=(r.businessExpenses||0)+(r.sessionWages||0);
+    const cashIn=Object.values(r.cash||{}).reduce((a,v)=>a+(parseFloat(v)||0),0);
+    const pend=d=>cheques.filter(c=>c.direction===d && c.status==='pending');
+    const sum=a=>a.reduce((x,c)=>x+(parseFloat(c.amount)||0),0);
+    const recv=pend('receivable'), pay=pend('payable');
+    const overdue=cheques.filter(c=>c.status==='pending' && c.dueDate && c.dueDate<todayS).length;
+    const debt=dashboardStats().custDebt||0;
+    const col=v=>v<0?'var(--red)':'#1A7A3A';
+    const row=(l,v,c)=>`<div class="r-row"><span>${l}</span><span class="bold"${c?` style="color:${c}"`:''}>${fmt(v)} ت</span></div>`;
+    const next=cheques.filter(c=>c.status==='pending'&&c.dueDate).sort((a,b)=>a.dueDate.localeCompare(b.dueDate)).slice(0,3);
+    return `<div class="card fin-hub-report" style="margin-top:14px"><div class="card-title"><span>گزارش مالی این ماه</span><span class="small">${P(r.count)} فاکتور</span></div>
+      ${row('فروش (بدون مالیات)',r.total||0)}
+      ${row('سود ناخالص',r.grossProfit||0)}
+      ${row('هزینه‌ها و دستمزد آفیش',spent)}
+      ${row('سود خالص',r.netProfit||0,col(r.netProfit||0))}
+      ${row('دریافتی نقدی این ماه',cashIn)}
+      <div class="fin-hub-sep"></div>
+      ${row('بدهی مشتریان',debt)}
+      ${row('چک‌های دریافتی در انتظار ('+P(recv.length)+')',sum(recv),'#1A7A3A')}
+      ${row('چک‌های پرداختی در انتظار ('+P(pay.length)+')',sum(pay),'var(--red)')}
+      ${overdue?`<p class="note" style="margin:8px 0 0;text-align:right;color:var(--red)">${P(overdue)} چک سررسید گذشته دارید</p>`:''}
+      ${next.length?`<div class="fin-hub-sep"></div><div class="small" style="margin-bottom:4px">سررسید نزدیک چک‌ها</div>${next.map(c=>`<div class="r-row"><span>${escapeAttr(c.personName||'بدون نام')} · ${jalaliStr(c.dueDate)}</span><span>${fmt(parseFloat(c.amount)||0)} ت</span></div>`).join('')}`:''}
+    </div>`;
+  }catch(e){ return ''; }
+}
+function renderHubTab(){
+  const h=HUB_ITEMS.find(x=>x.key===tab); if(!h) return '';
+  const fin=h.key==='finHub';
+  return `<div class="int-grid${fin?' fin-hub-grid':''}">${h.items.map(([k,l,ic])=>`<button type="button" class="int-btn" data-t="${k}">${navIcon(NAV_ICONS[ic]||'')}<span>${l}</span></button>`).join('')}</div>${fin?finHubReportHTML():''}`;
+}
+const _sn5=subnavHTML;
+subnavHTML=function(){
+  if(HUB_ITEMS.some(h=>h.key===tab||h.items.some(x=>x[0]===tab))) return '';
+  return _sn5();
 };
 
 /* ===== انتخابگر لمسی تاریخ و ساعت + برچسب شناور ===== */
@@ -9527,7 +10054,7 @@ const ATELIER_PERMS = [
 
 const auSave=()=>saveJSON(STORE_KEYS.users,atelierUsers);
 const auIsManager=()=>!!(atelierCurrentUser&&atelierCurrentUser.role==='manager');
-const AU_TAB_PERMISSION={project:'invoice',calc:'products',suppliers:'rentals',internal:'ops',report:'dashboard'};
+const AU_TAB_PERMISSION={project:'invoice',calc:'products',suppliers:'rentals',internal:'ops',report:'dashboard',opsHub:'ops',finHub:'expenses'};
 const auCanAccess=(key)=>{const perm=AU_TAB_PERMISSION[key]||key;return !!(atelierCurrentUser&&(atelierCurrentUser.role==='manager'||(atelierCurrentUser.role==='staff'&&Array.isArray(atelierCurrentUser.permissions)&&atelierCurrentUser.permissions.includes(perm))));};
 function auShowDenied(){
  const old=document.getElementById('auDeniedNotice');if(old)old.remove();
@@ -9636,6 +10163,67 @@ function auBindUsers(){
 }
 
 render();
+
+/* ===== Global money input clarity: live thousands separators + Persian amount words ===== */
+(function installGlobalMoneyInputAid(){
+  const moneyWordsSelector='.atelier-money-words';
+  const excluded=/qty|quantity|stockqty|lowstock|life|percent|pct|vat|taxrate|overheadpct|marginpct|payday|numberinput|loyaltymin|clubmin|clubdisc|clubrefpct|ctpv|planpct|invdiscountpct|invatRate/i;
+  function isMoneyField(el){
+    if(!el||el.tagName!=='INPUT'||el.disabled||el.type==='checkbox'||el.type==='radio')return false;
+    if(el.dataset.moneyWords==='off')return false;
+    const id=(el.id||'').toLowerCase(), cls=(el.className||'').toString().toLowerCase(), ph=(el.placeholder||'').toLowerCase();
+    if(excluded.test(id+' '+cls) && !/club-min/.test(cls)) return false;
+    if(id==='stRate' && document.getElementById('stPayType')?.value==='percent') return false;
+    if(/٪|درصد|تعداد|مقدار|روز پرداخت|عمر مفید|شماره|کد ملی|ساعت|دقیقه/.test(ph)) return false;
+    if(el.readOnly && !/amount|price|cost|salary|rate|discount|balance|deposit|credit|payment|expense|money/i.test(id+' '+cls)) return false;
+    const words=/تومان|قیمت|هزینه|مبلغ|حقوق|ودیعه|ارزش باقی|تخفیف|قیمت پایه|خرید|دریافتی|واریزی|پرداخت|فی\/قیمت|هزینه تعمیر|مانده قبلی|پیش‌فرض/.test(ph);
+    const ids=/manualpriceinput|manualoverhead|labor-cost|stsalary|strate|tfprice|tfcost|eqprice|eqsalvage|ctl-price|ctl-cost|ctdiscount|ctvatamount|sjcamount|rtprice|rtdeposit|jc-amount|invpay-amount|invprevbalmanual|invdiscountamount|matprice|custcreditamount|purchamount|purchpaid|expamount|newcatdefaultamount|chequeamount|ateliermaintcost|sfamount|clubptsamount|invoicelineamount/i.test(id+' '+cls);
+    return (el.inputMode==='decimal'||el.type==='number'||words||ids) && (words||ids);
+  }
+  function rawNumber(value,allowNegative){
+    let s=toLatinDigits(String(value==null?'':value)).replace(/[\s٬,،]/g,'').replace(/[^0-9.-]/g,'');
+    const neg=allowNegative&&s.startsWith('-'); s=s.replace(/-/g,'').replace(/\./g,'');
+    if(!s)return '';
+    const n=String(Math.abs(Number(s)||0)); return (neg?'-':'')+n;
+  }
+  function formatInput(el){
+    if(!isMoneyField(el))return;
+    const old=el.value||'', start=el.selectionStart==null?old.length:el.selectionStart;
+    const digitsBefore=toLatinDigits(old.slice(0,start)).replace(/\D/g,'').length;
+    const raw=rawNumber(old,el.id==='invPrevBalManual');
+    if(raw==='-'){updateWords(el);return;}
+    const negative=raw.startsWith('-'), digits=raw.replace(/\D/g,'');
+    const grouped=digits?Number(digits).toLocaleString('fa-IR'):'';
+    const next=(negative?'-':'')+grouped;
+    if(el.value!==next){el.value=next;try{let pos=0,count=0;while(pos<next.length&&count<digitsBefore){if(/[۰-۹0-9]/.test(next[pos]))count++;pos++;}el.setSelectionRange(pos,pos);}catch(_){}}
+    updateWords(el);
+  }
+  function updateWords(el){
+    if(!isMoneyField(el))return;
+    let hint=el._atelierMoneyWordsHint;
+    if(!hint){hint=document.createElement('div');hint.className='atelier-money-words small';hint.setAttribute('aria-live','polite');hint.style.cssText='display:block;width:100%;max-width:100%;font-size:11px;line-height:1.6;color:var(--c-steel,#6B7075);overflow-wrap:anywhere;white-space:normal';el._atelierMoneyWordsHint=hint;
+      const parent=el.parentElement;
+      if(parent){parent.appendChild(hint);if(parent.classList.contains('row-flex')){parent.style.flexWrap='wrap';hint.style.flex='0 0 100%';}}
+    }
+    const raw=rawNumber(el.value,el.id==='invPrevBalManual');
+    if(!raw||raw==='-'){hint.textContent='';hint.hidden=true;return;}
+    hint.hidden=false;
+    const n=Number(raw), words=numberToPersianWords(Math.abs(n));
+    const label=(el.placeholder||el.id||'مبلغ').replace(/[()٪]/g,'').trim();
+    hint.textContent='به حروف ('+label+'): '+(n<0?'منفی ':'')+words+' تومان';
+  }
+  function scan(root){
+    if(!root)return;
+    if(root.matches?.('input')){if(isMoneyField(root))formatInput(root);}
+    root.querySelectorAll?.('input').forEach(el=>{if(isMoneyField(el))formatInput(el);});
+  }
+  document.addEventListener('input',e=>{if(isMoneyField(e.target))formatInput(e.target);},true);
+  document.addEventListener('focusout',e=>{if(isMoneyField(e.target))formatInput(e.target);},true);
+  document.addEventListener('change',e=>{if(isMoneyField(e.target))formatInput(e.target);},true);
+  const observer=new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{if(n.nodeType===1)scan(n);} )));
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+  scan(document);
+})();
 </script>
 <script id="vaultLayer">
 /* لایه‌ی قفل و رمزگذاری — قبل از اجرای برنامه اجرا می‌شود.
