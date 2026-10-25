@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-BvKvmfwy2OhcRYGxwUHiaF28V3o9FhFpyHJcCObb0oY=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-CPfr0eaqOgFyBLm7vgYlYhTIjdYsHR3kT9hTVtluOgw=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
 <meta name="author" content="فرشاد شهرت">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
@@ -316,7 +316,8 @@
   .a4-prev-note{font-size:9px;color:var(--a4-muted);margin-top:6px;padding-top:6px;border-top:1px dashed #DDD;line-height:1.5;}
   .a4-payment-card{background:var(--a4-soft);border-radius:12px;padding:10px 13px;}
   .a4-payment-title{font-size:9.5px;font-weight:700;color:var(--a4-muted);margin-bottom:7px;}
-  .a4-footer{margin-top:14px;padding-top:10px;border-top:1px solid #E0E0E0;display:flex;justify-content:space-between;align-items:center;}
+  .a4-footer{margin-top:14px;padding-top:10px;border-top:1px solid #E0E0E0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;}
+  .a4-footer-contacts{flex:0 0 100%;margin-top:6px;padding-top:6px;border-top:1px dashed #E0E0E0;font-size:9px;font-weight:600;color:var(--a4-muted);text-align:center;line-height:1.8;}
   .a4-footer-slogan{font-size:10px;font-weight:700;color:var(--a4-ink);white-space:nowrap;}
   .a4-footer-social{font-size:10.5px;font-weight:600;color:var(--a4-muted);white-space:nowrap;}
 
@@ -377,6 +378,7 @@
   .a4-ultra-compact .a4-amount-words,.a4-ultra-compact .a4-prev-note{font-size:8px!important;margin-top:3px!important;padding-top:3px!important;}
   .a4-ultra-compact .a4-footer{margin-top:5px!important;padding-top:4px!important;}
   .a4-ultra-compact .a4-footer-slogan,.a4-ultra-compact .a4-footer-social{font-size:8px!important;}
+  .a4-ultra-compact .a4-footer-contacts{font-size:7.5px!important;margin-top:3px;padding-top:3px;}
 
 
   /* ---- قرارداد ---- */
@@ -1780,7 +1782,7 @@ function blankInvoice(){
     printDocType: 'auto', // auto | proforma | sale — چی روی خروجی چاپی برای مشتری نوشته بشه (پیش‌فاکتور/فاکتور فروش)، مستقل از وضعیت داخلی status
     prevBalanceUseManual: false, // false = خودکار از حساب مشتری، true = دستی
     prevBalanceManual: '', // مقدار دستی مانده قبلی (مثبت=بدهکار، منفی=بستانکار)
-    prevBalanceNote: '' // توضیح کوتاه (مثلاً تاریخ و عنوان بدهی قبلی)
+    prevBalanceNote: '', bankAccountId: '' // حساب واریز انتخابی ('' = پیش‌فرض، 'none' = بدون نمایش) — توضیح کوتاه (مثلاً تاریخ و عنوان بدهی قبلی)
   };
 }
 let invActiveWorkspace = null; // فضای کاری فعال — برای فاکتور جدید، عمداً خالیه تا خودت انتخاب کنی و کالای اشتباه ثبت نشه
@@ -2082,7 +2084,36 @@ function saveCurrentAsProduct(nameOverride, showAlert){
 // اطلاعات واریز که در فاکتور چاپی نشون داده میشه — با اطلاعات واقعی جایگزین کن
 let bankInfo = loadJSON(STORE_KEYS.bankInfo, { bankName:'', accountHolder:'', cardNumber:'', iban:'' });
 let bankInfoEditorOpen = false;
-let brandInfo = Object.assign({ name:'Prestige Studio', ownerName:'', phone:'', address:'', slogan:'', social:'', logo:'', vatRate:'10' }, loadJSON(STORE_KEYS.brandInfo, {}));
+let bankEditId = null; // null | 'new' | id حساب در حال ویرایش
+// ---- حساب‌های واریز (چند حساب) — سازگار با بک‌آپ قدیمی که فقط یک حساب داشت ----
+function bankAccountsList(){
+  const a = bankInfo && bankInfo.accounts;
+  if(Array.isArray(a) && a.length) return a.filter(x=>x && typeof x==='object');
+  if(bankInfo && (bankInfo.bankName||bankInfo.accountHolder||bankInfo.cardNumber||bankInfo.iban))
+    return [{ id:'bk-main', title:'', bankName:bankInfo.bankName||'', accountHolder:bankInfo.accountHolder||'', cardNumber:bankInfo.cardNumber||'', iban:bankInfo.iban||'' }];
+  return [];
+}
+function bankAccountFor(id){ if(id==='none') return null; const l = bankAccountsList(); return l.find(x=>x.id===id) || l[0] || null; }
+function bankAccountLabel(a){ return a.title || [a.bankName, a.accountHolder].filter(Boolean).join(' — ') || 'حساب'; }
+function bankAccountLineHTML(a){
+  return `${a.title?'<b>'+escapeAttr(a.title)+'</b>&nbsp;&nbsp;|&nbsp;&nbsp;':''}بانک: ${escapeAttr(a.bankName) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;به نام: ${escapeAttr(a.accountHolder) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;شماره کارت: ${escapeAttr(a.cardNumber) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;شبا: ${escapeAttr(a.iban) || '—'}`;
+}
+function bankPickHTML(selId, curId){
+  const l = bankAccountsList(); if(!l.length) return '';
+  const cur = curId==='none' ? 'none' : (bankAccountFor(curId)||{}).id;
+  return `<div id="${selId}Wrap" class="box-gray" style="margin-bottom:12px"><label class="small" style="display:block;margin-bottom:5px">حساب واریز روی خروجی چاپی</label>
+    <select id="${selId}" style="width:100%">${l.map(a=>`<option value="${escapeAttr(a.id)}" ${cur===a.id?'selected':''}>${escapeAttr(bankAccountLabel(a))}${a.cardNumber?' — '+escapeAttr(a.cardNumber):''}</option>`).join('')}<option value="none" ${cur==='none'?'selected':''}>بدون نمایش اطلاعات واریز</option></select></div>`;
+}
+function brandFooterContactsHTML(){
+  const b = brandInfo || {}, e = x=>escapeAttr(x||'');
+  const ph = v=>`<bdi dir="ltr">${e(v)}</bdi>`;
+  const items = [];
+  if((b.landline||'').trim()) items.push('تلفن ثابت: '+ph(b.landline));
+  [[b.contact1Name,b.contact1Phone],[b.contact2Name,b.contact2Phone]].forEach(([n,t])=>{ n=(n||'').trim(); t=(t||'').trim(); if(n||t) items.push((n?e(n)+': ':'')+(t?ph(t):'')); });
+  if((b.messenger||'').trim()) items.push('تلگرام و واتساپ: '+ph(b.messenger));
+  return items.length ? `<div class="a4-footer-contacts">${items.join('&nbsp;&nbsp;|&nbsp;&nbsp;')}</div>` : '';
+}
+let brandInfo = Object.assign({ name:'Prestige Studio', ownerName:'', phone:'', address:'', slogan:'', social:'', logo:'', vatRate:'10', landline:'', contact1Name:'', contact1Phone:'', contact2Name:'', contact2Phone:'', messenger:'' }, loadJSON(STORE_KEYS.brandInfo, {}));
 let brandEditorOpen = false;
 function brandLogoSrc(){ return safeImg(brandInfo.logo) || document.getElementById('studioLogoSrc')?.src || ''; }
 // فضاهای کاری آتلیه — برای تغییر نام/رنگ یا افزودن فضای جدید فقط همین لیست را ویرایش کن
@@ -2809,6 +2840,11 @@ function renderBrandSettings(){
         <input id="brandVatInput" inputmode="decimal" placeholder="نرخ پیش‌فرض مالیات بر ارزش افزوده (٪)" value="${escapeAttr(brandInfo.vatRate)}" style="margin-bottom:8px">
         <input id="brandSloganInput" placeholder="شعار (پایین فاکتور)" value="${escapeAttr(brandInfo.slogan)}" style="margin-bottom:8px">
         <input id="brandSocialInput" placeholder="اینستاگرام / تلفن (پایین فاکتور)" value="${escapeAttr(brandInfo.social)}" style="margin-bottom:10px">
+        <div style="font-size:12px;color:var(--c-steel);margin:4px 0 8px;text-align:right">اطلاعات تماس (زیر فاکتور و قرارداد چاپ می‌شود)</div>
+        <input id="brandLandlineInput" inputmode="tel" placeholder="شماره تماس ثابت آتلیه" value="${escapeAttr(brandInfo.landline)}" style="margin-bottom:8px">
+        <div class="row-flex" style="gap:8px;margin-bottom:8px"><input id="brandC1NameInput" placeholder="نام (۱)" value="${escapeAttr(brandInfo.contact1Name)}" style="flex:1"><input id="brandC1PhoneInput" inputmode="tel" placeholder="شماره تماس (۱)" value="${escapeAttr(brandInfo.contact1Phone)}" style="flex:1"></div>
+        <div class="row-flex" style="gap:8px;margin-bottom:8px"><input id="brandC2NameInput" placeholder="نام (۲)" value="${escapeAttr(brandInfo.contact2Name)}" style="flex:1"><input id="brandC2PhoneInput" inputmode="tel" placeholder="شماره تماس (۲)" value="${escapeAttr(brandInfo.contact2Phone)}" style="flex:1"></div>
+        <input id="brandMessengerInput" inputmode="tel" placeholder="شماره تلگرام و واتساپ" value="${escapeAttr(brandInfo.messenger)}" style="margin-bottom:10px">
         <button id="brandSaveBtn" class="btn btn-black" style="width:100%">ذخیره مشخصات آتلیه</button>
       </div>` : ''}
     </div>
@@ -2816,7 +2852,17 @@ function renderBrandSettings(){
 }
 function renderBankInfoSettings(){ return renderBrandSettings() + renderThemeSettings() + renderBankInfoCardOnly() + renderSecuritySettings(); }
 function renderBankInfoCardOnly(){
-  const isOpen = bankInfoEditorOpen;
+  const isOpen = bankInfoEditorOpen, list = bankAccountsList();
+  const editing = bankEditId==='new' ? { id:'', title:'', bankName:'', accountHolder:'', cardNumber:'', iban:'' } : (bankEditId ? list.find(x=>x.id===bankEditId) : null);
+  const form = editing ? `
+        <div class="box-gray" style="margin-bottom:10px">
+          <input id="bankTitleInput" placeholder="عنوان حساب (مثلاً: حساب اصلی / کارت دوم)" value="${escapeAttr(editing.title)}" style="margin-bottom:8px">
+          <input id="bankNameInput" placeholder="نام بانک" value="${escapeAttr(editing.bankName)}" style="margin-bottom:8px">
+          <input id="bankHolderInput" placeholder="به نام (صاحب حساب)" value="${escapeAttr(editing.accountHolder)}" style="margin-bottom:8px">
+          <input id="bankCardInput" inputmode="numeric" placeholder="شماره کارت" value="${escapeAttr(editing.cardNumber)}" style="margin-bottom:8px">
+          <input id="bankIbanInput" placeholder="شماره شبا" value="${escapeAttr(editing.iban)}" style="margin-bottom:10px">
+          <div class="row-flex" style="gap:8px"><button id="bankInfoSaveBtn" class="btn btn-black" style="flex:2">ذخیره حساب</button><button id="bankAccCancel" class="btn btn-outline" style="flex:1">انصراف</button></div>
+        </div>` : '';
   return `
     <div class="card" style="margin-bottom:10px;padding:0;overflow:hidden">
       <div class="cat-toggle" id="bankInfoToggle" style="display:flex;justify-content:space-between;align-items:center;padding:14px;cursor:pointer">
@@ -2824,14 +2870,19 @@ function renderBankInfoCardOnly(){
           <span style="display:inline-block;transition:transform .15s ease;transform:rotate(${isOpen?90:0}deg)">▸</span>
           اطلاعات واریز (بانک/کارت/شبا)
         </span>
+        <span class="small">${toPersianDigits(list.length)} حساب</span>
       </div>
       ${isOpen? `
       <div style="padding:0 14px 14px">
-        <input id="bankNameInput" placeholder="نام بانک" value="${escapeAttr(bankInfo.bankName)}" style="margin-bottom:8px">
-        <input id="bankHolderInput" placeholder="به نام (صاحب حساب)" value="${escapeAttr(bankInfo.accountHolder)}" style="margin-bottom:8px">
-        <input id="bankCardInput" placeholder="شماره کارت" value="${escapeAttr(bankInfo.cardNumber)}" style="margin-bottom:8px">
-        <input id="bankIbanInput" placeholder="شماره شبا" value="${escapeAttr(bankInfo.iban)}" style="margin-bottom:10px">
-        <button id="bankInfoSaveBtn" class="btn btn-black" style="width:100%">ذخیره اطلاعات واریز</button>
+        ${list.length ? '' : '<p class="note" style="text-align:right;margin:0 0 10px">هنوز حسابی ثبت نشده.</p>'}
+        ${list.map((a,k)=>`<div class="card" style="margin-bottom:8px;padding:10px;text-align:right">
+          <div style="font-weight:700">${escapeAttr(bankAccountLabel(a))}${k===0?' <span class="small" style="font-weight:400">(پیش‌فرض)</span>':''}</div>
+          <div class="card-sub" style="line-height:1.9">${escapeAttr(a.bankName)||'—'} · ${escapeAttr(a.accountHolder)||'—'}<br>کارت: ${escapeAttr(a.cardNumber)||'—'}<br>شبا: ${escapeAttr(a.iban)||'—'}</div>
+          <div class="row-flex" style="gap:8px;margin-top:6px"><button class="btn btn-outline bank-acc-edit" data-id="${escapeAttr(a.id)}" style="font-size:12px;padding:4px 10px">ویرایش</button><button class="btn btn-outline bank-acc-del" data-id="${escapeAttr(a.id)}" style="font-size:12px;padding:4px 10px;color:var(--red)">حذف</button></div>
+        </div>`).join('')}
+        ${form}
+        ${editing ? '' : '<button id="bankAccAdd" class="btn btn-outline" style="width:100%">+ افزودن حساب</button>'}
+        <p class="note" style="text-align:right;margin:8px 0 0">اولین حساب پیش‌فرض است؛ هنگام ثبت فاکتور یا قرارداد می‌توانید هر حساب دیگری را انتخاب کنید.</p>
       </div>` : ''}
     </div>
   `;
@@ -2853,24 +2904,43 @@ function bindBankInfoEvents(){
     brandInfo.vatRate = document.getElementById('brandVatInput').value.trim() || '10';
     brandInfo.slogan = document.getElementById('brandSloganInput').value.trim();
     brandInfo.social = document.getElementById('brandSocialInput').value.trim();
+    brandInfo.landline = document.getElementById('brandLandlineInput').value.trim();
+    brandInfo.contact1Name = document.getElementById('brandC1NameInput').value.trim();
+    brandInfo.contact1Phone = document.getElementById('brandC1PhoneInput').value.trim();
+    brandInfo.contact2Name = document.getElementById('brandC2NameInput').value.trim();
+    brandInfo.contact2Phone = document.getElementById('brandC2PhoneInput').value.trim();
+    brandInfo.messenger = document.getElementById('brandMessengerInput').value.trim();
     saveJSON(STORE_KEYS.brandInfo, brandInfo);
     brandEditorOpen = false;
     render();
   });
-  document.getElementById('bankInfoToggle')?.addEventListener('click', ()=>{
-    bankInfoEditorOpen = !bankInfoEditorOpen;
-    render();
-  });
+  const persistBank = accts=>{
+    const f = accts[0] || {};
+    bankInfo = Object.assign({}, bankInfo, { accounts: accts, bankName:f.bankName||'', accountHolder:f.accountHolder||'', cardNumber:f.cardNumber||'', iban:f.iban||'' });
+    saveJSON(STORE_KEYS.bankInfo, bankInfo);
+    bankEditId = null; render();
+  };
+  document.getElementById('bankInfoToggle')?.addEventListener('click', ()=>{ bankInfoEditorOpen = !bankInfoEditorOpen; bankEditId = null; render(); });
+  document.getElementById('bankAccAdd')?.addEventListener('click', ()=>{ bankEditId = 'new'; render(); });
+  document.getElementById('bankAccCancel')?.addEventListener('click', ()=>{ bankEditId = null; render(); });
+  document.querySelectorAll('.bank-acc-edit').forEach(b=>b.addEventListener('click', ()=>{ bankEditId = b.dataset.id; render(); }));
+  document.querySelectorAll('.bank-acc-del').forEach(b=>b.addEventListener('click', ()=>{
+    if(!confirm('این حساب حذف شود؟ (فاکتورها و قراردادهایی که آن را انتخاب کرده‌اند، از حساب پیش‌فرض استفاده می‌کنند)')) return;
+    persistBank(bankAccountsList().filter(x=>x.id!==b.dataset.id));
+  }));
   document.getElementById('bankInfoSaveBtn')?.addEventListener('click', ()=>{
-    bankInfo = {
+    const rec = {
+      title: document.getElementById('bankTitleInput').value.trim(),
       bankName: document.getElementById('bankNameInput').value.trim(),
       accountHolder: document.getElementById('bankHolderInput').value.trim(),
       cardNumber: document.getElementById('bankCardInput').value.trim(),
       iban: document.getElementById('bankIbanInput').value.trim(),
     };
-    saveJSON(STORE_KEYS.bankInfo, bankInfo);
-    bankInfoEditorOpen = false;
-    render();
+    if(!(rec.bankName||rec.cardNumber||rec.iban)){ alert('حداقل نام بانک، شماره کارت یا شبا را وارد کن'); return; }
+    const list = bankAccountsList().slice();
+    if(bankEditId==='new') list.push({ id:'bk-'+Date.now().toString(36)+Math.random().toString(36).slice(2,5), ...rec });
+    else { const k = list.findIndex(x=>x.id===bankEditId); if(k>=0) list[k] = { ...list[k], ...rec }; }
+    persistBank(list);
   });
 }
 function renderInvoiceListTab(){
@@ -3665,7 +3735,7 @@ function blankContract(){
   return { id:null, number:null, date: todayStr(), status:'draft', customerName:'', customerPhone:'', customerNationalId:'', customerAddress:'',
     invoiceId:'', title:'', eventDate:'', start:'', end:'', place:'',
     lines:[{ id: ctUid(), productId:'', desc:'', qty:'1', price:'', cost:'' }],
-    discountAmount:'', vatEnabled:false, vatRate:'', plan:[], fieldValues:{}, extraNote:'' };
+    discountAmount:'', vatEnabled:false, vatRate:'', plan:[], fieldValues:{}, extraNote:'', bankAccountId:'' };
 }
 const ctNum = v => parseFloat(toLatinDigits(String(v==null?'':v)).replace(/[٬,\s]/g,'')) || 0;
 function contractTotals(ct){
@@ -3764,6 +3834,7 @@ function buildA4ContractHTML(ct){
         </div>
         ${clauseAtoms}
         ${extra}
+        ${(()=>{ const a = bankAccountFor(ct.bankAccountId); return a ? `<div class="a4-clause"><div class="a4-clause-title">اطلاعات واریز</div><div class="a4-clause-p" style="line-height:1.9">${bankAccountLineHTML(a)}</div></div>` : ''; })()}
         <div class="a4-sign-row" data-keep="prev">
           <div class="a4-sign-box"><b>طرف اول (آتلیه)</b><span>${escapeAttr(brandInfo.ownerName||brandInfo.name||'')}</span><div class="a4-sign-line">امضا و مهر</div></div>
           <div class="a4-sign-box"><b>طرف دوم (مشتری)</b><span>${escapeAttr(ct.customerName||'')}</span><div class="a4-sign-line">امضا</div></div>
@@ -3772,6 +3843,7 @@ function buildA4ContractHTML(ct){
       <div class="a4-footer">
         <div class="a4-footer-slogan">${escapeAttr(brandInfo.slogan)}</div>
         <div class="a4-footer-social">${escapeAttr(brandInfo.social || brandInfo.name)}</div>
+        ${brandFooterContactsHTML()}
       </div>
     </div>
   </div>`;
@@ -3948,6 +4020,7 @@ function renderContractEditor(){
     ${(contractTpl.fields||[]).length ? `<h2 class="sec">مقادیر قالب قرارداد</h2><div class="box-gray" style="margin-bottom:12px">${contractTpl.fields.map((f,i)=>`<label class="small" style="display:block;margin:${i?'8px':'0'} 0 3px">${escapeAttr(f.key)}</label><input class="ct-field" data-key="${escapeAttr(f.key)}" placeholder="${escapeAttr(f.value)}" value="${escapeAttr((c.fieldValues||{})[f.key]||'')}">`).join('')}</div>` : ''}
     <h2 class="sec">توضیحات و توافق‌های تکمیلی</h2>
     <textarea id="ctExtra" rows="3" placeholder="هر توافق اضافه‌ای که باید زیر بندهای قرارداد بیاید (هر خط یک بند)" style="width:100%;margin-bottom:12px;font-family:inherit">${escapeAttr(c.extraNote)}</textarea>
+    ${bankPickHTML('ctBankPick', c.bankAccountId)}
     <button id="ctSave" class="btn btn-red" style="width:100%;margin-bottom:8px">${ctEditingId ? 'ذخیره تغییرات و ادامه' : 'ثبت قرارداد و ادامه'}</button>`;
 }
 function renderContractTplEditor(){
@@ -4020,6 +4093,7 @@ function bindContractsEvents(){
   document.getElementById('ctCustPick')?.addEventListener('change', e=>{ const x = customers.find(q=>q.id===e.target.value); if(x){ c.customerName = x.name||''; c.customerPhone = x.phone||''; render(); } });
   [['ctCustName','customerName'],['ctCustPhone','customerPhone'],['ctCustNid','customerNationalId'],['ctCustAddr','customerAddress'],['ctTitle','title'],['ctPlace','place'],['ctExtra','extraNote']]
     .forEach(([id,k])=> document.getElementById(id)?.addEventListener('input', e=>{ c[k] = e.target.value; }));
+  document.getElementById('ctBankPick')?.addEventListener('change', e=>{ c.bankAccountId = e.target.value; });
   bindJalaliDateInput('ctDate', iso=>{ c.date = iso; });
   bindJalaliDateInput('ctEventDate', iso=>{ c.eventDate = iso; });
   bindTimeField('ctStart', v=>{ c.start = v; });
@@ -5274,6 +5348,7 @@ function renderInvoiceEditTab(){
       ${invoiceSummaryRows(t, prevBalFinal, invDraft.customerId, editingInvId)}
     </div>
 
+    ${bankPickHTML('invBankPick', invDraft.bankAccountId)}
     <textarea id="invNotes" rows="3" placeholder="یادداشت (اختیاری — در خروجی چاپی هم نمایش داده می‌شود؛ هر خط جدا نوشته می‌شه)" style="width:100%;font-family:inherit;border:1px solid #ccc;border-radius:6px;padding:8px;margin-bottom:12px">${escapeAttr(invDraft.notes)}</textarea>
 
     <div class="box-gray" style="margin-bottom:12px">
@@ -5668,6 +5743,7 @@ function bindInvoiceEditEvents(){ invCollapseSections();
   document.getElementById('invPrevBalManual')?.addEventListener('input', e=>{ invDraft.prevBalanceManual = e.target.value; rerenderInvoiceEdit(); });
   document.getElementById('invPrevBalNote')?.addEventListener('input', e=>{ invDraft.prevBalanceNote = e.target.value; });
   document.getElementById('invNotes')?.addEventListener('input', e=>{ invDraft.notes = e.target.value; });
+  document.getElementById('invBankPick')?.addEventListener('change', e=>{ invDraft.bankAccountId = e.target.value; });
   document.getElementById('invProjectStatus')?.addEventListener('change', e=>{ invDraft.projectStatus = e.target.value; });
   document.getElementById('invEditor')?.addEventListener('change', e=>{ askEditorChange(invDraft, e.target.value); render(); });
   bindJalaliDateInput('invEditDue', iso=>{ invDraft.editDue = iso; });
@@ -5826,12 +5902,10 @@ function buildA4InvoiceHTML(inv){
           <div class="a4-terms-title">شرایط و ضوابط</div>
           ${buildTermsSectionsHTML(typesUsed)}
           ${invoiceNotesHTML(inv)}
-          ${(bankInfo.bankName||bankInfo.accountHolder||bankInfo.cardNumber||bankInfo.iban) ? `          <div class="a4-bank-box">
+          ${(()=>{ const a = bankAccountFor(inv.bankAccountId); return a ? `<div class="a4-bank-box">
             <div class="a4-terms-title" style="margin-top:10px">اطلاعات واریز</div>
-            <div style="font-size:9.5px;color:#000;line-height:1.8">
-              بانک: ${escapeAttr(bankInfo.bankName) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;به نام: ${escapeAttr(bankInfo.accountHolder) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;شماره کارت: ${escapeAttr(bankInfo.cardNumber) || '—'}&nbsp;&nbsp;|&nbsp;&nbsp;شبا: ${escapeAttr(bankInfo.iban) || '—'}
-            </div>
-          </div>` : ''}
+            <div style="font-size:9.5px;color:#000;line-height:1.8">${bankAccountLineHTML(a)}</div>
+          </div>` : ''; })()}
         </div>
         <div class="a4-finance-row">
         <div class="a4-summary-box">
@@ -5872,6 +5946,7 @@ function buildA4InvoiceHTML(inv){
       <div class="a4-footer">
         <div class="a4-footer-slogan">${escapeAttr(brandInfo.slogan)}</div>
         <div class="a4-footer-social">${escapeAttr(brandInfo.social || brandInfo.name)}</div>
+        ${brandFooterContactsHTML()}
       </div>
     </div>
   </div>`;
@@ -5974,7 +6049,7 @@ async function paginateA4(rawHTML){
       if(!footer) return '';
       const ch = footer.children;
       const mid = n>1 ? `<div class="a4-page-no">صفحه ${toPersianDigits(i+1)} از ${toPersianDigits(n)}</div>` : '';
-      return `<div class="a4-footer">${ch[0]?ch[0].outerHTML:''}${mid}${ch[1]?ch[1].outerHTML:''}</div>`;
+      return `<div class="a4-footer">${ch[0]?ch[0].outerHTML:''}${mid}${ch[1]?ch[1].outerHTML:''}${ch[2]?ch[2].outerHTML:''}</div>`;
     };
     const sheets = pages.map((p,i)=>`<div class="a4-sheet ${cls}" style="${vars}"><div class="a4-page">`
       + (i===0 ? p.top.map(k=>k.outerHTML).join('') : `<div class="a4-cont-header"><span>${escapeAttr(contText)}</span><span>ادامه — صفحه ${toPersianDigits(i+1)}</span></div>`)
@@ -9839,7 +9914,7 @@ function invGroupSteps(){
     if(k.id==='invBackBtn'||k.id==='subnav'||k.classList.contains('mode-toggle')&&k.querySelector('.subnav-btn')) return;
     if(stop){ outside.push(k); return; }
     if(k.matches('h2.sec')){ const t=k.textContent.trim(), m=map.find(x=>t.startsWith(x[0])); if(m) cur=m[1]; if(cur<0){ k.remove(); return; } steps[cur].push(k); return; }
-    if(k.classList.contains('results')){ ex.res.push(k); return; } if(k.id==='invNotes'){ ex.notes.push(k); return; }
+    if(k.classList.contains('results')){ ex.res.push(k); return; } if(k.id==='invNotes'||k.id==='invBankPickWrap'){ ex.notes.push(k); return; }
     if(k.querySelector&&k.querySelector('#invProjectStatus')){ steps[3].push(k); return; }
     if(k.querySelector&&k.querySelector('#invSaveDraftBtn')){ ex.save.push(k); stop=true; return; }
     if(cur<0){ k.remove(); return; } steps[cur].push(k); });
