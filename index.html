@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-jnrtj/rlAV5wHBuhX3pqEQcvFxPvtEOzze5J5AcBxX4=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-tDW4w/MbR+cQ4dvx0k4NUCOXkIs69fS32o0XN/MVF50=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
 <meta name="author" content="فرشاد شهرت">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
@@ -3158,36 +3158,35 @@ function saveBookings(){ saveJSON(STORE_KEYS.bookings, bookings); }
 function saveBookingResources(){ saveJSON(STORE_KEYS.bookingResources, bookingResources); }
 function bkToMin(t){ const m = /^(\d{1,2}):(\d{2})$/.exec(String(t||'')); return m ? (+m[1])*60 + (+m[2]) : NaN; }
 // بازه‌ی زمانی مطلق (دقیقه) — اگر پایان قبل از شروع باشد یعنی مراسم از نیمه‌شب گذشته و تا فردا ادامه دارد
-function bkInterval(b){
+function bkDepartLine(b){ return (b.departDate && b.date && b.departDate < b.date) ? 'تاریخ حرکت: ' + bkWeekday(b.departDate) + ' ' + jalaliStr(b.departDate) : ''; }
+// dep=true: برای فرد و تجهیزاتی که همراه اکیپ حرکت می‌کنند، درگیری از روز حرکت (اگر زودتر از مراسم ثبت شده) شروع می‌شود
+function bkInterval(b, dep){
   const day = Date.parse(b.date + 'T00:00:00Z') / 60000;
   const st0 = bkToMin(b.start), e0 = bkToMin(b.end), call = bkEarliestCall(b);
   if(isNaN(day) || isNaN(st0) || isNaN(e0)) return null;
+  const end = day + (e0 <= st0 ? e0 + 1440 : e0);
+  if(dep && b.departDate && b.departDate < b.date){ const d0 = Date.parse(b.departDate + 'T00:00:00Z') / 60000; if(!isNaN(d0)) return [d0, end]; }
   const s0 = (!isNaN(call) && call < st0) ? call : st0;       // فرد از ساعت حضورش درگیر است، نه از ساعت شروع مراسم
-  return [day + s0, day + (e0 <= st0 ? e0 + 1440 : e0)];
+  return [day + s0, end];
 }
+function bkResUsesDeparture(b, id){ return (b.crew||[]).some(m=> m.staffId===id || (m.gearIds||[]).includes(id)); }
+function bkOverlapFor(a, o, id){ const ia = bkInterval(a, bkResUsesDeparture(a,id)), io = bkInterval(o, bkResUsesDeparture(o,id)); return !!(ia && io && ia[0] < io[1] && io[0] < ia[1]); }
 function bkResName(id){ const r = bookingResources.find(x=>x.id===id); return r ? r.name : '؟'; }
 // تداخل فقط وقتی است که زمان‌ها هم‌پوشانی داشته باشند و حداقل یک منبع (فضا/نفر/تجهیزات) مشترک باشد
 function bookingConflicts(b, excludeId){
-  const iv = bkInterval(b);
-  if(!iv || !(b.resourceIds||[]).length || b.status==='cancelled') return [];
+  if(!bkInterval(b) || !(b.resourceIds||[]).length || b.status==='cancelled') return [];
   const out = [];
   bookings.forEach(o=>{
     if(o.id===excludeId || o.status==='cancelled') return;
-    const oi = bkInterval(o);
-    if(!oi || !(iv[0] < oi[1] && oi[0] < iv[1])) return;
-    const shared = (o.resourceIds||[]).filter(id=>b.resourceIds.includes(id));
+    const shared = (o.resourceIds||[]).filter(id=> b.resourceIds.includes(id) && bkOverlapFor(b, o, id));
     if(shared.length) out.push({ booking:o, shared });
   });
   return out;
 }
 // تداخل یک منبع (فرد یا تجهیزات) مشخص با آفیش‌های دیگر
 function bkResourceConflicts(id, b, excludeId){
-  const iv = bkInterval(b);
-  if(!iv || b.status==='cancelled') return [];
-  return bookings.filter(o=>{
-    if(o.id===excludeId || o.status==='cancelled' || !(o.resourceIds||[]).includes(id)) return false;
-    const oi = bkInterval(o); return oi && iv[0] < oi[1] && oi[0] < iv[1];
-  });
+  if(!bkInterval(b) || b.status==='cancelled') return [];
+  return bookings.filter(o=> o.id!==excludeId && o.status!=='cancelled' && (o.resourceIds||[]).includes(id) && bkOverlapFor(b, o, id));
 }
 function bkBusyLabel(o){ return `«${o.title||o.customerName||'آفیش'}» (${toPersianDigits(o.start)}–${toPersianDigits(o.end)})`; }
 function bkSuggestStaff(role, b, excludeId, usedIds){
@@ -3242,6 +3241,7 @@ function bkCrewSectionHTML(){
 function bkDispatchText(b){
   const inv = invoices.find(i=>i.id===b.invoiceId);
   const lines = [`📅 برگه اعزام — ${b.title || b.customerName || 'آفیش'}`, `تاریخ: ${bkWeekday(b.date)} ${jalaliStr(b.date)}`, `ساعت مراسم: ${toPersianDigits(b.start)} تا ${toPersianDigits(b.end)}`];
+  { const d = bkDepartLine(b); if(d) lines.splice(2, 0, d); }
   if(b.customerName) lines.push(`مشتری: ${b.customerName}${inv && inv.customerPhone ? ' — ' + inv.customerPhone : ''}`);
   lines.push(`محل: ${BOOKING_PLACES[b.place]||''}${b.placeNote ? ' — ' + b.placeNote : ''}`);
   const crew = (b.crew||[]).filter(m=>m.staffId);
@@ -3268,7 +3268,7 @@ function buildA4DispatchHTML(b){
       </div>
       <div class="a4-title-bar"><div class="a4-invoice-title">${b._individualDispatch ? 'برگه اختصاصی اعزام' : 'برگه اعزام اکیپ'}</div><div class="a4-red-line"></div><div style="font-size:11px;color:#6B7075">${escapeAttr(b.title||b.customerName||'')}</div></div>
       <div class="a4-grid a4-contract-meta">
-        <div class="a4-cell"><span class="a4-cell-label">تاریخ</span><span class="a4-cell-value">${bkWeekday(b.date)} ${jalaliStr(b.date)}</span></div>
+        <div class="a4-cell"><span class="a4-cell-label">تاریخ</span><span class="a4-cell-value">${bkWeekday(b.date)} ${jalaliStr(b.date)}</span>${bkDepartLine(b)?`<span class="a4-cell-value" style="font-size:11px;color:#6B7075">${escapeAttr(bkDepartLine(b))}</span>`:''}</div>
         <div class="a4-cell"><span class="a4-cell-label">ساعت مراسم</span><span class="a4-cell-value">${toPersianDigits(b.start)} تا ${toPersianDigits(b.end)}</span></div>
         <div class="a4-cell"><span class="a4-cell-label">مشتری</span><span class="a4-cell-value">${escapeAttr(b.customerName||'-')}</span></div>
         <div class="a4-cell"><span class="a4-cell-label">تلفن مشتری</span><span class="a4-cell-value">${escapeAttr((inv&&inv.customerPhone)||'-')}</span></div>
@@ -3309,6 +3309,7 @@ function bkMemberText(b, m){
   const st = staff.find(x=>x.id===m.staffId);
   const gear = (m.gearIds||[]).map(id=>bkResName(id).replace(/ \(.*\)$/,'')).join('، ');
   const L = [`سلام ${st?st.name:''} عزیز`, `اعزام: ${b.title || b.customerName || 'آفیش'}`, `تاریخ: ${bkWeekday(b.date)} ${jalaliStr(b.date)}`];
+  { const d = bkDepartLine(b); if(d) L.splice(3, 0, d); }
   if(m.callTime) L.push(`حضور: ساعت ${toPersianDigits(m.callTime)}`);
   L.push(`مراسم: ${toPersianDigits(b.start)} تا ${toPersianDigits(b.end)}`);
   if(m.role) L.push(`نقش: ${m.role}`);
@@ -3333,6 +3334,7 @@ function dpIntlDigits(ph){ let d = toLatinDigits(String(ph||'')).replace(/\D/g,'
 function bkManagerCaption(b){
   const inv = invoices.find(i=>i.id===b.invoiceId);
   const L = [`📅 برگه اعزام — ${b.title || b.customerName || 'آفیش'}`, `تاریخ: ${bkWeekday(b.date)} ${jalaliStr(b.date)}`, `ساعت مراسم: ${toPersianDigits(b.start)} تا ${toPersianDigits(b.end)}`];
+  { const d = bkDepartLine(b); if(d) L.splice(2, 0, d); }
   const place = (BOOKING_PLACES[b.place]||'') + (b.placeNote ? ' - ' + b.placeNote : ''); if(place.trim()) L.push(`محل: ${place}`);
   if(b.customerName) L.push(`مشتری: ${b.customerName}${inv && inv.customerPhone ? ' — ' + inv.customerPhone : ''}`);
   const crew = (b.crew||[]).filter(m=>m.staffId);
@@ -3480,6 +3482,7 @@ function renderBookingForm(){
       <input id="bkCustomer" placeholder="نام مشتری" value="${escapeAttr(b.customerName)}" style="margin-bottom:8px"><textarea id="bkCustomerAddress" rows="2" placeholder="آدرس کامل مشتری / محل مراجعه" style="width:100%;margin-bottom:8px;font-family:inherit">${escapeAttr(b.customerAddress||'')}</textarea>
       <label class="small" style="display:block;margin-bottom:3px">تاریخ</label>
       ${renderJalaliDateInput('bkDate', b.date, 'width:100%;margin-bottom:8px')}
+      ${renderJalaliDateInput('bkDepart', b.departDate||'', 'width:100%;margin-bottom:8px').replace(/placeholder="[^"]*"/, 'placeholder="تاریخ حرکت اکیپ (اختیاری)"')}
       <div class="row-flex" style="margin-bottom:8px">
         <div style="flex:1"><label class="small" style="display:block;margin-bottom:3px">ساعت شروع (مثلا ۱۸:۳۰)</label>${timeFieldHTML('bkStart', b.start)}</div>
         <div style="flex:1"><label class="small" style="display:block;margin-bottom:3px">ساعت پایان</label>${timeFieldHTML('bkEnd', b.end)}</div>
@@ -3590,6 +3593,7 @@ function bindBookingsEvents(){
     render();
   });
   bindJalaliDateInput('bkDate', iso=>{ bkDraft.date = iso; updateBkConflictHint(); });
+  bindJalaliDateInput('bkDepart', iso=>{ bkDraft.departDate = iso; updateBkConflictHint(); });
   bindTimeField('bkStart', v=>{ bkDraft.start = v; updateBkConflictHint(); });
   bindTimeField('bkEnd', v=>{ bkDraft.end = v; updateBkConflictHint(); });
   document.getElementById('bkPlace')?.addEventListener('change', e=>{ bkDraft.place = e.target.value; });
@@ -3617,6 +3621,8 @@ function bindBookingsEvents(){
     if(bkDraft.status==='confirmed' && !(bkDraft.crew||[]).some(m=>m.staffId) && !confirm('اکیپی برای این آفیش تعیین نشده؛ با این حال قطعی شود؟')) return;
     if(!bkDraft.title.trim() && !bkDraft.customerName.trim()){ alert('حداقل عنوان آفیش یا نام مشتری را وارد کنید'); return; }
     if(!bkDraft.date){ alert('تاریخ را مشخص کنید'); return; }
+    if(bkDraft.departDate && bkDraft.departDate > bkDraft.date){ alert('تاریخ حرکت نباید بعد از تاریخ مراسم باشد'); return; }
+    if(bkDraft.departDate && bkDraft.departDate === bkDraft.date) bkDraft.departDate = '';
     if(isNaN(bkToMin(bkDraft.start)) || isNaN(bkToMin(bkDraft.end))){ alert('ساعت شروع و پایان را وارد کنید'); return; }
     if(bkDraft.start===bkDraft.end){ alert('ساعت شروع و پایان نباید یکی باشد'); return; }
     const conf = bookingConflicts(bkDraft, editingBookingId);
