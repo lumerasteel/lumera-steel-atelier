@@ -1,5 +1,5 @@
 /* Service worker: آفلاین‌شدن برنامه. با هر تغییر فایل‌ها، عدد VERSION را بالا ببرید. */
-const VERSION = 'atelier-stage11-dispatch-send-4';
+const VERSION = 'atelier-stage11-dispatch-send-5';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

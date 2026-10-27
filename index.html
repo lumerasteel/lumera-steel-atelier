@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-4EuT4OJrAKHOGfWZ818qIvQHStTw6SEwyiAJqj/T8aQ=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-tDW4w/MbR+cQ4dvx0k4NUCOXkIs69fS32o0XN/MVF50=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;sha256-2fj6bOrJQh9/GppGMZziHTp7nfet0Ry4horW1B7/ztk=&#x27; &#x27;sha256-FLJNqy4hPMzLHF+CqkjhivhI1ufft6wbIewuB6Bllkk=&#x27; &#x27;sha256-UGkgjbdUB3K0iUxsGMOIB01u+EUL/CzbcYRXiCZ/bw8=&#x27; &#x27;sha256-eiVMsqWEtgzOA2qooKK20POaRqZwwBXxBnaPXlh72yg=&#x27; &#x27;sha256-rVG7P/BYRsPMCh4bv0IaeYvRtf32sJg7c0x4szQgX1M=&#x27; &#x27;sha256-vOYWR4f6ZwXYq/9pNtQsGwyv9eiDaRhNTPczbu1OTeA=&#x27; &#x27;sha256-xE2ipjx9MIUTWWQrecjPJMuq9RWq1NgSaH9WEHcnTVE=&#x27; https://accounts.google.com/gsi/client; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; https://accounts.google.com/gsi/style; img-src &#x27;self&#x27; data: blob:; font-src &#x27;self&#x27; data:; media-src &#x27;self&#x27; data: blob:; connect-src &#x27;self&#x27; https://accounts.google.com https://www.googleapis.com https://oauth2.googleapis.com; frame-src data: https://accounts.google.com; worker-src &#x27;self&#x27;; manifest-src &#x27;self&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;">
 <meta name="author" content="فرشاد شهرت">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حساب‌داری آتلیه</title>
@@ -2740,7 +2740,7 @@ function renderSecuritySettings(){
         <div style="font-weight:700;font-size:13px;margin-bottom:6px">ورود با اثر انگشت / چهره</div>
         ${(()=>{
           const cfg = window.__bio.config();
-          if(cfg) return `<p class="note" style="margin:0 0 8px;text-align:right;line-height:1.9">${cfg.mode==='prf' ? '✓ فعال است (حالت امن): کلید باز کردن اطلاعات فقط بعد از تأیید اثر انگشت یا چهره‌ی گوشی آزاد می‌شود.' : '✓ فعال است (حالت راحتی): ورود با اثر انگشت یا چهره انجام می‌شود، ولی مرورگر این گوشی امکان قفل رمزنگاری با بایومتریک را ندارد؛ پس قفل صفحه‌ی خود گوشی را حتماً نگه دار.'}</p><button id="secBioOff" class="btn btn-outline" style="width:100%;margin-bottom:14px">غیرفعال کردن</button>`;
+          if(cfg) return `${cfg.mode==='gate' && window.__bioUp ? '<button id="secBioUp" class="btn btn-outline" style="width:100%;margin-bottom:8px">ارتقا به حالت امن (اختیاری): اینجا را لمس کن و تأیید کن</button>' : ''}<p class="note" style="margin:0 0 8px;text-align:right;line-height:1.9">${cfg.mode==='prf' ? '✓ فعال است (حالت امن): کلید باز کردن اطلاعات فقط بعد از تأیید اثر انگشت یا چهره‌ی گوشی آزاد می‌شود.' : '✓ فعال است (حالت راحتی): ورود با اثر انگشت یا چهره انجام می‌شود، ولی مرورگر این گوشی امکان قفل رمزنگاری با بایومتریک را ندارد؛ پس قفل صفحه‌ی خود گوشی را حتماً نگه دار.'}</p><button id="secBioOff" class="btn btn-outline" style="width:100%;margin-bottom:14px">غیرفعال کردن</button>`;
           if(!window.__bio.avail) {
             const localFile = !window.isSecureContext || !location.hostname || location.protocol === 'file:' || location.protocol === 'content:';
             return `<p class="note" style="margin:0 0 14px;text-align:right;line-height:1.9">${localFile ? 'این فایل مستقیماً از حافظهٔ گوشی باز شده است. مرورگر در این حالت اجازهٔ استفاده از اثر انگشت/چهره را به برنامه نمی‌دهد. این محدودیت با تغییر کد داخل فایل رفع نمی‌شود؛ برای بایومتریک باید برنامه از یک مبدأ امن HTTPS اجرا شود. فعلاً از رمز اصلی برای ورود استفاده کن.' : 'مرورگر در حال حاضر احراز هویت بایومتریک وب را در دسترس نمی‌گذارد. در آیفون: iOS ‏۱۶ به بالا لازم است، Face ID/Touch ID و رمز گوشی باید فعال باشند و برنامه باید در Safari (یا از «افزودن به صفحه‌ی اصلی» در Safari) باز شود؛ Chrome آیفون از این قابلیت پشتیبانی نمی‌کند. فعلاً از رمز اصلی استفاده کن.'}</p>`;
@@ -2764,6 +2764,12 @@ function bindSecurityEvents(){
   document.getElementById('secToggle')?.addEventListener('click', async ()=>{ try{ window.__bio.avail = await window.__bio.available(); }catch(e){} securityOpen = !securityOpen; render(); });
   document.getElementById('secAutolock')?.addEventListener('change', e=>{ window.__vault.setAutolock(parseInt(e.target.value)||0); });
   document.getElementById('secLockNow')?.addEventListener('click', ()=> window.__vault.lock(true));
+  document.getElementById('secBioUp')?.addEventListener('click', async ()=>{
+    const u = window.__bioUp; if(!u) return; const btn = document.getElementById('secBioUp'); btn.disabled = true;
+    try { await window.__bio.upgrade(u.pw, u.credId, u.salt); window.__bioUp = null; alert('حالت امن فعال شد.'); }
+    catch(e){ alert('ارتقا انجام نشد' + (e && e.name ? ' ('+e.name+')' : '') + '؛ ورود با Face ID همچنان در حالت راحتی کار می‌کند.'); }
+    render();
+  });
   document.getElementById('secBioOff')?.addEventListener('click', async ()=>{ await window.__bio.disable(); render(); });
   document.getElementById('secBioOn')?.addEventListener('click', async ()=>{
     const btn = document.getElementById('secBioOn');
@@ -2774,7 +2780,8 @@ function bindSecurityEvents(){
       try {
         const r = await window.__bio.enroll(pend.pw, pend.key);
         if(!r.ok){ alert('رمز درست نیست'); }
-        else { alert(r.mode==='prf' ? 'ورود با اثر انگشت/چهره فعال شد (حالت امن).' : 'ورود با اثر انگشت/چهره فعال شد (حالت راحتی). این گوشی قفل رمزنگاری بایومتریک را پشتیبانی نمی‌کند.'); }
+        else { if(r.canUpgrade){ window.__bioUp = { pw: pend.pw, credId: r.credId, salt: r.salt }; setTimeout(()=>{ window.__bioUp = null; }, 120000); }
+          alert(r.mode==='prf' ? 'ورود با اثر انگشت/چهره فعال شد (حالت امن).' : r.canUpgrade ? 'ورود با اثر انگشت/چهره فعال شد. برای قفل امن‌تر، دکمه‌ی «ارتقا به حالت امن» را لمس کن (اختیاری).' : 'ورود با اثر انگشت/چهره فعال شد (حالت راحتی). این گوشی قفل رمزنگاری بایومتریک را پشتیبانی نمی‌کند.'); }
       } catch(e){
         const localFile = !window.isSecureContext || !location.hostname || location.protocol === 'file:' || location.protocol === 'content:';
         const nm = e && e.name ? ' ('+e.name+')' : '';
@@ -10888,8 +10895,9 @@ render();
     }});
     const credId = b64e(cred.rawId);
     const ext = cred.getClientExtensionResults().prf || {};
-    let prfOut = ext.results && ext.results.first ? new Uint8Array(ext.results.first) : null;
-    if(!prfOut && ext.enabled){ try { prfOut = await assertion(credId, salt); } catch(e){ prfOut = null; } }
+    const prfOut = ext.results && ext.results.first ? new Uint8Array(ext.results.first) : null;
+    // مهم (iOS): درخواست دوم WebAuthn بدون لمس تازه توسط Safari رد می‌شود؛ پس این‌جا خودکار انجام نمی‌شود.
+    // اگر گوشی PRF را پشتیبانی کند، ارتقا به حالت امن با یک لمس جدا (Bio.upgrade) انجام می‌شود.
     let cfg;
     if(prfOut){
       const wrapped = await encStr(await wrapKeyFrom(prfOut), norm(pw));
@@ -10899,7 +10907,16 @@ render();
       cfg = { v:1, mode:'gate', credId };
     }
     localStorage.setItem(BIO_KEY, JSON.stringify(cfg));
-    return { ok:true, mode: cfg.mode };
+    return { ok:true, mode: cfg.mode, canUpgrade: cfg.mode==='gate' && !!ext.enabled, credId, salt };
+  };
+  // ارتقا از حالت راحتی به حالت امن: باید مستقیماً داخل یک لمس تازه صدا زده شود
+  Bio.upgrade = async (pw, credId, salt) => {
+    const out = await assertion(credId, salt);
+    if(!out) throw new Error('no-prf');
+    const wrapped = await encStr(await wrapKeyFrom(out), norm(pw));
+    localStorage.setItem(BIO_KEY, JSON.stringify({ v:1, mode:'prf', credId, salt: b64e(salt), wrapped }));
+    try { await idbDelete(); } catch(e){}
+    return true;
   };
   // نتیجه: { pw } در حالت امن یا { key } در حالت راحتی؛ خطا یعنی تأیید انجام نشد
   Bio.auth = async () => {
@@ -11088,7 +11105,7 @@ render();
         err.textContent = 'ورود با بایومتریک دیگر معتبر نیست (رمز عوض شده). با رمز وارد شو و دوباره فعالش کن.';
         if(b) b.remove();
       } catch(e){
-        if(!auto) err.textContent = 'تأیید اثر انگشت/چهره انجام نشد' + (e && e.name ? ' ('+e.name+')' : '') + '؛ دوباره امتحان کن یا رمز را بزن. اگر برنامه را دوباره نصب کرده‌ای، ورود بایومتریک را از تنظیمات امنیت دوباره فعال کن.';
+        if(!auto) err.textContent = 'تأیید اثر انگشت/چهره انجام نشد' + (e && (e.name || e.message) ? ' ('+(e.name && e.name!=='Error' ? e.name : e.message)+')' : '') + '؛ دوباره امتحان کن یا رمز را بزن. اگر برنامه را دوباره نصب کرده‌ای، ورود بایومتریک را از تنظیمات امنیت دوباره فعال کن.';
       }
       bioBusy = false; if($('lkBio')) $('lkBio').disabled = false;
     };
